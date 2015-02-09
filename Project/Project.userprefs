@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\buildRoads.cs">
+    <Files>
+      <File FileName="Assets\buildRoads.cs" Line="23" Column="6" />
+      <File FileName="..\..\IntegratedProject2\TestProject\Assets\scripts\CharacterControllerScript.cs" Line="84" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
