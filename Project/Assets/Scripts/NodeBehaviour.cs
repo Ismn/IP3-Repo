@@ -1,35 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+
+/* Ross McIntyre, 
+ * IP3 Team 4,
+ * 2013
+ */
 
 public class NodeBehaviour : MonoBehaviour
 {
-	// Define a node.
-	public GameObject node;
-	// Define what the spawnpoint for nodes is.
-	private GameObject nodeSpawn;
+	//private GameObject navNode;
 
-	// Create a list to store these nodes in.
-	List<NodeBehaviour> nodeList = new List<NodeBehaviour>();
+	SpriteRenderer sRender;
+	public Sprite selectedNode;
+	public Sprite unselectedNode;
+
+	public bool renderNodeSprite;
+	public bool timeToChange;
 
 	// Use this for initialization
 	void Start () 
 	{
-		nodeSpawn = this.gameObject;
-		
-		// Using the length of the array as a parameter, populate the list with the Nodes through instancing.
-		for(int i = 0; i < 1; i++)
-		{
-			// Instance the the nodes - Instantiate(prefab, position, rotation)
-			NodeBehaviour nodes = Instantiate(node, this.transform.position, this.transform.rotation) as NodeBehaviour;
-			// Add them to the list
-			nodeList.Add(nodes);
-			Debug.Log(nodeList.Count);
-		}
+		//navNode = this.gameObject;
+		sRender = GetComponent<SpriteRenderer>();
+
+		renderNodeSprite = false;
+		timeToChange = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{	
+		if (renderNodeSprite == true)
+		{
+			sRender.sprite = unselectedNode;
+			Debug.Log("renderNodeSprite is true");
+		}
+		if (sRender.sprite == unselectedNode && timeToChange)
+		{
+			sRender.sprite = selectedNode;
+			Debug.Log("timeToChange is true");
+		}
+	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test()
+	{
+		Debug.Log ("Hello!");
 	}
 }

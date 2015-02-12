@@ -2,33 +2,55 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/* Ross McIntyre, 
+ * IP3 Team 4,
+ * 2013
+ */
+
 public class CharacterBehaviour : MonoBehaviour 
 {
-	// Define what the spawnpoint for nodes is.
-	//private GameObject nodeSpawn;
+	// Declare objects to interact with.
+	public GameObject nodes;
+	public GameObject[] nodeArray;
 
-	// Create a list to store these nodes in.
-	//List<NodeBehaviour> nodeList = new List<NodeBehaviour>();
+	public List<GameObject> nodeList = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () 
-	{
-		// Retrieve the spawn position of every Node in the scene and fill up an array with them.
-		//GameObject[] nodeSpawnPoint = GameObject.FindGameObjectsWithTag("NodeSpawn"); 
-		
-		// Using the length of the array as a parameter, populate the list with the Nodes through instancing.
-		/*for(int i = 0; i < nodeSpawnPoint.Length; i++)
+	{	
+		nodeArray = GameObject.FindGameObjectsWithTag("Node");
+
+		for(int i = 0; i < nodeArray.Length; i++)
 		{
-			// Instance the the nodes - Instantiate(prefab, position, rotation)
-			//NodeBehaviour nodes = Instantiate(node, this.transform.position, this.transform.rotation) as NodeBehaviour;
 			// Add them to the list
-			//nodeList.Add(nodes);
-			//Debug.Log(nodeList.Count);
-		}*/
+			nodeList.Add(nodes);
+			Debug.Log(nodeList.Count);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+	}
+
+	// OnMouseDown checks for clicks on Colliders and GUI elements.
+	void OnMouseDown()
+	{
+		// If we press down the Left Mouse Button...
+		if(Input.GetMouseButtonDown(0))
+		{
+			foreach(GameObject nodes in nodeList)
+			{
+				// ... Tell the object to either begin rendering a sprite or change the current one.
+				nodes.GetComponent<NodeBehaviour>().Test();
+			}
+			Debug.Log("You clicked LMB on the character");
+		}
+	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test()
+	{
+		Debug.Log ("Hello!");
 	}
 }
