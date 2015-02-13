@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\buildRoads.cs" />
+     <Compile Include="Assets\House.cs" />
+     <Compile Include="Assets\Obj.cs" />
+     <Compile Include="Assets\Raycaster.cs" />
+     <Compile Include="Assets\Road.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
