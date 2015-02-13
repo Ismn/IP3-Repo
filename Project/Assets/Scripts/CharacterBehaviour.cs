@@ -42,7 +42,7 @@ public class CharacterBehaviour : MonoBehaviour
 			foreach(GameObject nodes in nodeList)
 			{
 				// ... Tell the object to either begin rendering a sprite or change the current one.
-				nodes.GetComponent<NodeBehaviour>().Test();
+				nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
 			}
 			Debug.Log("You clicked LMB on the character");
 		}
