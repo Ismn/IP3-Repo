@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 /* Ross McIntyre, 
  * IP3 Team 4,
- * 2013
+ * 2015
  */
 
 public class CharacterBehaviour : MonoBehaviour 
@@ -13,19 +13,14 @@ public class CharacterBehaviour : MonoBehaviour
 	public GameObject nodes;
 	public GameObject[] nodeArray;
 
-	public List<GameObject> nodeList = new List<GameObject>();
+	//public List<GameObject> nodeList = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () 
 	{	
 		nodeArray = GameObject.FindGameObjectsWithTag("Node");
 
-		for(int i = 0; i < nodeArray.Length; i++)
-		{
-			// Add them to the list
-			nodeList.Add(nodes);
-			Debug.Log(nodeList.Count);
-		}
+		Debug.Log(nodeArray.Length);
 	}
 	
 	// Update is called once per frame
@@ -39,7 +34,7 @@ public class CharacterBehaviour : MonoBehaviour
 		// If we press down the Left Mouse Button...
 		if(Input.GetMouseButtonDown(0))
 		{
-			foreach(GameObject nodes in nodeList)
+			foreach(GameObject nodes in nodeArray)
 			{
 				// ... Tell the object to either begin rendering a sprite or change the current one.
 				nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
