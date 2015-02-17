@@ -12,6 +12,8 @@ public class CharacterBehaviour : MonoBehaviour
 	// Declare objects to interact with.
 	public GameObject nodes;
 	public GameObject[] nodeArray;
+
+	// Do the same for variables.
 	
 	// Use this for initialization
 	void Start () 
