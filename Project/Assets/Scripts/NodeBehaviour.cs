@@ -8,8 +8,6 @@ using System.Collections;
 
 public class NodeBehaviour : MonoBehaviour
 {
-	//private GameObject navNode;
-
 	SpriteRenderer sRender;
 	public Sprite selectedNode;
 	public Sprite unselectedNode;
@@ -33,12 +31,10 @@ public class NodeBehaviour : MonoBehaviour
 		if (renderNodeSprite == true)
 		{
 			sRender.sprite = unselectedNode;
-			Debug.Log("renderNodeSprite is true");
 		}
 		if (sRender.sprite == unselectedNode && timeToChange)
 		{
 			sRender.sprite = selectedNode;
-			Debug.Log("timeToChange is true");
 		}
 	}
 

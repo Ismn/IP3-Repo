@@ -12,14 +12,12 @@ public class CharacterBehaviour : MonoBehaviour
 	// Declare objects to interact with.
 	public GameObject nodes;
 	public GameObject[] nodeArray;
-
-	//public List<GameObject> nodeList = new List<GameObject>();
-
+	
 	// Use this for initialization
 	void Start () 
 	{	
 		nodeArray = GameObject.FindGameObjectsWithTag("Node");
-
+		
 		Debug.Log(nodeArray.Length);
 	}
 	
