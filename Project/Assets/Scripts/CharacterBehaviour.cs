@@ -31,16 +31,12 @@ public class CharacterBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown()
 	{
-		// If we press down the Left Mouse Button...
-		if(Input.GetMouseButtonDown(0))
+		foreach(GameObject nodes in nodeArray)
 		{
-			foreach(GameObject nodes in nodeArray)
-			{
-				// ... Tell the object to either begin rendering a sprite or change the current one.
-				nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
-			}
-			Debug.Log("You clicked LMB on the character");
+			// ... Tell the object to either begin rendering a sprite or change the current one.
+			nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
 		}
+		Debug.Log("You clicked LMB on the character");
 	}
 
 	// Code stub for testing interaction between objects and scripts.

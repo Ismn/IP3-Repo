@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+
 	}
 	
 	// Update is called once per frame
@@ -24,6 +25,10 @@ public class InputManager : MonoBehaviour
 
 	// FixedUpdate
 	void FixedUpdate()
+	{
+	}
+
+	void OnMouseDown()
 	{
 	}
 

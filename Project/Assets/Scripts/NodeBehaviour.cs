@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /* Ross McIntyre, 
  * IP3 Team 4,
@@ -8,10 +9,13 @@ using System.Collections;
 
 public class NodeBehaviour : MonoBehaviour
 {
+	// Declare objects to interact with.
 	SpriteRenderer sRender;
 	public Sprite selectedNode;
 	public Sprite unselectedNode;
+	static List<GameObject> targetList = new List<GameObject>();
 
+	// Do the same for variables
 	public bool renderNodeSprite;
 	public bool timeToChange;
 
@@ -35,6 +39,17 @@ public class NodeBehaviour : MonoBehaviour
 		if (sRender.sprite == unselectedNode && timeToChange)
 		{
 			sRender.sprite = selectedNode;
+		}
+	}
+
+	// OnMouseDown checks for clicks on Colliders and GUI elements.
+	void OnMouseDown()
+	{
+		if(renderNodeSprite == true)
+		{
+			timeToChange = true;
+			targetList.Add(this.gameObject);
+			Debug.Log(targetList.Count);
 		}
 	}
 

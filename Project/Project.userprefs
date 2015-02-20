@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NodeBehaviour.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InputManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="33" Column="3" />
-      <File FileName="Assets\Scripts\NodeBehaviour.cs" Line="31" Column="32" />
-      <File FileName="Assets\Scripts\InputManager.cs" Line="28" Column="3" />
+      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\NodeBehaviour.cs" Line="54" Column="3" />
+      <File FileName="Assets\Scripts\InputManager.cs" Line="31" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
