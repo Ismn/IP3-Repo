@@ -8,6 +8,17 @@ public class Road : Obj
 	public int movementSpeed;
 	public Sprite[] pathTypes;
 
+	public enum State
+	{
+		unbuilt,
+		basicRoad,
+		upgradedRoad
+		
+	}
+	;
+
+	public State currentState;
+
 	public override void OnTouch ()
 	{
 		base.OnTouch ();
@@ -15,9 +26,9 @@ public class Road : Obj
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = pathTypes [1];
 			Debug.Log ("road built!");
 			built = true;
-			currentState = State.smallSchool;
-		} else if (currentState == State.smallSchool) {
-			currentState = State.bigSchool;
+			currentState = State.basicRoad;
+		} else if (currentState == State.basicRoad) {
+			currentState = State.upgradedRoad;
 			Debug.Log ("upgraded road!");
 		}
 	

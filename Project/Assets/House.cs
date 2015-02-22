@@ -8,6 +8,22 @@ public class House : Obj
 	public bool built = false;
 	public int capacity;
 
+	public enum State
+	{
+		unbuilt,
+		smallSchool,
+		bigSchool
+		
+	}
+	;
+
+	public State currentState;
+
+	public void Start ()
+	{
+		currentState = State.unbuilt;
+	}
+
 	public override void OnTouch ()
 	{
 		base.OnTouch ();
