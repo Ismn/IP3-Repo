@@ -4,6 +4,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - nodes: {fileID: 157370, guid: 3912faf4af555814fb232e94d9dbbcf6, type: 2}
+  - targetNode: {fileID: 457370, guid: 3912faf4af555814fb232e94d9dbbcf6, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

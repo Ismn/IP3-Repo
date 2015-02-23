@@ -12,12 +12,17 @@ public class CharacterBehaviour : MonoBehaviour
 	// Declare objects to interact with.
 	public GameObject nodes;
 	public GameObject[] nodeArray;
-
-	// Do the same for variables.
+	private NodeBehaviour nodeBehaviour;
 	
+	// Do the same for variables.
+	private List<Transform> targetNodes;
+
 	// Use this for initialization
 	void Start () 
-	{	
+	{
+		NodeBehaviour nodeBehaviour = GetComponent<NodeBehaviour>();
+		targetNodes = nodeBehaviour.setAsTarget();
+
 		nodeArray = GameObject.FindGameObjectsWithTag("Node");
 		
 		Debug.Log(nodeArray.Length);
