@@ -10,19 +10,21 @@ using System.Collections.Generic;
 public class CharacterBehaviour : MonoBehaviour 
 {
 	// Declare objects to interact with.
-	public GameObject nodes;
+	public NodeBehaviour nodes;
 	public GameObject[] nodeArray;
-	private NodeBehaviour nodeBehaviour;
 	
-	// Do the same for variables.
-	private List<Transform> targetNodes;
+	// Do the same for collections.
+	List<Transform> transList = new List<Transform>();
+
+	// And variables.
+	public float speed;
+	public float step;
 
 	// Use this for initialization
 	void Start () 
 	{
-		NodeBehaviour nodeBehaviour = GetComponent<NodeBehaviour>();
-		targetNodes = nodeBehaviour.setAsTarget();
-
+		step = speed * Time.deltaTime;
+		transList = nodes.nodeList;
 		nodeArray = GameObject.FindGameObjectsWithTag("Node");
 		
 		Debug.Log(nodeArray.Length);
@@ -42,6 +44,27 @@ public class CharacterBehaviour : MonoBehaviour
 			nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
 		}
 		Debug.Log("You clicked LMB on the character");
+	}
+
+	public void MoveToNode()
+	{
+		if (nodes.clicked == false)
+		{
+			return;
+
+		}
+
+		else 
+		{
+			do 
+			{
+				foreach (Transform trans in transList)
+				{
+					transform.position = Vector3.MoveTowards(transform.position, trans.position, step);
+				}
+			} 
+			while (nodes.clicked == true);
+		}
 	}
 
 	// Code stub for testing interaction between objects and scripts.

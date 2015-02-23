@@ -10,7 +10,9 @@ public class InputManager : MonoBehaviour
 {
 	// Declare objects to interact with.
 
-	// Do the same for variables.
+	// Do the same for collections.
+
+	// And variables.
 
 	// Use this for initialization
 	void Start () 
