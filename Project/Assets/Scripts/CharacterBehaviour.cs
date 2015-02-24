@@ -10,21 +10,25 @@ using System.Collections.Generic;
 public class CharacterBehaviour : MonoBehaviour 
 {
 	// Declare objects to interact with.
-	public NodeBehaviour nodes;
 	public GameObject[] nodeArray;
 	
 	// Do the same for collections.
-	List<Transform> transList = new List<Transform>();
+	//List<Transform> transList = new List<Transform>();
 
 	// And variables.
 	public float speed;
 	public float step;
+	public Transform targetPos;
+	public Vector3 targetPosAsVector;	
 
 	// Use this for initialization
 	void Start () 
 	{
+		targetPos = this.transform;
+		targetPosAsVector = targetPos.position;
+
 		step = speed * Time.deltaTime;
-		transList = nodes.nodeList;
+		//transList = nodes.nodeList;
 		nodeArray = GameObject.FindGameObjectsWithTag("Node");
 		
 		Debug.Log(nodeArray.Length);
@@ -33,6 +37,11 @@ public class CharacterBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		while(targetPosAsVector != this.transform.position)
+		{
+			Debug.Log ("player has a target");
+			MoveTo();
+		}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
@@ -46,25 +55,9 @@ public class CharacterBehaviour : MonoBehaviour
 		Debug.Log("You clicked LMB on the character");
 	}
 
-	public void MoveToNode()
+	void MoveTo()
 	{
-		if (nodes.clicked == false)
-		{
-			return;
-
-		}
-
-		else 
-		{
-			do 
-			{
-				foreach (Transform trans in transList)
-				{
-					transform.position = Vector3.MoveTowards(transform.position, trans.position, step);
-				}
-			} 
-			while (nodes.clicked == true);
-		}
+		this.transform.position = Vector3.MoveTowards(transform.position, targetPosAsVector, step);
 	}
 
 	// Code stub for testing interaction between objects and scripts.

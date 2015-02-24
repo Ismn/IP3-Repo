@@ -5,7 +5,7 @@ MonoImporter:
   defaultReferences:
   - selectedNode: {fileID: 21300000, guid: 5a54fd7283ae9cb40b4d23617ace57ec, type: 3}
   - unselectedNode: {fileID: 21300000, guid: e497d0a4192eb8f4f9a9b5de71392e99, type: 3}
-  - target: {fileID: 457370, guid: 3912faf4af555814fb232e94d9dbbcf6, type: 2}
+  - character: {fileID: 101488, guid: 58df2e1f6e63517468c91d01c10860c4, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

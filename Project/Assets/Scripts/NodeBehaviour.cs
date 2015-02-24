@@ -13,21 +13,21 @@ public class NodeBehaviour : MonoBehaviour
 	SpriteRenderer sRender;
 	public Sprite selectedNode;
 	public Sprite unselectedNode;
+	public Transform characterTrans;
 
 	// Do the same for collections.
-	public List<Transform> nodeList = new List<Transform>();
+	//public List<Transform> nodeList = new List<Transform>();
 
 	// And variables.
 	public bool renderNodeSprite;
 	public bool timeToChange;
-	public bool clicked;
 
 	// Use this for initialization
 	void Start () 
 	{
 		sRender = GetComponent<SpriteRenderer>();
+		characterTrans = GetComponent<CharacterBehaviour>().targetPos;
 
-		clicked = false;
 
 		renderNodeSprite = false; // Node sprites are not to be rendered on startup.
 		timeToChange = false; // Nor are they to be shown in their 'selected' state.
@@ -54,9 +54,10 @@ public class NodeBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown()
 	{
-		clicked = true;
 		timeToChange = true;
-		nodeList.Add (this.transform);
+		//nodeList.Add (this.transform);
+		characterTrans = this.transform;
+		Test();
 	}
 
 	// Code stub for testing interaction between objects and scripts.
