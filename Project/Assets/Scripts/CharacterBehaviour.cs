@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-/* Ross McIntyre, 
+/* ***************
+ * Ross McIntyre, 
  * IP3 Team 4,
  * 2015
+ * ***************
  */
 
 public class CharacterBehaviour : MonoBehaviour 

@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\NodeBehaviour.cs" />
+     <Compile Include="Assets\Scripts\WaypointSystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
