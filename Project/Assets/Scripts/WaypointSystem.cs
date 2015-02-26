@@ -35,9 +35,9 @@ public class WaypointSystem : MonoBehaviour
 	// Maybe someone more experienced than me knows how to improve it.
 	// Please correct me if any of my comments are incorrect.
 	
-	// This is the rate of accelleration after the function "Accell()" is called.
+	// This is the rate of accelleration after the function "Accelerate()" is called.
 	// Higher values will cause the object to reach the "speedLimit" in less time.
-	public float accel = 0.8f;
+	public float acceleration = 0.8f;
 	
 	// This is the the amount of velocity retained after the function "Slow()" is called.
 	// Lower values cause quicker stops. A value of "1.0" will never stop. Values above "1.0" will speed up.
@@ -50,7 +50,7 @@ public class WaypointSystem : MonoBehaviour
 	public float minSpeed = 1.0f;
 	
 	// This is how long to pause inside "Slow()" before activating the function
-	// "Accell()" to start the script again.
+	// "Accelerate()" to start the script again.
 	public float stopTime = 1.0f;
 	
 	// This variable "currentSpeed" is the major player for dealing with velocity.
@@ -59,13 +59,13 @@ public class WaypointSystem : MonoBehaviour
 	// things down inside the function "Slow()".
 	private float currentSpeed = 0.0f;
 	
-	// The variable "functionState" controlls which function, "Accell()" or "Slow()",
-	// is active. "0" is function "Accell()" and "1" is function "Slow()".
+	// The variable "functionState" controlls which function, "Accelerate()" or "Slow()",
+	// is active. "0" is function "Accelerate()" and "1" is function "Slow()".
 	private float functionState = 0;
 	
-	// The next two variables are used to make sure that while the function "Accell()" is running,
+	// The next two variables are used to make sure that while the function "Accelerate()" is running,
 	// the function "Slow()" can not run (as well as the reverse).
-	private bool accelState;
+	private bool accelerationState;
 	private bool slowState;
 	
 	// This variable will store the "active" target object (the waypoint to move to).
@@ -77,9 +77,8 @@ public class WaypointSystem : MonoBehaviour
 	// If this is false, the object will rotate instantly toward the Waypoint.
 	// If true, you get smoooooth rotation baby!
 	public bool smoothRotation = true;
-	
-	// This variable is an array. []< that is an array container if you didnt know.
-	// It holds all the Waypoint Objects that you assign in the inspector.
+
+	// Holds all the Waypoint Objects that you assign in the inspector.
 	public Transform[] waypoints;
 	
 	// This variable keeps track of which Waypoint Object,
@@ -88,24 +87,24 @@ public class WaypointSystem : MonoBehaviour
 	
 	// Functions! They do all the work.
 	// You can use the built in functions found here: [url]http://unity3d.com/support/documentation/ScriptReference/MonoBehaviour.html[/url]
-	// Or you can declare your own! The function "Accell()" is one I declared.
+	// Or you can declare your own! The function "Accelerate()" is one I declared.
 	// You will want to declare your own functions because theres just certain things that wont work in "Update()". Things like Coroutines: [url]http://unity3d.com/support/documentation/ScriptReference/index.Coroutines_26_Yield.html[/url]
 	
 	//The function "Start()" is called just before anything else but only one time.
 	void Start( )
 	{
-		// When the script starts set "0" or function Accell() to be active.
+		// When the script starts set "0" or function Accelerate() to be active.
 		functionState = 0;
 	}
 	
 	//The function "Update()" is called every frame. It can get slow if overused.
 	void Update ()
 	{
-		// If functionState variable is currently "0" then run "Accell()".
-		// Withouth the "if", "Accell()" would run every frame.
+		// If functionState variable is currently "0" then run "Accelerate()".
+		// Withouth the "if", "Accelerate()" would run every frame.
 		if (functionState == 0)
 		{
-			Accell();
+			Accelerate();
 		}
 		
 		// If functionState variable is currently "1" then run "Slow()".
@@ -118,13 +117,13 @@ public class WaypointSystem : MonoBehaviour
 		waypoint = waypoints[WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 	}
 	
-	// I declared "Accell()".
-	void Accell ()
+	// I declared "Accelerate()".
+	void Accelerate ()
 	{
-		if (accelState == false)
+		if (accelerationState == false)
 		{
-			// Make sure that if Accell() is running, Slow() can not run.
-			accelState = true;
+			// Make sure that if Accelerate() is running, Slow() can not run.
+			accelerationState = true;
 			slowState = false;
 		}
 		
@@ -144,7 +143,7 @@ public class WaypointSystem : MonoBehaviour
 		}
 		
 		// Now do the accelleration toward the active waypoint untill the "speedLimit" is reached
-		currentSpeed = currentSpeed + accel * accel;
+		currentSpeed = currentSpeed + acceleration * acceleration;
 		transform.Translate (0,0,Time.deltaTime * currentSpeed);
 		
 		// When the "speedlimit" is reached or exceeded ...
@@ -182,8 +181,8 @@ public class WaypointSystem : MonoBehaviour
 	{
 		if (slowState == false) //
 		{
-			// Make sure that if Slow() is running, Accell() can not run.
-			accelState = false;
+			// Make sure that if Slow() is running, Accelerate() can not run.
+			accelerationState = false;
 			slowState = true;
 		}
 		
@@ -198,7 +197,7 @@ public class WaypointSystem : MonoBehaviour
 			currentSpeed = 0.0f;
 			// Wait for the amount of time set in "stopTime" before moving to next waypoint.
 			yield return new WaitForSeconds(stopTime);
-			// Activate the function "Accell()" to move to next waypoint.
+			// Activate the function "Accelerate()" to move to next waypoint.
 			functionState = 0;
 		}
 	} 
