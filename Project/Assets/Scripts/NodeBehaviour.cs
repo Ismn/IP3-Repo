@@ -25,7 +25,7 @@ public class NodeBehaviour : MonoBehaviour
 	{
 		sRender = GetComponent<SpriteRenderer>();
 
-		renderNodeSprite = false; // Node sprites are not to be rendered on startup.
+		renderNodeSprite = true; // Node sprites are not to be rendered on startup.
 		timeToChange = false; // Nor are they to be shown in their 'selected' state.
 	}
 	
@@ -49,6 +49,7 @@ public class NodeBehaviour : MonoBehaviour
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown()
+
 	{
 		timeToChange = true;
 	}

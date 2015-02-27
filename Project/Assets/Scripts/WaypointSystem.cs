@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /* ***************
  * Ross McIntyre, 
@@ -15,26 +16,7 @@ using System.Collections;
  */
 
 public class WaypointSystem : MonoBehaviour
-{
-	//   This is a very simple waypoint system.
-	// Each bit is explained in as much detail as possible for people (like me!) who need every single line explained.
-	// As a side note to the inexperienced (like me at the moment!), you can delete the word "private" on any variable to see it in the inspector for debugging.
-	// I am sure there are issues with this as is, but it seems to work pretty well as a demonstration.
-	
-	//STEPS:
-	//1. Attach this script to a GameObject with a RidgidBody and a Collider.
-	//2. Change the "Size" variable in "Waypoints" to the number of waypoints you want to use.
-	//3. Drop your waypoint objects on to the empty variable slots.
-	//4. Make sure all your waypoint objects have colliders. (Sphere Collider is best IMO).
-	//5. Click the checkbox for "is Trigger" to "On" on the waypoint objects to make them triggers.
-	//6. Set the Size (radius for sphere collider) or just Scale for your waypoints.
-	//7. Have fun! Try changing variables to get different speeds and such.
-	
-	// Disclaimer:
-	// Extreeme values will start to mess things up.
-	// Maybe someone more experienced than me knows how to improve it.
-	// Please correct me if any of my comments are incorrect.
-	
+{	
 	// This is the rate of accelleration after the function "Accelerate()" is called.
 	// Higher values will cause the object to reach the "speedLimit" in less time.
 	public float acceleration = 0.8f;
@@ -49,14 +31,9 @@ public class WaypointSystem : MonoBehaviour
 	// This is the speed that tells the functon "Slow()" when to stop moving the object.
 	public float minSpeed = 1.0f;
 	
-	// This is how long to pause inside "Slow()" before activating the function
-	// "Accelerate()" to start the script again.
+	// This is how long to pause inside "Slow()" before activating the Accelerate function.
 	public float stopTime = 1.0f;
-	
-	// This variable "currentSpeed" is the major player for dealing with velocity.
-	// The "currentSpeed" is mutiplied by the variable "accel" to speed up inside the function "accell()".
-	// Again, The "currentSpeed" is multiplied by the variable "inertia" to slow
-	// things down inside the function "Slow()".
+
 	private float currentSpeed = 0.0f;
 	
 	// The variable "functionState" controlls which function, "Accelerate()" or "Slow()",
@@ -69,7 +46,7 @@ public class WaypointSystem : MonoBehaviour
 	private bool slowState;
 	
 	// This variable will store the "active" target object (the waypoint to move to).
-	private Transform waypoint;
+	private GameObject waypoint;
 	
 	// This is the speed the object will rotate to face the active Waypoint.
 	public float rotationDamping = 6.0f;
@@ -79,17 +56,14 @@ public class WaypointSystem : MonoBehaviour
 	public bool smoothRotation = true;
 
 	// Holds all the Waypoint Objects that you assign in the inspector.
-	public Transform[] waypoints;
+	public List<GameObject> waypoints;
+
+	public Quaternion rotation;
 	
 	// This variable keeps track of which Waypoint Object,
 	// in the previously mentioned array variable "waypoints", is currently active.
 	private int WPindexPointer;
-	
-	// Functions! They do all the work.
-	// You can use the built in functions found here: [url]http://unity3d.com/support/documentation/ScriptReference/MonoBehaviour.html[/url]
-	// Or you can declare your own! The function "Accelerate()" is one I declared.
-	// You will want to declare your own functions because theres just certain things that wont work in "Update()". Things like Coroutines: [url]http://unity3d.com/support/documentation/ScriptReference/index.Coroutines_26_Yield.html[/url]
-	
+
 	//The function "Start()" is called just before anything else but only one time.
 	void Start( )
 	{
@@ -126,6 +100,7 @@ public class WaypointSystem : MonoBehaviour
 			accelerationState = true;
 			slowState = false;
 		}
+
 		
 		// I grabbed this next part from the unity "SmoothLookAt" script but try to explain more.
 		if (waypoint) //If there is a waypoint do the next "if".
@@ -133,7 +108,7 @@ public class WaypointSystem : MonoBehaviour
 			if (smoothRotation)
 			{
 				// Look at the active waypoint.
-				var rotation = Quaternion.LookRotation(waypoint.position - transform.position);
+				rotation = Quaternion.LookRotation(waypoint.transform.position - transform.position);
 				
 				// Make the rotation nice and smooth.
 				// If smoothRotation is set to "On", do the rotation over time
@@ -168,7 +143,7 @@ public class WaypointSystem : MonoBehaviour
 		WPindexPointer++;
 		
 		// When the array variable reaches the end of the list ...
-		if (WPindexPointer >= waypoints.Length)
+		if (WPindexPointer >= waypoints.Count)
 		{
 			// ... reset the active waypoint to the first object in the array variable
 			// "waypoints" and start from the beginning.
