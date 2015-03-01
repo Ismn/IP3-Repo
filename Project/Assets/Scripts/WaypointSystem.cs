@@ -17,47 +17,55 @@ using System.Collections.Generic;
 
 public class WaypointSystem : MonoBehaviour
 {	
-	// This is as fast the object is allowed to go.
-	public float speedLimit = 10.0f;
-
 	private float speed = 5.0f;
 	
 	// This variable will store the "active" target object (the waypoint to move to).
 	private Transform currentWaypoint;
 
 	// Holds all the Waypoint Objects that you assign in the inspector.
-	public List<Transform> waypoints;
+	public Transform[] waypoints;
 	
 	// This variable keeps track of which Waypoint Object,
 	// in the previously mentioned array variable "waypoints", is currently active.
-	private int WPindexPointer;
+	static int WPindexPointer;
 
 	//The function "Start()" is called just before anything else but only one time.
 	void Start( )
 	{
-	}
-	
+		WPindexPointer = 0;
+		Debug.Log(WPindexPointer);
+	} 
+
 	//The function "Update()" is called every frame. It can get slow if overused.
 	void Update ()
 	{		
 		currentWaypoint = waypoints[WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		Debug.Log(WPindexPointer);
 		transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, speed * Time.deltaTime);
 	}
-	
+
 	//The function "OnTriggerEnter" is called when a collision happens.
-	void OnTriggerEnter ()
-	{		
-		// When the GameObject collides with the waypoint's collider,
-		// change the active waypoint to the next one in the array variable "waypoints".
-		WPindexPointer++;
-		Debug.Log(WPindexPointer);
-		// When the array variable reaches the end of the list ...
-		if (WPindexPointer >= waypoints.Count)
+	public void OnTriggerEnter (Collider other)
+	{
+		if (other.CompareTag("Node"))
 		{
-			// ... reset the active waypoint to the first object in the array variable
-			// "waypoints" and start from the beginning.
-			WPindexPointer = 0;
+			Debug.Log ("Contact");
+			// When the GameObject collides with the waypoint's collider,
+			// change the active waypoint to the next one in the array variable "waypoints".
+			WPindexPointer++;
+			Debug.Log(WPindexPointer);
+			// When the array variable reaches the end of the list ...
+			if (WPindexPointer >= waypoints.Length)
+			{
+				// ... reset the active waypoint to the first object in the array variable
+				// "waypoints" and start from the beginning.
+				WPindexPointer = 0;
+			}
 		}
-	} 
+	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test()
+	{
+		Debug.Log ("Hello!");
+	}
 }
