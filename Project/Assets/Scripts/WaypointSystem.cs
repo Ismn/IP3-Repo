@@ -30,32 +30,32 @@ public class WaypointSystem : MonoBehaviour
 	static int WPindexPointer;
 
 	//The function "Start()" is called just before anything else but only one time.
-	void Start( )
+	void Start ()
 	{
 		WPindexPointer = 0;
-		Debug.Log(WPindexPointer);
+		Debug.Log (WPindexPointer);
 	} 
 
 	//The function "Update()" is called every frame. It can get slow if overused.
 	void Update ()
 	{		
-		currentWaypoint = waypoints[WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, speed * Time.deltaTime);
+		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
+		transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed * Time.deltaTime);
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
 	public void OnTriggerEnter (Collider other)
 	{
-		if (other.CompareTag("Node"))
-		{
+		Debug.Log ("Contact");
+
+		if (other.CompareTag ("Node")) {
 			Debug.Log ("Contact");
 			// When the GameObject collides with the waypoint's collider,
 			// change the active waypoint to the next one in the array variable "waypoints".
 			WPindexPointer++;
-			Debug.Log(WPindexPointer);
+			Debug.Log (WPindexPointer);
 			// When the array variable reaches the end of the list ...
-			if (WPindexPointer >= waypoints.Length)
-			{
+			if (WPindexPointer >= waypoints.Length) {
 				// ... reset the active waypoint to the first object in the array variable
 				// "waypoints" and start from the beginning.
 				WPindexPointer = 0;
@@ -64,7 +64,7 @@ public class WaypointSystem : MonoBehaviour
 	}
 
 	// Code stub for testing interaction between objects and scripts.
-	public void Test()
+	public void Test ()
 	{
 		Debug.Log ("Hello!");
 	}
