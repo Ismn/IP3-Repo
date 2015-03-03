@@ -5,6 +5,7 @@ public class House : Obj
 {
 
 	public Sprite[] buildingTypes;
+	//public bool building = false;
 	public bool built = false;
 	public int capacity;
 
@@ -27,6 +28,7 @@ public class House : Obj
 	public override void OnTouch ()
 	{
 		base.OnTouch ();
+
 		if (currentState == State.unbuilt) {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = buildingTypes [1];
 			Debug.Log ("building built");
@@ -37,4 +39,5 @@ public class House : Obj
 			Debug.Log ("school upgraded!");
 		}
 	}
+
 }
