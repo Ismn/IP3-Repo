@@ -15,7 +15,7 @@ public class gamePlayScript : MonoBehaviour {
 	public float timeToCycle;//This is the changeable time that it takes for donations to arrive.
 	public int score;//This is the current level score.
 	public bool buildingBuilt;//This is simply used for testing.
-	public Vector3 mousePosition = Input.mousePosition;
+	public Vector3 mousePosition;
 	public GUISkin allUI;//Assigns the GUI skin to use, DO NOT ALTER FROM "allUI";
 	public float xMousePosition;
 	public float yMousePosition;
@@ -24,7 +24,9 @@ public class gamePlayScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
+        mousePosition = Input.mousePosition;
 		timeToCycle = 5.0f; //Start our time Cycle off.
 		StartCoroutine(cycleResources ()); //The cycle of resources repeats itself so it just needs this initial start.
 		buildingBuilt = false;

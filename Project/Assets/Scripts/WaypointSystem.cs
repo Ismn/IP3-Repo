@@ -17,51 +17,75 @@ using System.Collections.Generic;
 
 public class WaypointSystem : MonoBehaviour
 {	
-	private float speed = 5.0f;
-	
-	// This variable will store the "active" target object (the waypoint to move to).
-	private Transform currentWaypoint;
+    // Declare objects to interact with.
+	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
 
-	// Holds all the Waypoint Objects that you assign in the inspector.
-	public Transform[] waypoints;
-	
-	// This variable keeps track of which Waypoint Object,
-	// in the previously mentioned array variable "waypoints", is currently active.
-	static int WPindexPointer;
+	public Transform[] waypoints; // Holds all the Waypoint Objects that you assign in the inspector.
+    
+    static bool insideNode;
 
-	//The function "Start()" is called just before anything else but only one time.
+	// Do the same for collections.
+
+	// And variables.
+    private float speed = 5.0f; // How fast the players trucks can move.
+
+	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
+
+	// Use this for initialization
 	void Start ()
 	{
-		WPindexPointer = 0;
+        insideNode = false;
+
+		WPindexPointer = 0; // Waypoint target is first element in the Array.
 		Debug.Log (WPindexPointer);
 	} 
 
-	//The function "Update()" is called every frame. It can get slow if overused.
+	// Update is called once per frame
 	void Update ()
 	{		
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed * Time.deltaTime);
+
+		transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed * Time.deltaTime); // MoveTowards function takes its parameters as (current position, target position, speed).
+
+        if (insideNode = true)
+        {
+            StartCoroutine(WaitTimer ());
+        }
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
 	public void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Contact");
+        // If the truck comes within range of an object with the "Node" tag...
+		if (other.CompareTag ("Node")) 
+        {
+            insideNode = true;
 
-		if (other.CompareTag ("Node")) {
 			Debug.Log ("Contact");
-			// When the GameObject collides with the waypoint's collider,
-			// change the active waypoint to the next one in the array variable "waypoints".
+
+			// ...Set the active waypoint to the next element in the array.
 			WPindexPointer++;
 			Debug.Log (WPindexPointer);
+
 			// When the array variable reaches the end of the list ...
-			if (WPindexPointer >= waypoints.Length) {
-				// ... reset the active waypoint to the first object in the array variable
-				// "waypoints" and start from the beginning.
+			if (WPindexPointer >= waypoints.Length) 
+            {
+				// ... reset the active waypoint to the first object in the array,
+                // effectivetly starting over from the beginning.
 				WPindexPointer = 0;
 			}
 		}
+        
+        else
+        {
+            insideNode = false;
+        }
 	}
+    
+    IEnumerator WaitTimer()
+    {
+        yield return new WaitForSeconds (1); // Give the truck some time to reach the center of the node.
+    }
 
 	// Code stub for testing interaction between objects and scripts.
 	public void Test ()
