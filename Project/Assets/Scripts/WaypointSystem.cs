@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,8 +21,6 @@ public class WaypointSystem : MonoBehaviour
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
 
 	public Transform[] waypoints; // Holds all the Waypoint Objects that you assign in the inspector.
-    
-    static bool insideNode;
 
 	// Do the same for collections.
 
@@ -34,8 +32,6 @@ public class WaypointSystem : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        insideNode = false;
-
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
 		Debug.Log (WPindexPointer);
 	} 
@@ -46,11 +42,6 @@ public class WaypointSystem : MonoBehaviour
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 
 		transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed * Time.deltaTime); // MoveTowards function takes its parameters as (current position, target position, speed).
-
-        if (insideNode = true)
-        {
-            StartCoroutine(WaitTimer ());
-        }
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
@@ -59,8 +50,6 @@ public class WaypointSystem : MonoBehaviour
         // If the truck comes within range of an object with the "Node" tag...
 		if (other.CompareTag ("Node")) 
         {
-            insideNode = true;
-
 			Debug.Log ("Contact");
 
 			// ...Set the active waypoint to the next element in the array.
@@ -75,17 +64,7 @@ public class WaypointSystem : MonoBehaviour
 				WPindexPointer = 0;
 			}
 		}
-        
-        else
-        {
-            insideNode = false;
-        }
 	}
-    
-    IEnumerator WaitTimer()
-    {
-        yield return new WaitForSeconds (1); // Give the truck some time to reach the center of the node.
-    }
 
 	// Code stub for testing interaction between objects and scripts.
 	public void Test ()
