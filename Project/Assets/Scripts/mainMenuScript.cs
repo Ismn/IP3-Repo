@@ -20,7 +20,7 @@ public class mainMenuScript : MonoBehaviour {
 	void OnGUI (){
 		GUI.skin = allUI;
 		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 100), "", GUI.skin.GetStyle ("PlayGameButton"))) {
-			Application.LoadLevel("MainGame");
+			Application.LoadLevel("Wireframe - Test");
 				}
 		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 + 50, 200, 100), "", GUI.skin.GetStyle ("QuitGameButton"))) {
 			Application.Quit ();
