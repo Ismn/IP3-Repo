@@ -4,18 +4,17 @@ using System.Collections.Generic;
 
 public class Raycaster : MonoBehaviour
 {
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null)
-            {
-                if (hit.collider.gameObject.GetComponent<Obj>())
-                {
-                    hit.collider.GetComponent<Obj>().OnTouch();
-                }
-            }
-        }
-    }
+	void Update ()
+	{
+		if (Input.GetMouseButtonDown (0)) {
+			//if (GetComponent<gamePlayScript> ().buildingBuilt == true) 
+			//{
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray, out hit, 100)) {
+				hit.collider.GetComponent<Obj> ().OnTouch ();
+			}
+			//}
+		}
+	}
 }
