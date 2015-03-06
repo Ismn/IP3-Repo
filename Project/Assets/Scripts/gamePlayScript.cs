@@ -23,7 +23,7 @@ public class gamePlayScript : MonoBehaviour {
 	public int costOfFood;
 	
 	public GameObject truck;
-	private bool canUnload;
+	public bool canUnload;
 
 
 	// Use this for initialization
@@ -62,16 +62,6 @@ public class gamePlayScript : MonoBehaviour {
 		Debug.Log ("New Cycle has Begun");
 
 
-	}
-	
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.CompareTag("Character"))
-		{
-			truck.GetComponent<CharacterBehaviour>().Unloading();
-			
-			canUnload = true;
-		}
 	}
 
 	void OnGUI()

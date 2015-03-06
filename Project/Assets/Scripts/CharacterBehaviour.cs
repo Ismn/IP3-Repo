@@ -21,6 +21,7 @@ public class CharacterBehaviour : MonoBehaviour
 	public GameObject[] nodeArray;
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
 	public Transform[] waypoints; // Holds all the Waypoint Objects that you assign in the inspector.
+	public gamePlayScript gPS;
 
 	// Do the same for collections.
 
@@ -85,11 +86,20 @@ public class CharacterBehaviour : MonoBehaviour
 				WPindexPointer = 0;
 			}
 		}
+		
+		if (other.CompareTag("School"))
+		{
+			Unloading();
+			
+			Test();
+		}
 	}
 	
-	IEnumerator Unloading()
+	public void Unloading()
 	{
 		speed = 0.0f;
+		
+		gPS.GetComponent<gamePlayScript>().canUnload = true;
 		//yield return new WaitForSeconds (timeToUnload);
 		
 		/*this.collider.enabled = false;
