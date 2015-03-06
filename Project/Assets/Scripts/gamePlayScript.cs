@@ -21,6 +21,9 @@ public class gamePlayScript : MonoBehaviour {
 	public float yMousePosition;
 	public bool gameIsPaused;//Determines whether the game is in a pause state.
 	public int costOfFood;
+	
+	public GameObject truck;
+	private bool canUnload;
 
 
 	// Use this for initialization
@@ -31,6 +34,7 @@ public class gamePlayScript : MonoBehaviour {
 		StartCoroutine(cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
 		buildingBuilt = false;
 		gameIsPaused = false;
+		canUnload = false;
 	}
 	
 	// Update is called once per frame
@@ -58,7 +62,17 @@ public class gamePlayScript : MonoBehaviour {
 		Debug.Log ("New Cycle has Begun");
 
 
+	}
+	
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.CompareTag("Character"))
+		{
+			truck.GetComponent<CharacterBehaviour>().Unloading();
+			
+			canUnload = true;
 		}
+	}
 
 	void OnGUI()
 	{
@@ -84,6 +98,16 @@ public class gamePlayScript : MonoBehaviour {
 				buildingBuilt = true;
 			}
 		}
+		
+		if (mealsAvailable >= 1 && canUnload == true) 
+		{
+			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle("SellButton"))) 
+			{
+				awareness += 1;
+				mealsAvailable -= 1;
+				moneyRate+=1;
+			}
+		}
 
 		if (money >= costOfFood && buildingBuilt == true) 
 		{
@@ -91,16 +115,6 @@ public class gamePlayScript : MonoBehaviour {
 			{
 				mealsAvailable += 1;
 				money -= costOfFood;
-			}
-						
-			if (mealsAvailable >= 1) 
-			{
-				if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle("SellButton"))) 
-				{
-					awareness += 1;
-					mealsAvailable -= 1;
-					moneyRate+=1;
-				}
 			}
 		}
 

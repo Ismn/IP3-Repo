@@ -28,6 +28,7 @@ public class CharacterBehaviour : MonoBehaviour
 	private float speed = 5.0f; // How fast the players trucks can move.
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 	static bool canMove;
+	//private float timeToUnload = 1.0f;
 
 	// Use this for initialization
 	void Start () 
@@ -84,6 +85,19 @@ public class CharacterBehaviour : MonoBehaviour
 				WPindexPointer = 0;
 			}
 		}
+	}
+	
+	IEnumerator Unloading()
+	{
+		speed = 0.0f;
+		//yield return new WaitForSeconds (timeToUnload);
+		
+		/*this.collider.enabled = false;
+		
+		if(timeToUnload >= 1.0f)
+		{
+			speed = 5.0f;
+		}*/
 	}
 
 	// Code stub for testing interaction between objects and scripts.
