@@ -55,13 +55,6 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (money >= 10) {
-			buildButton.SetActive (true);
-			Debug.Log ("here");
-		} else {
-			buildButton.SetActive (false);
-		}
-
 		if (gameIsPaused == false) {
 			pauseButton.SetActive (true);
 		}
@@ -69,17 +62,28 @@ public class gamePlayScript : MonoBehaviour
 			unPauseButton.SetActive (true);
 		}
 
-		if (money >= costOfFood && buildingBuilt == true) {
-			buyMealButton.SetActive (true);
-		} else {
-			buyMealButton.SetActive (false);
-		}
+		if (gameIsPaused == false) {
 
-		if (mealsAvailable >= 1 && canUnload == true) {
+			if (money >= 10) {
+				buildButton.SetActive (true);
+				Debug.Log ("here");
+			} else {
+				buildButton.SetActive (false);
+			}
 
-			giveMealButton.SetActive (true);
-		} else {
-			giveMealButton.SetActive (false);
+			if (money >= costOfFood && buildingBuilt == true) {
+				buyMealButton.SetActive (true);
+			} else {
+				buyMealButton.SetActive (false);
+			}
+
+			if (mealsAvailable >= 1 && canUnload == true) {
+
+				giveMealButton.SetActive (true);
+			} else {
+				giveMealButton.SetActive (false);
+			}
+
 		}
 
 		if (Input.GetKeyDown ("escape")) {
@@ -175,7 +179,9 @@ public class gamePlayScript : MonoBehaviour
 		Debug.Log ("Game is Paused");
 		pauseButton.SetActive (false);
 		unPauseButton.SetActive (true);
-
+		buildButton.SetActive (false);
+		buyMealButton.SetActive (false);
+		giveMealButton.SetActive (false);
 	}
 
 	public void unPause ()
@@ -185,6 +191,9 @@ public class gamePlayScript : MonoBehaviour
 		Debug.Log ("Game is unPaused");
 		pauseButton.SetActive (true);
 		unPauseButton.SetActive (false);
+		buildButton.SetActive (true);
+		buyMealButton.SetActive (true);
+		giveMealButton.SetActive (true);
 	}
 
 	public void buyMeal ()
