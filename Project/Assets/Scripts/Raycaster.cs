@@ -7,12 +7,13 @@ public class Raycaster : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			if (GetComponent<gamePlayScript> ().buildingBuilt == true) {
+			if (GetComponent<gamePlayScript> ().canBuild == true) {
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				RaycastHit hit;
 				if (Physics.Raycast (ray, out hit, 100)) {
 					hit.collider.GetComponent<Obj> ().OnTouch ();
-					GetComponent<gamePlayScript> ().buildingBuilt = false;
+					//GetComponent<gamePlayScript> ().canBuild = false;
+					GetComponent<gamePlayScript> ().buildingBuilt = true;
 				}
 			}
 		}

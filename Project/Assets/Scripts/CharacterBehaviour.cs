@@ -15,7 +15,7 @@ using System.Collections.Generic;
  * ***************
  */
 
-public class CharacterBehaviour : MonoBehaviour 
+public class CharacterBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
 	public GameObject[] nodeArray;
@@ -32,46 +32,43 @@ public class CharacterBehaviour : MonoBehaviour
 	//private float timeToUnload = 1.0f;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 		canMove = false;
 
-		nodeArray = GameObject.FindGameObjectsWithTag("Node");		
-		Debug.Log(nodeArray.Length);
+		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
+		Debug.Log (nodeArray.Length);
 
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
 		Debug.Log (WPindexPointer);
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if(canMove)
-		{
+		if (canMove) {
 			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed * Time.deltaTime); // MoveTowards function takes its parameters as (current position, target position, speed).
 		}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
-	void OnMouseDown()
+	void OnMouseDown ()
 	{
 		canMove = true;
 
-		foreach(GameObject nodes in nodeArray)
-		{
+		foreach (GameObject nodes in nodeArray) {
 			// ... Tell the object to either begin rendering a sprite or change the current one.
-			nodes.GetComponent<NodeBehaviour>().renderNodeSprite = true;
+			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 		}
-		Debug.Log("You clicked LMB on the character");
+		Debug.Log ("You clicked LMB on the character");
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
 	public void OnTriggerEnter (Collider other)
 	{
 		// If the truck comes within range of an object with the "Node" tag...
-		if (other.CompareTag ("Node")) 
-		{
+		if (other.CompareTag ("Node")) {
 			Debug.Log ("Contact");
 			
 			// ...Set the active waypoint to the next element in the array.
@@ -79,27 +76,25 @@ public class CharacterBehaviour : MonoBehaviour
 			Debug.Log (WPindexPointer);
 			
 			// When the array variable reaches the end of the list ...
-			if (WPindexPointer >= waypoints.Length) 
-			{
+			if (WPindexPointer >= waypoints.Length) {
 				// ... reset the active waypoint to the first object in the array,
 				// effectivetly starting over from the beginning.
 				WPindexPointer = 0;
 			}
 		}
 		
-		if (other.CompareTag("School"))
-		{
-			Unloading();
+		if (other.CompareTag ("School")) {
+			Unloading ();
 			
-			Test();
+			Test ();
 		}
 	}
 	
-	public void Unloading()
+	public void Unloading ()
 	{
 		speed = 0.0f;
 		
-		gPS.GetComponent<gamePlayScript>().canUnload = true;
+		gPS.GetComponent<gamePlayScript> ().canUnload = true;
 		//yield return new WaitForSeconds (timeToUnload);
 		
 		/*this.collider.enabled = false;
@@ -111,7 +106,7 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 
 	// Code stub for testing interaction between objects and scripts.
-	public void Test()
+	public void Test ()
 	{
 		Debug.Log ("Hello!");
 	}

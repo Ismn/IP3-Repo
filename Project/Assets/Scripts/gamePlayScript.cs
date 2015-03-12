@@ -16,6 +16,7 @@ public class gamePlayScript : MonoBehaviour
 	public float timeToCycle;//This is the changeable time that it takes for donations to arrive.
 	public int score;//This is the current level score.
 	public bool buildingBuilt;//This is simply used for testing.
+	public bool canBuild;
 	public Vector3 mousePosition;
 	public GUISkin allUI;//Assigns the GUI skin to use, DO NOT ALTER FROM "allUI";
 	public float xMousePosition;
@@ -26,6 +27,10 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject truck;
 	public bool canUnload;
 	public GameObject buildButton;
+	public GameObject pauseButton;
+	public GameObject unPauseButton;
+	public GameObject buyMealButton;
+	public GameObject giveMealButton;
 
 	// Use this for initialization
 	void Start ()
@@ -37,6 +42,7 @@ public class gamePlayScript : MonoBehaviour
 		gameIsPaused = false;
 		canUnload = false;
 		buildButton.SetActive (false);
+		unPauseButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -48,6 +54,28 @@ public class gamePlayScript : MonoBehaviour
 		if (money >= 10) {
 			buildButton.SetActive (true);
 			Debug.Log ("here");
+		} else {
+			buildButton.SetActive (false);
+		}
+
+		if (gameIsPaused == false) {
+			pauseButton.SetActive (true);
+		}
+		if (gameIsPaused == true) {
+			unPauseButton.SetActive (true);
+		}
+
+		if (money >= costOfFood && buildingBuilt == true) {
+			buyMealButton.SetActive (true);
+		} else {
+			buyMealButton.SetActive (false);
+		}
+
+		if (mealsAvailable >= 1 && canUnload == true) {
+
+			giveMealButton.SetActive (true);
+		} else {
+			giveMealButton.SetActive (false);
 		}
 
 		if (Input.GetKeyDown ("escape")) {
@@ -55,6 +83,8 @@ public class gamePlayScript : MonoBehaviour
 		}
 
 		OnGUI ();
+
+
 	
 	}
 
@@ -94,43 +124,76 @@ public class gamePlayScript : MonoBehaviour
 //			}
 //		}
 		
-		if (mealsAvailable >= 1 && canUnload == true) {
-			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle ("SellButton"))) {
-				awareness += 1;
-				mealsAvailable -= 1;
-				moneyRate += 1;
-			}
-		}
+//		if (mealsAvailable >= 1 && canUnload == true) {
+//			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle ("SellButton"))) {
+//				awareness += 1;
+//				mealsAvailable -= 1;
+//				moneyRate += 1;
+//			}
+//		}
+//
+//		if (money >= costOfFood && buildingBuilt == true) {
+//			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle ("BuyButton"))) {
+//				mealsAvailable += 1;
+//				money -= costOfFood;
+//			}
+//		}
 
-		if (money >= costOfFood && buildingBuilt == true) {
-			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle ("BuyButton"))) {
-				mealsAvailable += 1;
-				money -= costOfFood;
-			}
-		}
+//		if (gameIsPaused == false) {
+//			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) {
+//				gameIsPaused = true;
+//				Time.timeScale = 0;
+//				Debug.Log ("Game is Paused");
+//			}
+//		}
 
-		if (gameIsPaused == false) {
-			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) {
-				gameIsPaused = true;
-				Time.timeScale = 0;
-				Debug.Log ("Game is Paused");
-			}
-		}
-
-		if (gameIsPaused == true) {
-			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) {
-				Time.timeScale = 1;
-				gameIsPaused = false;
-				Debug.Log ("Game is Playing");
-			}
-		}
+//		if (gameIsPaused == true) {
+//			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) {
+//				Time.timeScale = 1;
+//				gameIsPaused = false;
+//				Debug.Log ("Game is Playing");
+//			}
+//		}
 	}
 
 	public void build ()
 	{
 		awareness += 2;
 		money -= 10;
-		buildingBuilt = true;
+		canBuild = true;
 		buildButton.SetActive (false);
 	}
+
+	public void pause ()
+	{
+		gameIsPaused = true;
+		Time.timeScale = 0;
+		Debug.Log ("Game is Paused");
+		pauseButton.SetActive (false);
+		unPauseButton.SetActive (true);
+	}
+
+	public void unPause ()
+	{
+		gameIsPaused = false;
+		Time.timeScale = 1;
+		Debug.Log ("Game is unPaused");
+		pauseButton.SetActive (true);
+		unPauseButton.SetActive (false);
+	}
+
+	public void buyMeal ()
+	{
+		mealsAvailable += 1;
+		money -= costOfFood;
+	}
+
+	public void giveMeal ()
+	{
+		awareness += 1;
+		mealsAvailable -= 1;
+		moneyRate += 1;
+	}
+
+
 }
