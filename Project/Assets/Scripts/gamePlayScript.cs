@@ -3,7 +3,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class gamePlayScript : MonoBehaviour {
+public class gamePlayScript : MonoBehaviour
+{
 
 	public int awareness; //This is the value shown for awareness.
 	public int awarenessRate; //This value can be used if we want to increment awareness by varying amounts.
@@ -24,35 +25,41 @@ public class gamePlayScript : MonoBehaviour {
 	
 	public GameObject truck;
 	public bool canUnload;
-
+	public GameObject buildButton;
 
 	// Use this for initialization
-	void Start () 
-    {
-        mousePosition = Input.mousePosition;
+	void Start ()
+	{
+		mousePosition = Input.mousePosition;
 		timeToCycle = 5.0f;	//Start our time Cycle off.
-		StartCoroutine(cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
+		StartCoroutine (cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
 		buildingBuilt = false;
 		gameIsPaused = false;
 		canUnload = false;
+		buildButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (Input.GetKeyDown ("escape")) 
-		{
+		if (money >= 10) {
+			buildButton.SetActive (true);
+			Debug.Log ("here");
+		}
+
+		if (Input.GetKeyDown ("escape")) {
 			Application.Quit ();
 		}
 
-		OnGUI();
+		OnGUI ();
+	
 	}
 
 	// This rewards the player with donations after a certain (changeable) period of time.
-	IEnumerator cycleResources() 
+	IEnumerator cycleResources ()
 	{ 
 		money = money + moneyRate;	// Gives the player their new money based upon the current Money Rate
 		Debug.Log ("Money given");
@@ -64,7 +71,7 @@ public class gamePlayScript : MonoBehaviour {
 
 	}
 
-	void OnGUI()
+	void OnGUI ()
 	{
 		GUI.skin = allUI;
 		GUI.Box (new Rect (0, 0, 200, 50), "");
@@ -76,56 +83,54 @@ public class gamePlayScript : MonoBehaviour {
 		GUI.Label (new Rect (160, 5, 20, 20), mealsAvailable.ToString ("F0"));	// Displays meals available to distribute as a string (it is rounded to have NO Decimel place)
 		GUI.Label (new Rect (xMousePosition, yMousePosition, 100, 100), GUI.tooltip);	// Keeps the ToolTip on the Mouse's Position
 
-		if (money >= 10) 
-		{
-			if (GUI.Button (new Rect (400, 400, 100, 100), 
-			                new GUIContent ("Build a Building", "Click here to construct a building"), 
-			                GUI.skin.GetStyle ("Construction")))
-			{
-				new GUIContent (GUI.tooltip = "Click here to construct a building");
-				awareness += 2;
-				money -= 10;
-				buildingBuilt = true;
-			}
-		}
+//		if (money >= 10) {
+//			if (GUI.Button (new Rect (400, 200, 100, 100), 
+//			                new GUIContent ("Build!", "Click here to construct a building"), 
+//			                GUI.skin.GetStyle ("Construction"))) {
+//				new GUIContent (GUI.tooltip = "Click here to construct a building");
+//				awareness += 2;
+//				money -= 10;
+//				buildingBuilt = true;
+//			}
+//		}
 		
-		if (mealsAvailable >= 1 && canUnload == true) 
-		{
-			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle("SellButton"))) 
-			{
+		if (mealsAvailable >= 1 && canUnload == true) {
+			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle ("SellButton"))) {
 				awareness += 1;
 				mealsAvailable -= 1;
-				moneyRate+=1;
+				moneyRate += 1;
 			}
 		}
 
-		if (money >= costOfFood && buildingBuilt == true) 
-		{
-			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle("BuyButton"))) 
-			{
+		if (money >= costOfFood && buildingBuilt == true) {
+			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle ("BuyButton"))) {
 				mealsAvailable += 1;
 				money -= costOfFood;
 			}
 		}
 
-		if (gameIsPaused == false) 
-		{
-			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) 
-			{
+		if (gameIsPaused == false) {
+			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) {
 				gameIsPaused = true;
 				Time.timeScale = 0;
 				Debug.Log ("Game is Paused");
 			}
 		}
 
-		if (gameIsPaused == true) 
-		{
-			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) 
-			{
+		if (gameIsPaused == true) {
+			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) {
 				Time.timeScale = 1;
 				gameIsPaused = false;
 				Debug.Log ("Game is Playing");
 			}
 		}
+	}
+
+	public void build ()
+	{
+		awareness += 2;
+		money -= 10;
+		buildingBuilt = true;
+		buildButton.SetActive (false);
 	}
 }
