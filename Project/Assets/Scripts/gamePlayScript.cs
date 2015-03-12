@@ -2,6 +2,7 @@
  Used for the Primary Gameplay Mechanic Loop and also UI elements*/
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class gamePlayScript : MonoBehaviour
 {
@@ -31,10 +32,13 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
+	
+
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
+
 		mousePosition = Input.mousePosition;
 		timeToCycle = 5.0f;	//Start our time Cycle off.
 		StartCoroutine (cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
@@ -103,15 +107,15 @@ public class gamePlayScript : MonoBehaviour
 
 	void OnGUI ()
 	{
-		GUI.skin = allUI;
-		GUI.Box (new Rect (0, 0, 200, 50), "");
-		GUI.Box (new Rect (20, 5, 20, 20), "", GUI.skin.GetStyle ("AwarenessIcon"));
-		GUI.Label (new Rect (40, 5, 20, 20), awareness.ToString ("F0"));	// Displays awareness as a string (it is rounded to have NO Decimel place)
-		GUI.Box (new Rect (80, 5, 20, 20), "", GUI.skin.GetStyle ("MoneyIcon"));
-		GUI.Label (new Rect (100, 5, 20, 20), money.ToString ("F0"));	// Displays money available as a string (it is rounded to have NO Decimel place)
-		GUI.Box (new Rect (140, 5, 20, 20), "", GUI.skin.GetStyle ("MealsAvailableIcon"));
-		GUI.Label (new Rect (160, 5, 20, 20), mealsAvailable.ToString ("F0"));	// Displays meals available to distribute as a string (it is rounded to have NO Decimel place)
-		GUI.Label (new Rect (xMousePosition, yMousePosition, 100, 100), GUI.tooltip);	// Keeps the ToolTip on the Mouse's Position
+//		GUI.skin = allUI;
+//		GUI.Box (new Rect (0, 0, 200, 50), "");
+//		GUI.Box (new Rect (20, 5, 20, 20), "", GUI.skin.GetStyle ("AwarenessIcon"));
+//		GUI.Label (new Rect (40, 5, 20, 20), awareness.ToString ("F0"));	// Displays awareness as a string (it is rounded to have NO Decimel place)
+//		GUI.Box (new Rect (80, 5, 20, 20), "", GUI.skin.GetStyle ("MoneyIcon"));
+//		GUI.Label (new Rect (100, 5, 20, 20), money.ToString ("F0"));	// Displays money available as a string (it is rounded to have NO Decimel place)
+//		GUI.Box (new Rect (140, 5, 20, 20), "", GUI.skin.GetStyle ("MealsAvailableIcon"));
+//		GUI.Label (new Rect (160, 5, 20, 20), mealsAvailable.ToString ("F0"));	// Displays meals available to distribute as a string (it is rounded to have NO Decimel place)
+//		GUI.Label (new Rect (xMousePosition, yMousePosition, 100, 100), GUI.tooltip);	// Keeps the ToolTip on the Mouse's Position
 
 //		if (money >= 10) {
 //			if (GUI.Button (new Rect (400, 200, 100, 100), 
@@ -171,6 +175,7 @@ public class gamePlayScript : MonoBehaviour
 		Debug.Log ("Game is Paused");
 		pauseButton.SetActive (false);
 		unPauseButton.SetActive (true);
+
 	}
 
 	public void unPause ()
