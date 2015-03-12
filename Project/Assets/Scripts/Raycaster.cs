@@ -12,7 +12,7 @@ public class Raycaster : MonoBehaviour
 				RaycastHit hit;
 				if (Physics.Raycast (ray, out hit, 100)) {
 					hit.collider.GetComponent<Obj> ().OnTouch ();
-					//GetComponent<gamePlayScript> ().canBuild = false;
+					GetComponent<gamePlayScript> ().canBuild = false;
 					GetComponent<gamePlayScript> ().buildingBuilt = true;
 				}
 			}
