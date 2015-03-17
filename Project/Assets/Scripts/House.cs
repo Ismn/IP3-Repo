@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class House : Obj
 {
+	public GameObject upgradedSchool;
 
 	public Sprite[] buildingTypes;
 	//public bool building = false;
@@ -28,9 +30,11 @@ public class House : Obj
 	public override void OnTouch ()
 	{
 		base.OnTouch ();
-
+		Debug.Log ("click");
 		if (currentState == State.unbuilt) {
-			this.gameObject.GetComponent<SpriteRenderer> ().sprite = buildingTypes [1];
+			//this.gameObject.GetComponent<SpriteRenderer> ().sprite = buildingTypes [1];
+			Destroy (this.gameObject);
+			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, transform.position, transform.rotation);
 			Debug.Log ("building built");
 			built = true;
 			currentState = State.smallSchool;
