@@ -48,13 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
      <Compile Include="Assets\Scripts\House.cs" />
-     <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\NodeBehaviour.cs" />
      <Compile Include="Assets\Scripts\Obj.cs" />
      <Compile Include="Assets\Scripts\Raycaster.cs" />
      <Compile Include="Assets\Scripts\Road.cs" />
      <Compile Include="Assets\Scripts\ScoreScript.cs" />
-     <Compile Include="Assets\Scripts\WaypointSystem.cs" />
      <Compile Include="Assets\Scripts\gameInfoScript.cs" />
      <Compile Include="Assets\Scripts\gamePlayScript.cs" />
      <Compile Include="Assets\Scripts\mainMenuScript.cs" />
