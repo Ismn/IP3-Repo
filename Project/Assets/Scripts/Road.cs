@@ -12,10 +12,8 @@ public class Road : Obj
 	{
 		unbuilt,
 		basicRoad,
-		upgradedRoad
-		
-	}
-	;
+		upgradedRoad		
+	};
 
 	public State currentState;
 

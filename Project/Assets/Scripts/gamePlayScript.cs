@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class gamePlayScript : MonoBehaviour
 {
-
 	public int awareness; //This is the value shown for awareness.
 	public int awarenessRate; //This value can be used if we want to increment awareness by varying amounts.
 	public int money; //This is the value shown for money.
@@ -32,13 +31,10 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
-	
-
 
 	// Use this for initialization
 	void Awake ()
 	{
-
 		mousePosition = Input.mousePosition;
 		timeToCycle = 5.0f;	//Start our time Cycle off.
 		StartCoroutine (cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
@@ -55,45 +51,54 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (gameIsPaused == false) {
+		if (gameIsPaused == false) 
+		{
 			pauseButton.SetActive (true);
 		}
-		if (gameIsPaused == true) {
+
+		if (gameIsPaused == true) 
+		{
 			unPauseButton.SetActive (true);
 		}
 
-		if (gameIsPaused == false) {
-
-			if (money >= 10) {
+		if (gameIsPaused == false) 
+		{
+			if (money >= 10) 
+			{
 				buildButton.SetActive (true);
-				Debug.Log ("here");
-			} else {
+				Debug.Log ("Enough Money to Build");
+			} 
+			else 
+			{
 				buildButton.SetActive (false);
 			}
 
-			if (money >= costOfFood && buildingBuilt == true) {
+			if (money >= costOfFood && buildingBuilt == true) 
+			{
 				buyMealButton.SetActive (true);
-			} else {
+			} 
+			else 
+			{
 				buyMealButton.SetActive (false);
 			}
 
-			if (mealsAvailable >= 1 && canUnload == true) {
-
+			if (mealsAvailable >= 1 && canUnload == true) 
+			{
 				giveMealButton.SetActive (true);
-			} else {
+			} 
+			else 
+			{
 				giveMealButton.SetActive (false);
 			}
 
 		}
 
-		if (Input.GetKeyDown ("escape")) {
+		if (Input.GetKeyDown ("escape")) 
+		{
 			Application.Quit ();
 		}
 
-		OnGUI ();
-
-
-	
+		OnGUI ();	
 	}
 
 	// This rewards the player with donations after a certain (changeable) period of time.
@@ -105,63 +110,61 @@ public class gamePlayScript : MonoBehaviour
 		yield return new WaitForSeconds (timeToCycle);	// Time to wait is based on the timeToCyle, we can upgrade this to change time.
 		StartCoroutine (cycleResources ());
 		Debug.Log ("New Cycle has Begun");
-
-
 	}
 
 	void OnGUI ()
 	{
-//		GUI.skin = allUI;
-//		GUI.Box (new Rect (0, 0, 200, 50), "");
-//		GUI.Box (new Rect (20, 5, 20, 20), "", GUI.skin.GetStyle ("AwarenessIcon"));
-//		GUI.Label (new Rect (40, 5, 20, 20), awareness.ToString ("F0"));	// Displays awareness as a string (it is rounded to have NO Decimel place)
-//		GUI.Box (new Rect (80, 5, 20, 20), "", GUI.skin.GetStyle ("MoneyIcon"));
-//		GUI.Label (new Rect (100, 5, 20, 20), money.ToString ("F0"));	// Displays money available as a string (it is rounded to have NO Decimel place)
-//		GUI.Box (new Rect (140, 5, 20, 20), "", GUI.skin.GetStyle ("MealsAvailableIcon"));
-//		GUI.Label (new Rect (160, 5, 20, 20), mealsAvailable.ToString ("F0"));	// Displays meals available to distribute as a string (it is rounded to have NO Decimel place)
-//		GUI.Label (new Rect (xMousePosition, yMousePosition, 100, 100), GUI.tooltip);	// Keeps the ToolTip on the Mouse's Position
+	/*	GUI.skin = allUI;
+		GUI.Box (new Rect (0, 0, 200, 50), "");
+		GUI.Box (new Rect (20, 5, 20, 20), "", GUI.skin.GetStyle ("AwarenessIcon"));
+		GUI.Label (new Rect (40, 5, 20, 20), awareness.ToString ("F0"));	// Displays awareness as a string (it is rounded to have NO Decimel place)
+		GUI.Box (new Rect (80, 5, 20, 20), "", GUI.skin.GetStyle ("MoneyIcon"));
+		GUI.Label (new Rect (100, 5, 20, 20), money.ToString ("F0"));	// Displays money available as a string (it is rounded to have NO Decimel place)
+		GUI.Box (new Rect (140, 5, 20, 20), "", GUI.skin.GetStyle ("MealsAvailableIcon"));
+		GUI.Label (new Rect (160, 5, 20, 20), mealsAvailable.ToString ("F0"));	// Displays meals available to distribute as a string (it is rounded to have NO Decimel place)
+		GUI.Label (new Rect (xMousePosition, yMousePosition, 100, 100), GUI.tooltip);	// Keeps the ToolTip on the Mouse's Position
 
-//		if (money >= 10) {
-//			if (GUI.Button (new Rect (400, 200, 100, 100), 
-//			                new GUIContent ("Build!", "Click here to construct a building"), 
-//			                GUI.skin.GetStyle ("Construction"))) {
-//				new GUIContent (GUI.tooltip = "Click here to construct a building");
-//				awareness += 2;
-//				money -= 10;
-//				buildingBuilt = true;
-//			}
-//		}
+		if (money >= 10) {
+			if (GUI.Button (new Rect (400, 200, 100, 100), 
+			                new GUIContent ("Build!", "Click here to construct a building"), 
+		                	GUI.skin.GetStyle ("Construction"))) {
+				new GUIContent (GUI.tooltip = "Click here to construct a building");
+				awareness += 2;
+				money -= 10;
+				buildingBuilt = true;
+			}
+		}
 		
-//		if (mealsAvailable >= 1 && canUnload == true) {
-//			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle ("SellButton"))) {
-//				awareness += 1;
-//				mealsAvailable -= 1;
-//				moneyRate += 1;
-//			}
-//		}
-//
-//		if (money >= costOfFood && buildingBuilt == true) {
-//			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle ("BuyButton"))) {
-//				mealsAvailable += 1;
-//				money -= costOfFood;
-//			}
-//		}
+		if (mealsAvailable >= 1 && canUnload == true) {
+			if (GUI.Button (new Rect (640, 400, 100, 100), "Give Meals", GUI.skin.GetStyle ("SellButton"))) {
+				awareness += 1;
+				mealsAvailable -= 1;
+				moneyRate += 1;
+			}
+		}
 
-//		if (gameIsPaused == false) {
-//			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) {
-//				gameIsPaused = true;
-//				Time.timeScale = 0;
-//				Debug.Log ("Game is Paused");
-//			}
-//		}
+		if (money >= costOfFood && buildingBuilt == true) {
+			if (GUI.Button (new Rect (520, 400, 100, 100), "Buy Meals", GUI.skin.GetStyle ("BuyButton"))) {
+				mealsAvailable += 1;
+				money -= costOfFood;
+			}
+		}
 
-//		if (gameIsPaused == true) {
-//			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) {
-//				Time.timeScale = 1;
-//				gameIsPaused = false;
-//				Debug.Log ("Game is Playing");
-//			}
-//		}
+		if (gameIsPaused == false) {
+			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PauseButton"))) {
+				gameIsPaused = true;
+				Time.timeScale = 0;
+				Debug.Log ("Game is Paused");
+			}
+		}
+
+		if (gameIsPaused == true) {
+			if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("PlayButton"))) {
+				Time.timeScale = 1;
+				gameIsPaused = false;
+				Debug.Log ("Game is Playing");
+			}
+		}*/
 	}
 
 	public void build ()

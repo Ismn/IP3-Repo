@@ -15,10 +15,8 @@ public class House : Obj
 	{
 		unbuilt,
 		smallSchool,
-		bigSchool
-		
-	}
-	;
+		bigSchool		
+	};
 
 	public State currentState;
 

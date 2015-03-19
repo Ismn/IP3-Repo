@@ -10,8 +10,7 @@ public class ScoreScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		score = GetComponent<Text> ();
-		 
+		score = GetComponent<Text> ();		 
 	}
 	
 	// Update is called once per frame

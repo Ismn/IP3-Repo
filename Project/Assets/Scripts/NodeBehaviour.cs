@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
-/* Ross McIntyre, 
+﻿/* Ross McIntyre, 
  * IP3 Team 4,
  * 2015
  */
+
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class NodeBehaviour : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class NodeBehaviour : MonoBehaviour
 	SpriteRenderer sRender;
 	public Sprite selectedNode;
 	public Sprite unselectedNode;
+	static GameObject charBehaviour;
 
 	// Do the same for collections.
 
@@ -23,6 +24,10 @@ public class NodeBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		// Reference any Game Objects tagged as "Character" i.e. the trucks.
+		charBehaviour = GameObject.FindGameObjectWithTag("Character");
+
+		// Set a reference to Unity's Default Sprite Renderer.
 		sRender = GetComponent<SpriteRenderer>();
 
 		renderNodeSprite = false; // Node sprites are not to be rendered on startup.
@@ -39,7 +44,7 @@ public class NodeBehaviour : MonoBehaviour
 			sRender.sprite = unselectedNode;
 		}
 
-		// If the unselected sprites are visible...
+		// If the 'unselected' sprites are visible...
 		if (sRender.sprite == unselectedNode && timeToChange)
 		{
 			// ... highlight the ones we have selected.
@@ -49,9 +54,12 @@ public class NodeBehaviour : MonoBehaviour
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown()
-
 	{
-		timeToChange = true;
+		// Highlight whichever Node sprites have been clicked on.
+		timeToChange = true; 
+
+		// Add this instance to the List of Nodes for the trucks to follow.
+		charBehaviour.GetComponent<CharacterBehaviour>().waypoints.Add(this.transform); 
 	}
 
 	// Code stub for testing interaction between objects and scripts.
