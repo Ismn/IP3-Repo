@@ -78,6 +78,7 @@ public class CharacterBehaviour : MonoBehaviour
 			// ... Tell the Node object to either begin rendering the 'unselected' sprite.
 			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 		}
+		audio.Play();
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
