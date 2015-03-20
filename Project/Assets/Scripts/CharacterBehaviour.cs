@@ -37,9 +37,10 @@ public class CharacterBehaviour : MonoBehaviour
 	// And variables.
 	private float speed; // How fast the players trucks can move.
 	private float rotationSpeed;
+	private float timeToUnload = 1.0f;
 	private Vector3 targetDirection;
 	private Vector3 newDirection;
-	private float timeToUnload = 1.0f;
+	private bool hasBeenClicked;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 
 	// Use this for initialization
@@ -55,6 +56,8 @@ public class CharacterBehaviour : MonoBehaviour
 
 		speed = 5.0f * Time.deltaTime;
 		rotationSpeed = 10.0f * Time.deltaTime;
+
+		hasBeenClicked = false;
 	}
 	
 	// Update is called once per frame
@@ -79,6 +82,18 @@ public class CharacterBehaviour : MonoBehaviour
 			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 		}
 		audio.Play();
+
+
+		if (hasBeenClicked == false) 
+		{
+			hasBeenClicked = true;
+			Time.timeScale = 0;
+		} 
+		else if (hasBeenClicked == true) 
+		{
+			hasBeenClicked = false;
+			Time.timeScale = 1;
+		}
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
