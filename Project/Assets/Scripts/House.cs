@@ -23,7 +23,7 @@ public class House : Obj
 
 	public void Start ()
 	{
-		currentState = State.unbuilt;
+
 	}
 
 	public override void OnTouch ()
@@ -31,15 +31,10 @@ public class House : Obj
 		base.OnTouch ();
 		Debug.Log ("click");
 		if (currentState == State.unbuilt) {
-			//this.gameObject.GetComponent<SpriteRenderer> ().sprite = buildingTypes [1];
-			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, this.transform.position, Quaternion.Euler (0, 0, 0));
 			Destroy (this.gameObject);
-
-			Debug.Log ("building built");
-			built = true;
+			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, this.transform.position, Quaternion.Euler (0, 0, 0));
 			currentState = State.smallSchool;
 		} else if (currentState == State.smallSchool) {
-			currentState = State.bigSchool;
 			Debug.Log ("school upgraded!");
 		}
 	}
