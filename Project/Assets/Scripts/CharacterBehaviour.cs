@@ -65,9 +65,9 @@ public class CharacterBehaviour : MonoBehaviour
 			// MoveTowards function takes its parameters as (current position, target position, speed).
 			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);
 
-			targetDirection = currentWaypoint.position - transform.position;
-			newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
-			transform.rotation = Quaternion.LookRotation (newDirection);
+			//targetDirection = currentWaypoint.position - transform.position;
+			//newDirection = Vector3.RotateTowards (transform.right, targetDirection, rotationSpeed, 0.0F);
+			//transform.rotation = Quaternion.LookRotation (newDirection);
 		}
 	}
 
