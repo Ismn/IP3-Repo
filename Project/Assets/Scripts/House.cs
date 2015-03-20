@@ -16,7 +16,8 @@ public class House : Obj
 		unbuilt,
 		smallSchool,
 		bigSchool		
-	};
+	}
+	;
 
 	public State currentState;
 
@@ -31,8 +32,9 @@ public class House : Obj
 		Debug.Log ("click");
 		if (currentState == State.unbuilt) {
 			//this.gameObject.GetComponent<SpriteRenderer> ().sprite = buildingTypes [1];
+			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, this.transform.position, Quaternion.Euler (0, 0, 0));
 			Destroy (this.gameObject);
-			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, transform.position, transform.rotation);
+
 			Debug.Log ("building built");
 			built = true;
 			currentState = State.smallSchool;
