@@ -1,4 +1,5 @@
-﻿/* ***************
+﻿
+/* ***************
  * Ross McIntyre, 
  * IP3 Team 4,
  * 2015
@@ -64,13 +65,17 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) {
-			// MoveTowards function takes its parameters as (current position, target position, speed).
-			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);
+		if (waypoints.Count > 0) 
+		{
+			if (hasBeenClicked != true)
+			{
+				// MoveTowards function takes its paramettraers as (current position, target position, speed).
+				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
-			//targetDirection = currentWaypoint.position - transform.position;
-			//newDirection = Vector3.RotateTowards (transform.right, targetDirection, rotationSpeed, 0.0F);
-			//transform.rotation = Quaternion.LookRotation (newDirection);
+				targetDirection = currentWaypoint.position - transform.position;
+				newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
+				transform.rotation = Quaternion.LookRotation (newDirection);
+			}
 		}
 	}
 
@@ -87,12 +92,12 @@ public class CharacterBehaviour : MonoBehaviour
 		if (hasBeenClicked == false) 
 		{
 			hasBeenClicked = true;
-			Time.timeScale = 0;
+			Time.timeScale = 0.0f;
 		} 
 		else if (hasBeenClicked == true) 
 		{
 			hasBeenClicked = false;
-			Time.timeScale = 1;
+			Time.timeScale = 1.0f;
 		}
 	}
 
