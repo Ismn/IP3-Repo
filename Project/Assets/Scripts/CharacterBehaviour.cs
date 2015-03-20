@@ -15,6 +15,9 @@
  * Removal of state machine to control movement. (Again, may be re-implemented later).
  * Integration with overall behaviour of the trucks.
  * ***************
+ * Rotation code taken from Unity Scripting API:
+ * http://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
+ * ***************
  */
 
 using UnityEngine;
@@ -25,25 +28,33 @@ public class CharacterBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
-	public gamePlayScript gPS;
+	static gamePlayScript gPS;
 
 	// Do the same for collections.
 	public List <Transform> waypoints = new List<Transform>(); // Holds all the Waypoint Objects that you assign in the inspector.
 	public GameObject[] nodeArray;
 
 	// And variables.
-	private float speed = 5.0f; // How fast the players trucks can move.
+	private float speed; // How fast the players trucks can move.
+	private float rotationSpeed;
+	private Vector3 targetDirection;
+	private Vector3 newDirection;
+	private float timeToUnload = 1.0f;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
-	//private float timeToUnload = 1.0f;
 
 	// Use this for initialization
 	void Start ()
 	{
+		gPS = GetComponent<gamePlayScript>();
+
 		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
 		Debug.Log (nodeArray.Length);
 
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
 		Debug.Log (WPindexPointer);
+
+		speed = 5.0f * Time.deltaTime;
+		rotationSpeed = 10.0f * Time.deltaTime;
 	}
 	
 	// Update is called once per frame
@@ -52,16 +63,13 @@ public class CharacterBehaviour : MonoBehaviour
 		currentWaypoint = waypoints[WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 		if (waypoints.Count > 0) 
 		{
-			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.transform.position, speed * Time.deltaTime); // MoveTowards function takes its parameters as (current position, target position, speed).
-		}
+			// MoveTowards function takes its parameters as (current position, target position, speed).
+			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);
 
-		// When the array variable reaches the end of the list ...
-		/*if (WPindexPointer >= waypoints.Count) 
-		{
-			// ... Reset the active waypoint to the first object in the array,
-			// effectivetly starting over from the beginning.
-			waypoints.Reverse();
-		}*/
+			targetDirection = currentWaypoint.position - transform.position;
+			newDirection = Vector3.RotateTowards(transform.forward, targetDirection, rotationSpeed, 0.0F);
+			transform.rotation = Quaternion.LookRotation(newDirection);
+		}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
@@ -79,32 +87,32 @@ public class CharacterBehaviour : MonoBehaviour
 	{
 		// If the truck comes within range of an object with the "Node" tag...
 		if (other.CompareTag ("Node")) 
-		{			
+		{
 			// ... Set the active waypoint to the next element in the array.
-			WPindexPointer++;	
+			WPindexPointer++;
 		}
 		
 		if (other.CompareTag ("School")) 
 		{
-			Unloading ();			
+			StartCoroutine(Unloading());			
 			Test ();
 		}
 	}
 
 	// Currently a code stub. Definitely needs more work.
-	public void Unloading ()
+	public IEnumerator Unloading ()
 	{
 		speed = 0.0f;
 		
 		gPS.GetComponent<gamePlayScript> ().canUnload = true;
-		/*yield return new WaitForSeconds (timeToUnload);
+		yield return new WaitForSeconds (timeToUnload);
 		
 		this.collider.enabled = false;
 		
 		if(timeToUnload >= 1.0f)
 		{
 			speed = 5.0f;
-		}*/
+		}
 	}
 
 	// Code stub for testing interaction between objects and scripts.
