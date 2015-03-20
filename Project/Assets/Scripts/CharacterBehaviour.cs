@@ -31,7 +31,7 @@ public class CharacterBehaviour : MonoBehaviour
 	static gamePlayScript gPS;
 
 	// Do the same for collections.
-	public List <Transform> waypoints = new List<Transform>(); // Holds all the Waypoint Objects that you assign in the inspector.
+	public List <Transform> waypoints = new List<Transform> (); // Holds all the Waypoint Objects that you assign in the inspector.
 	public GameObject[] nodeArray;
 
 	// And variables.
@@ -45,7 +45,7 @@ public class CharacterBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		gPS = GetComponent<gamePlayScript>();
+		gPS = GetComponent<gamePlayScript> ();
 
 		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
 		Debug.Log (nodeArray.Length);
@@ -60,23 +60,21 @@ public class CharacterBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		currentWaypoint = waypoints[WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) 
-		{
+		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
+		if (waypoints.Count > 0) {
 			// MoveTowards function takes its parameters as (current position, target position, speed).
 			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);
 
 			targetDirection = currentWaypoint.position - transform.position;
-			newDirection = Vector3.RotateTowards(transform.forward, targetDirection, rotationSpeed, 0.0F);
-			transform.rotation = Quaternion.LookRotation(newDirection);
+			newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
+			transform.rotation = Quaternion.LookRotation (newDirection);
 		}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown () // When we click on the truck...
 	{
-		foreach (GameObject nodes in nodeArray) 
-		{
+		foreach (GameObject nodes in nodeArray) {
 			// ... Tell the Node object to either begin rendering the 'unselected' sprite.
 			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 		}
@@ -86,15 +84,13 @@ public class CharacterBehaviour : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		// If the truck comes within range of an object with the "Node" tag...
-		if (other.CompareTag ("Node")) 
-		{
+		if (other.CompareTag ("Node")) {
 			// ... Set the active waypoint to the next element in the array.
 			WPindexPointer++;
 		}
 		
-		if (other.CompareTag ("School")) 
-		{
-			StartCoroutine(Unloading());			
+		if (other.CompareTag ("School")) {
+			StartCoroutine (Unloading ());			
 			Test ();
 		}
 	}
@@ -109,8 +105,7 @@ public class CharacterBehaviour : MonoBehaviour
 		
 		this.collider.enabled = false;
 		
-		if(timeToUnload >= 1.0f)
-		{
+		if (timeToUnload >= 1.0f) {
 			speed = 5.0f;
 		}
 	}
