@@ -1,4 +1,5 @@
-﻿/* ***************
+﻿
+/* ***************
  * Ross McIntyre, 
  * IP3 Team 4,
  * 2015
@@ -37,9 +38,10 @@ public class CharacterBehaviour : MonoBehaviour
 	// And variables.
 	private float speed; // How fast the players trucks can move.
 	private float rotationSpeed;
+	private float timeToUnload = 1.0f;
 	private Vector3 targetDirection;
 	private Vector3 newDirection;
-	private float timeToUnload = 1.0f;
+	private bool hasBeenClicked;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 
 	// Use this for initialization
@@ -55,19 +57,25 @@ public class CharacterBehaviour : MonoBehaviour
 
 		speed = 5.0f * Time.deltaTime;
 		rotationSpeed = 10.0f * Time.deltaTime;
+
+		hasBeenClicked = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) {
-			// MoveTowards function takes its parameters as (current position, target position, speed).
-			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);
+		if (waypoints.Count > 0) 
+		{
+			if (hasBeenClicked != true)
+			{
+				// MoveTowards function takes its paramettraers as (current position, target position, speed).
+				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
-			//targetDirection = currentWaypoint.position - transform.position;
-			//newDirection = Vector3.RotateTowards (transform.right, targetDirection, rotationSpeed, 0.0F);
-			//transform.rotation = Quaternion.LookRotation (newDirection);
+				targetDirection = currentWaypoint.position - transform.position;
+				newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
+				transform.rotation = Quaternion.LookRotation (newDirection);
+			}
 		}
 	}
 
@@ -77,6 +85,19 @@ public class CharacterBehaviour : MonoBehaviour
 		foreach (GameObject nodes in nodeArray) {
 			// ... Tell the Node object to either begin rendering the 'unselected' sprite.
 			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
+		}
+		audio.Play();
+
+
+		if (hasBeenClicked == false) 
+		{
+			hasBeenClicked = true;
+			Time.timeScale = 0.0f;
+		} 
+		else if (hasBeenClicked == true) 
+		{
+			hasBeenClicked = false;
+			Time.timeScale = 1.0f;
 		}
 	}
 
