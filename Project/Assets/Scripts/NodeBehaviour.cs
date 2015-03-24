@@ -20,6 +20,7 @@ public class NodeBehaviour : MonoBehaviour
 	// And variables.
 	public bool renderNodeSprite;
 	public bool timeToChange;
+	public bool isNode;
 
 	// Use this for initialization
 	void Start () 
@@ -37,18 +38,25 @@ public class NodeBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
-		// Assuming the character has been selected...
-		if (renderNodeSprite == true)
+		if (isNode == true)
 		{
-			// ... make all node sprites visible as "unselected".
-			sRender.sprite = unselectedNode;
-		}
+			// Assuming the character has been selected...
+			if (renderNodeSprite == true)
+			{
+				// ... make all node sprites visible as "unselected".
+				sRender.sprite = unselectedNode;
+			}
+			else if (renderNodeSprite == false)
+			{
+				sRender.sprite = null;
+			}
 
-		// If the 'unselected' sprites are visible...
-		if (sRender.sprite == unselectedNode && timeToChange)
-		{
-			// ... highlight the ones we have selected.
-			sRender.sprite = selectedNode;
+			// If the 'unselected' sprites are visible...
+			if (sRender.sprite == unselectedNode && timeToChange)
+			{
+				// ... highlight the ones we have selected.
+				sRender.sprite = selectedNode;
+			}
 		}
 	}
 

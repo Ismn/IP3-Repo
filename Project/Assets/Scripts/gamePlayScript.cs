@@ -23,14 +23,17 @@ public class gamePlayScript : MonoBehaviour
 	public float yMousePosition;
 	public bool gameIsPaused;//Determines whether the game is in a pause state.
 	public int costOfFood;
-	
+	//public bool truckIsSelected;
+
 	public GameObject truck;
 	public bool canUnload;
+	public bool dropOff;
 	public GameObject buildButton;
 	public GameObject pauseButton;
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
+	//public GameObject goButton;
 
 	// Use this for initialization
 	void Awake ()
@@ -41,8 +44,11 @@ public class gamePlayScript : MonoBehaviour
 		buildingBuilt = false;
 		gameIsPaused = false;
 		canUnload = false;
+		dropOff = false;
 		buildButton.SetActive (false);
 		unPauseButton.SetActive (false);
+		//goButton.SetActive(false);
+		//truckIsSelected = false;
 	}
 	
 	// Update is called once per frame
@@ -82,7 +88,7 @@ public class gamePlayScript : MonoBehaviour
 				buyMealButton.SetActive (false);
 			}
 
-			if (mealsAvailable >= 1 && canUnload == true) 
+			if (mealsAvailable >= 1 && canUnload == true && dropOff == true) 
 			{
 				giveMealButton.SetActive (true);
 			} 
@@ -91,6 +97,10 @@ public class gamePlayScript : MonoBehaviour
 				giveMealButton.SetActive (false);
 			}
 
+			/*if (truckIsSelected == true)
+			{
+				goButton.SetActive(true);
+			}*/
 		}
 
 		if (Input.GetKeyDown ("escape")) 

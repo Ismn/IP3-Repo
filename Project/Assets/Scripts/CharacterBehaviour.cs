@@ -37,11 +37,12 @@ public class CharacterBehaviour : MonoBehaviour
 
 	// And variables.
 	private float speed; // How fast the players trucks can move.
-	private float rotationSpeed;
+	private float rotationSpeed; // How fast it can turn towards the a node.
 	private float timeToUnload = 1.0f;
-	private Vector3 targetDirection;
+	private Vector3 targetDirection; // Store the positional information of the 
 	private Vector3 newDirection;
 	private bool hasBeenClicked;
+	private bool showNode;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 
 	// Use this for initialization
@@ -50,15 +51,14 @@ public class CharacterBehaviour : MonoBehaviour
 		gPS = GetComponent<gamePlayScript> ();
 
 		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
-		Debug.Log (nodeArray.Length);
 
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
-		Debug.Log (WPindexPointer);
 
 		speed = 5.0f * Time.deltaTime;
 		rotationSpeed = 10.0f * Time.deltaTime;
 
 		hasBeenClicked = false;
+		showNode = false;
 	}
 	
 	// Update is called once per frame
@@ -72,6 +72,7 @@ public class CharacterBehaviour : MonoBehaviour
 				// MoveTowards function takes its paramettraers as (current position, target position, speed).
 				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
+				// Some stuff for rotation.
 				targetDirection = currentWaypoint.position - transform.position;
 				newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
 				transform.rotation = Quaternion.LookRotation (newDirection);
@@ -82,13 +83,31 @@ public class CharacterBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown () // When we click on the truck...
 	{
-		foreach (GameObject nodes in nodeArray) {
-			// ... Tell the Node object to either begin rendering the 'unselected' sprite.
-			nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
+		// Toggle function to determine whether or not to show all the nodes in view, 
+		// since it's only necessary to see them when we tell a truck where to go.
+		if (showNode == false) 
+		{
+			foreach (GameObject nodes in nodeArray) 
+			{
+				// ... Tell the Node object to begin rendering the 'unselected' sprite.
+				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
+			}
+			showNode = true;
+		} 
+		else if (showNode == true) 
+		{
+			foreach (GameObject nodes in nodeArray) 
+			{
+				// ... Tell the Node object to stop rendering sprites.
+				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = false;
+			}
+			showNode = false;
 		}
+
+		// Play a short audio clip to let the player know they've selected a truck.
 		audio.Play();
 
-
+		// Toggle function to ensure that the truck cannot move the second a node is selected.
 		if (hasBeenClicked == false) 
 		{
 			hasBeenClicked = true;

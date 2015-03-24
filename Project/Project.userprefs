@@ -1,19 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterBehaviour.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gamePlayScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="95" Column="25" />
-      <File FileName="Assets\Scripts\gamePlayScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\House.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\House.cs" Line="48" Column="16" />
+      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="143" Column="1" />
       <File FileName="Assets\Scripts\NodeBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Raycaster.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Road.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScoreScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\mainMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\gamePlayScript.cs" Line="93" Column="37" />
+      <File FileName="Assets\Scripts\House.cs" Line="53" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="gamePlayScript.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
