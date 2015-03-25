@@ -23,7 +23,7 @@ public class gamePlayScript : MonoBehaviour
 	public float yMousePosition;
 	public bool gameIsPaused;//Determines whether the game is in a pause state.
 	public int costOfFood;
-	public bool truckIsSelected;
+	public bool truckIsSelected = false;
 	public bool canHasBuyMeals = false;
 
 	public GameObject truck;
@@ -52,7 +52,7 @@ public class gamePlayScript : MonoBehaviour
 		unPauseButton.SetActive (false);
 		giveMealButton.SetActive (false);
 		goButton.SetActive(false);
-		truckIsSelected = false;
+		//truckIsSelected = false;
 		character = GetComponent<CharacterBehaviour> ();
 	}
 	
