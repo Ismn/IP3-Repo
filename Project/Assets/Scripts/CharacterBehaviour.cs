@@ -83,7 +83,7 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
-	void OnMouseDown () // When we click on the truck...
+	public void OnMouseDown () // When we click on the truck...
 	{
 		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
 
