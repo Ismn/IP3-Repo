@@ -73,7 +73,7 @@ public class gamePlayScript : MonoBehaviour
 		if (gameIsPaused == false) {
 			if (money >= 10) {
 				buildButton.SetActive (true);
-				Debug.Log ("Enough Money to Build");
+				//		Debug.Log ("Enough Money to Build");
 			} else {
 				buildButton.SetActive (false);
 			}

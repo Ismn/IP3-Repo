@@ -67,8 +67,9 @@ public class CharacterBehaviour : MonoBehaviour
 	// Update is called once per frame
 	public void Update ()
 	{
-		Debug.Log (canMove);
+		//	Debug.Log (canMove);
 
+		//if (waypoints.Count > 0) {
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 		if (canMove == true) {
 			hasBeenClicked = false;
@@ -83,6 +84,7 @@ public class CharacterBehaviour : MonoBehaviour
 				transform.rotation = Quaternion.LookRotation (newDirection);
 			}
 		}
+		//}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
@@ -124,7 +126,7 @@ public class CharacterBehaviour : MonoBehaviour
 	//The function "OnTriggerEnter" is called when a collision happens.
 	void OnTriggerEnter (Collider other)
 	{
-
+		Debug.Log ("Has Entered trigger");
 		// If the truck comes within range of an object with the "Node" tag...
 		if (other.CompareTag ("Node")) {
 			// ... Set the active waypoint to the next element in the array.
@@ -142,7 +144,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 	void OnTriggerStay (Collider other)
 	{
-		Debug.Log ("enter trigger");
+		//	Debug.Log ("enter trigger");
 		if (other.tag == ("School")) {
 			Debug.Log ("Bacon");
 			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
