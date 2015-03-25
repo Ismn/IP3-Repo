@@ -1,0 +1,87 @@
+fileFormatVersion: 2
+guid: 42755c49fcae15142ad7e0425b34533d
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Box184
+    100002: Box185
+    100004: Box187
+    100006: Compass001
+    100008: Daylight001
+    100010: Sky002
+    100012: //RootNode
+    100014: SmallSchool
+    100016: Sun001
+    400000: Box184
+    400002: Box185
+    400004: Box187
+    400006: Compass001
+    400008: Daylight001
+    400010: Sky002
+    400012: //RootNode
+    400014: SmallSchool
+    400016: Sun001
+    2300000: Box184
+    2300002: Box185
+    2300004: Box187
+    3300000: Box184
+    3300002: Box185
+    3300004: Box187
+    4300000: Box185
+    4300002: Box184
+    4300004: Box187
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

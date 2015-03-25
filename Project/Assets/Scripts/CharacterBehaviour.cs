@@ -29,13 +29,11 @@ public class CharacterBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
-	static gamePlayScript gPS;
+	public GameObject testplzwork;
 
 	// Do the same for collections.
 	public List <Transform> waypoints = new List<Transform> (); // Holds all the Waypoint Objects that you assign in the inspector.
 	public GameObject[] nodeArray;
-
-	public GameObject testplzwork;
 
 	// And variables.
 	private float speed; // How fast the players trucks can move.
@@ -45,13 +43,12 @@ public class CharacterBehaviour : MonoBehaviour
 	private Vector3 newDirection;
 	private bool hasBeenClicked;
 	private bool showNode;
+	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 
 	// Use this for initialization
 	void Start ()
 	{
-		gPS = GetComponent<gamePlayScript> ();
-
 		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
 
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
@@ -61,14 +58,21 @@ public class CharacterBehaviour : MonoBehaviour
 
 		hasBeenClicked = false;
 		showNode = false;
+		canMove = false;
+
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
 	{
+		Debug.Log (canMove);
+
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) {
-			if (hasBeenClicked != true) {
+		if (canMove == true) 
+		{
+			hasBeenClicked = false;
+
+			if (waypoints.Count > 0) {
 				// MoveTowards function takes its paramettraers as (current position, target position, speed).
 				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
@@ -81,8 +85,10 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
-	void OnMouseDown () // When we click on the truck...
+	public void OnMouseDown () // When we click on the truck...
 	{
+		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
+
 		// Toggle function to determine whether or not to show all the nodes in view, 
 		// since it's only necessary to see them when we tell a truck where to go.
 		if (showNode == false) {
@@ -103,10 +109,13 @@ public class CharacterBehaviour : MonoBehaviour
 		audio.Play ();
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
-		if (hasBeenClicked == false) {
+		if (hasBeenClicked == false) 
+		{
 			hasBeenClicked = true;
 			Time.timeScale = 0.0f;
-		} else if (hasBeenClicked == true) {
+		} 
+		else if (hasBeenClicked == true) 
+		{
 			hasBeenClicked = false;
 			Time.timeScale = 1.0f;
 		}
@@ -145,15 +154,12 @@ public class CharacterBehaviour : MonoBehaviour
 			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
 		}
 	}
-	
-
 
 	// Currently a code stub. Definitely needs more work.
 	public IEnumerator Unloading ()
 	{
 		speed = 0.0f;
-		
-		//gPS.GetComponent<gamePlayScript> ().canUnload = true;
+
 		yield return new WaitForSeconds (timeToUnload);
 		
 		this.collider.enabled = false;

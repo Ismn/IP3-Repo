@@ -23,7 +23,7 @@ public class gamePlayScript : MonoBehaviour
 	public float yMousePosition;
 	public bool gameIsPaused;//Determines whether the game is in a pause state.
 	public int costOfFood;
-	//public bool truckIsSelected;
+	public bool truckIsSelected;
 	public bool canHasBuyMeals = false;
 
 	public GameObject truck;
@@ -34,7 +34,9 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
-	//public GameObject goButton;
+	public GameObject goButton;
+
+	public CharacterBehaviour character;
 
 	// Use this for initialization
 	void Awake ()
@@ -49,12 +51,13 @@ public class gamePlayScript : MonoBehaviour
 		buildButton.SetActive (false);
 		unPauseButton.SetActive (false);
 		giveMealButton.SetActive (false);
-		//goButton.SetActive(false);
-		//truckIsSelected = false;
+		goButton.SetActive(false);
+		truckIsSelected = false;
+		truck = GameObject.FindGameObjectWithTag("Character");
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
 	{
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
@@ -67,7 +70,8 @@ public class gamePlayScript : MonoBehaviour
 			unPauseButton.SetActive (true);
 		}
 
-		if (gameIsPaused == false) {
+		if (gameIsPaused == false) 
+		{
 			if (money >= 10) {
 				buildButton.SetActive (true);
 				Debug.Log ("Enough Money to Build");
@@ -87,11 +91,10 @@ public class gamePlayScript : MonoBehaviour
 				giveMealButton.SetActive (false);
 			}
 
-
-			/*if (truckIsSelected == true)
+			if (truckIsSelected == true)
 			{
 				goButton.SetActive(true);
-			}*/
+			}
 		}
 
 		if (Input.GetKeyDown ("escape")) {
@@ -211,5 +214,10 @@ public class gamePlayScript : MonoBehaviour
 		moneyRate += 1;
 	}
 
+	public void moveTruck()
+	{
 
+		truck.GetComponent<CharacterBehaviour> ().canMove = true;
+		//truckIsSelected = false;
+	}
 }
