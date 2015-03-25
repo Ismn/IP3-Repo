@@ -45,7 +45,8 @@ public class CharacterBehaviour : MonoBehaviour
 	private bool showNode;
 	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
-
+	public bool truckIsSelected = false;
+	public GameObject goButton;
 	// Use this for initialization
 	void Start ()
 	{
@@ -59,6 +60,7 @@ public class CharacterBehaviour : MonoBehaviour
 		hasBeenClicked = false;
 		showNode = false;
 		canMove = false;
+		goButton.SetActive (false);
 
 	}
 	
@@ -68,8 +70,7 @@ public class CharacterBehaviour : MonoBehaviour
 		Debug.Log (canMove);
 
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (canMove == true) 
-		{
+		if (canMove == true) {
 			hasBeenClicked = false;
 
 			if (waypoints.Count > 0) {
@@ -87,7 +88,9 @@ public class CharacterBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	public void OnMouseDown () // When we click on the truck...
 	{
-		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
+		truckIsSelected = true;
+		goButton.SetActive (true);
+		Debug.Log ("truckclick");
 
 		// Toggle function to determine whether or not to show all the nodes in view, 
 		// since it's only necessary to see them when we tell a truck where to go.
@@ -109,13 +112,10 @@ public class CharacterBehaviour : MonoBehaviour
 		audio.Play ();
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
-		if (hasBeenClicked == false) 
-		{
+		if (hasBeenClicked == false) {
 			hasBeenClicked = true;
 			Time.timeScale = 0.0f;
-		} 
-		else if (hasBeenClicked == true) 
-		{
+		} else if (hasBeenClicked == true) {
 			hasBeenClicked = false;
 			Time.timeScale = 1.0f;
 		}
@@ -167,6 +167,13 @@ public class CharacterBehaviour : MonoBehaviour
 		if (timeToUnload >= 1.0f) {
 			speed = 5.0f;
 		}
+	}
+	public void moveTruck ()
+	{
+		Debug.Log ("gobuttonclick");
+		canMove = true;
+		truckIsSelected = false;
+		goButton.SetActive (false);
 	}
 
 	// Code stub for testing interaction between objects and scripts.
