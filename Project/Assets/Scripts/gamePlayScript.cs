@@ -53,7 +53,7 @@ public class gamePlayScript : MonoBehaviour
 		giveMealButton.SetActive (false);
 		goButton.SetActive(false);
 		truckIsSelected = false;
-		character = GetComponent<CharacterBehaviour> ();
+		truck = GameObject.FindGameObjectWithTag("Character");
 	}
 	
 	// Update is called once per frame
@@ -216,7 +216,7 @@ public class gamePlayScript : MonoBehaviour
 
 	public void moveTruck()
 	{
-		character.canMove = true;
+		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truckIsSelected = false;
 	}
 }
