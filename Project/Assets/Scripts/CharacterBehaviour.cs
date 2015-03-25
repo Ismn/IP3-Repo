@@ -85,6 +85,8 @@ public class CharacterBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	void OnMouseDown () // When we click on the truck...
 	{
+		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
+
 		// Toggle function to determine whether or not to show all the nodes in view, 
 		// since it's only necessary to see them when we tell a truck where to go.
 		if (showNode == false) {
@@ -103,8 +105,6 @@ public class CharacterBehaviour : MonoBehaviour
 
 		// Play a short audio clip to let the player know they've selected a truck.
 		audio.Play ();
-
-		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
 		if (hasBeenClicked == false) {

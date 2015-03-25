@@ -53,7 +53,6 @@ public class gamePlayScript : MonoBehaviour
 		giveMealButton.SetActive (false);
 		goButton.SetActive(false);
 		truckIsSelected = false;
-
 		character = GetComponent<CharacterBehaviour> ();
 	}
 	
