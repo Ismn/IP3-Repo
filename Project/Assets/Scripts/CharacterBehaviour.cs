@@ -29,13 +29,11 @@ public class CharacterBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
-	static gamePlayScript gPS;
+	public GameObject testplzwork;
 
 	// Do the same for collections.
 	public List <Transform> waypoints = new List<Transform> (); // Holds all the Waypoint Objects that you assign in the inspector.
 	public GameObject[] nodeArray;
-
-	public GameObject testplzwork;
 
 	// And variables.
 	private float speed; // How fast the players trucks can move.
@@ -45,13 +43,12 @@ public class CharacterBehaviour : MonoBehaviour
 	private Vector3 newDirection;
 	private bool hasBeenClicked;
 	private bool showNode;
+	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 
 	// Use this for initialization
 	void Start ()
 	{
-		gPS = GetComponent<gamePlayScript> ();
-
 		nodeArray = GameObject.FindGameObjectsWithTag ("Node");		
 
 		WPindexPointer = 0; // Waypoint target is first element in the Array.
@@ -61,21 +58,26 @@ public class CharacterBehaviour : MonoBehaviour
 
 		hasBeenClicked = false;
 		showNode = false;
+		canMove = false;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 		if (waypoints.Count > 0) {
-			if (hasBeenClicked != true) {
-				// MoveTowards function takes its paramettraers as (current position, target position, speed).
-				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
+			if (canMove == true) 
+			{
+				if(hasBeenClicked != true) 
+				{
+					// MoveTowards function takes its paramettraers as (current position, target position, speed).
+					transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
-				// Some stuff for rotation.
-				targetDirection = currentWaypoint.position - transform.position;
-				newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
-				transform.rotation = Quaternion.LookRotation (newDirection);
+					// Some stuff for rotation.
+					targetDirection = currentWaypoint.position - transform.position;
+					newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
+					transform.rotation = Quaternion.LookRotation (newDirection);
+				}
 			}
 		}
 	}
@@ -101,6 +103,8 @@ public class CharacterBehaviour : MonoBehaviour
 
 		// Play a short audio clip to let the player know they've selected a truck.
 		audio.Play ();
+
+		testplzwork.GetComponent<gamePlayScript> ().truckIsSelected = true;
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
 		if (hasBeenClicked == false) {
@@ -152,8 +156,7 @@ public class CharacterBehaviour : MonoBehaviour
 	public IEnumerator Unloading ()
 	{
 		speed = 0.0f;
-		
-		//gPS.GetComponent<gamePlayScript> ().canUnload = true;
+
 		yield return new WaitForSeconds (timeToUnload);
 		
 		this.collider.enabled = false;
