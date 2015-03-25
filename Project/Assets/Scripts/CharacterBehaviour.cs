@@ -59,25 +59,27 @@ public class CharacterBehaviour : MonoBehaviour
 		hasBeenClicked = false;
 		showNode = false;
 		canMove = false;
+
 	}
 	
 	// Update is called once per frame
 	public void Update ()
 	{
-		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) {
-			if (canMove == true) 
-			{
-				if(hasBeenClicked != true) 
-				{
-					// MoveTowards function takes its paramettraers as (current position, target position, speed).
-					transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
+		Debug.Log (canMove);
 
-					// Some stuff for rotation.
-					targetDirection = currentWaypoint.position - transform.position;
-					newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
-					transform.rotation = Quaternion.LookRotation (newDirection);
-				}
+		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
+		if (canMove == true) 
+		{
+			hasBeenClicked = false;
+
+			if (waypoints.Count > 0) {
+				// MoveTowards function takes its paramettraers as (current position, target position, speed).
+				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
+
+				// Some stuff for rotation.
+				targetDirection = currentWaypoint.position - transform.position;
+				newDirection = Vector3.RotateTowards (transform.forward, targetDirection, rotationSpeed, 0.0F);
+				transform.rotation = Quaternion.LookRotation (newDirection);
 			}
 		}
 	}
@@ -107,10 +109,13 @@ public class CharacterBehaviour : MonoBehaviour
 		audio.Play ();
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
-		if (hasBeenClicked == false) {
+		if (hasBeenClicked == false) 
+		{
 			hasBeenClicked = true;
 			Time.timeScale = 0.0f;
-		} else if (hasBeenClicked == true) {
+		} 
+		else if (hasBeenClicked == true) 
+		{
 			hasBeenClicked = false;
 			Time.timeScale = 1.0f;
 		}
@@ -149,8 +154,6 @@ public class CharacterBehaviour : MonoBehaviour
 			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
 		}
 	}
-	
-
 
 	// Currently a code stub. Definitely needs more work.
 	public IEnumerator Unloading ()

@@ -57,7 +57,7 @@ public class gamePlayScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void Update ()
 	{
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
