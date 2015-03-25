@@ -24,6 +24,7 @@ public class gamePlayScript : MonoBehaviour
 	public bool gameIsPaused;//Determines whether the game is in a pause state.
 	public int costOfFood;
 	//public bool truckIsSelected;
+	public bool canHasBuyMeals = false;
 
 	public GameObject truck;
 	public bool canUnload;
@@ -47,6 +48,7 @@ public class gamePlayScript : MonoBehaviour
 		dropOff = false;
 		buildButton.SetActive (false);
 		unPauseButton.SetActive (false);
+		giveMealButton.SetActive (false);
 		//goButton.SetActive(false);
 		//truckIsSelected = false;
 	}
@@ -57,45 +59,34 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (gameIsPaused == false) 
-		{
+		if (gameIsPaused == false) {
 			pauseButton.SetActive (true);
 		}
 
-		if (gameIsPaused == true) 
-		{
+		if (gameIsPaused == true) {
 			unPauseButton.SetActive (true);
 		}
 
-		if (gameIsPaused == false) 
-		{
-			if (money >= 10) 
-			{
+		if (gameIsPaused == false) {
+			if (money >= 10) {
 				buildButton.SetActive (true);
 				Debug.Log ("Enough Money to Build");
-			} 
-			else 
-			{
+			} else {
 				buildButton.SetActive (false);
 			}
 
-			if (money >= costOfFood && buildingBuilt == true) 
-			{
+			if (money >= costOfFood && buildingBuilt == true && canHasBuyMeals == true) {
 				buyMealButton.SetActive (true);
-			} 
-			else 
-			{
+			} else if (money <= costOfFood || canHasBuyMeals == false || buildingBuilt == false) {
 				buyMealButton.SetActive (false);
 			}
 
-			if (mealsAvailable >= 1 && canUnload == true && dropOff == true) 
-			{
+			if (mealsAvailable >= 1 && canUnload == true && dropOff == true) {
 				giveMealButton.SetActive (true);
-			} 
-			else 
-			{
+			} else if (mealsAvailable <= 1 || canUnload == false || dropOff == false) {
 				giveMealButton.SetActive (false);
 			}
+
 
 			/*if (truckIsSelected == true)
 			{
@@ -103,8 +94,7 @@ public class gamePlayScript : MonoBehaviour
 			}*/
 		}
 
-		if (Input.GetKeyDown ("escape")) 
-		{
+		if (Input.GetKeyDown ("escape")) {
 			Application.Quit ();
 		}
 
@@ -124,7 +114,7 @@ public class gamePlayScript : MonoBehaviour
 
 	void OnGUI ()
 	{
-	/*	GUI.skin = allUI;
+		/*	GUI.skin = allUI;
 		GUI.Box (new Rect (0, 0, 200, 50), "");
 		GUI.Box (new Rect (20, 5, 20, 20), "", GUI.skin.GetStyle ("AwarenessIcon"));
 		GUI.Label (new Rect (40, 5, 20, 20), awareness.ToString ("F0"));	// Displays awareness as a string (it is rounded to have NO Decimel place)
@@ -180,7 +170,6 @@ public class gamePlayScript : MonoBehaviour
 	public void build ()
 	{
 		awareness += 2;
-		money -= 10;
 		canBuild = true;
 		buildButton.SetActive (false);
 	}

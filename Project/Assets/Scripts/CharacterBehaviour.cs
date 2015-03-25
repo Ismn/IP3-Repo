@@ -35,6 +35,8 @@ public class CharacterBehaviour : MonoBehaviour
 	public List <Transform> waypoints = new List<Transform> (); // Holds all the Waypoint Objects that you assign in the inspector.
 	public GameObject[] nodeArray;
 
+	public GameObject testplzwork;
+
 	// And variables.
 	private float speed; // How fast the players trucks can move.
 	private float rotationSpeed; // How fast it can turn towards the a node.
@@ -65,10 +67,8 @@ public class CharacterBehaviour : MonoBehaviour
 	void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (waypoints.Count > 0) 
-		{
-			if (hasBeenClicked != true)
-			{
+		if (waypoints.Count > 0) {
+			if (hasBeenClicked != true) {
 				// MoveTowards function takes its paramettraers as (current position, target position, speed).
 				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
@@ -85,19 +85,14 @@ public class CharacterBehaviour : MonoBehaviour
 	{
 		// Toggle function to determine whether or not to show all the nodes in view, 
 		// since it's only necessary to see them when we tell a truck where to go.
-		if (showNode == false) 
-		{
-			foreach (GameObject nodes in nodeArray) 
-			{
+		if (showNode == false) {
+			foreach (GameObject nodes in nodeArray) {
 				// ... Tell the Node object to begin rendering the 'unselected' sprite.
 				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 			}
 			showNode = true;
-		} 
-		else if (showNode == true) 
-		{
-			foreach (GameObject nodes in nodeArray) 
-			{
+		} else if (showNode == true) {
+			foreach (GameObject nodes in nodeArray) {
 				// ... Tell the Node object to stop rendering sprites.
 				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = false;
 			}
@@ -105,16 +100,13 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 
 		// Play a short audio clip to let the player know they've selected a truck.
-		audio.Play();
+		audio.Play ();
 
 		// Toggle function to ensure that the truck cannot move the second a node is selected.
-		if (hasBeenClicked == false) 
-		{
+		if (hasBeenClicked == false) {
 			hasBeenClicked = true;
 			Time.timeScale = 0.0f;
-		} 
-		else if (hasBeenClicked == true) 
-		{
+		} else if (hasBeenClicked == true) {
 			hasBeenClicked = false;
 			Time.timeScale = 1.0f;
 		}
@@ -135,12 +127,33 @@ public class CharacterBehaviour : MonoBehaviour
 		}
 	}
 
+	public void OnTriggerStay (Collider other)
+	{
+		if (other.tag == ("School")) {
+			Debug.Log ("Bacon");
+			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
+			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
+		}
+		if (other.tag == ("kitchen")) {
+			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = true;
+		}
+
+	}
+	public void OnTriggerExit (Collider other)
+	{
+		if (other.CompareTag ("kitchen")) {
+			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
+		}
+	}
+	
+
+
 	// Currently a code stub. Definitely needs more work.
 	public IEnumerator Unloading ()
 	{
 		speed = 0.0f;
 		
-		gPS.GetComponent<gamePlayScript> ().canUnload = true;
+		//gPS.GetComponent<gamePlayScript> ().canUnload = true;
 		yield return new WaitForSeconds (timeToUnload);
 		
 		this.collider.enabled = false;

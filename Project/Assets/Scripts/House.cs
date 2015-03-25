@@ -12,6 +12,7 @@ public class House : Obj
 	//public bool building = false;
 	public bool built = false;
 	public int capacity;
+	public GameObject testplzwork;
 
 	public enum State
 	{
@@ -25,7 +26,7 @@ public class House : Obj
 
 	public void Start ()
 	{
-		gameplayScript = GetComponent<gamePlayScript> ();
+
 	}
 
 	public override void OnTouch ()
@@ -33,6 +34,7 @@ public class House : Obj
 		base.OnTouch ();
 		Debug.Log ("click");
 		if (currentState == State.unbuilt) {
+			testplzwork.GetComponent<gamePlayScript> ().money -= 10;
 			Destroy (this.gameObject);
 			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, this.transform.position, Quaternion.Euler (270, 270, 0));
 			currentState = State.smallSchool;
@@ -41,12 +43,5 @@ public class House : Obj
 		}
 	}
 
-	public void OnTriggerStay(Collider other)
-	{
-		if (other.CompareTag("Character"))
-		{
-			gameplayScript.GetComponent<gamePlayScript> ().dropOff = true;
-		}
-	}
 
 }
