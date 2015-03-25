@@ -46,7 +46,6 @@ public class CharacterBehaviour : MonoBehaviour
 	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 	public bool truckIsSelected = false;
-	public GameObject goButton;
 	// Use this for initialization
 	void Start ()
 	{
@@ -60,7 +59,6 @@ public class CharacterBehaviour : MonoBehaviour
 		hasBeenClicked = false;
 		showNode = false;
 		canMove = false;
-		goButton.SetActive (false);
 
 	}
 	
@@ -91,7 +89,7 @@ public class CharacterBehaviour : MonoBehaviour
 	public void OnMouseDown () // When we click on the truck...
 	{
 		truckIsSelected = true;
-		goButton.SetActive (true);
+		testplzwork.GetComponent<gamePlayScript> ().goButton.SetActive (true);
 		Debug.Log ("truckclick");
 
 		// Toggle function to determine whether or not to show all the nodes in view, 
@@ -175,13 +173,6 @@ public class CharacterBehaviour : MonoBehaviour
 		if (timeToUnload >= 1.0f) {
 			speed = 5.0f;
 		}
-	}
-	public void moveTruck ()
-	{
-		Debug.Log ("gobuttonclick");
-		canMove = true;
-		truckIsSelected = false;
-		goButton.SetActive (false);
 	}
 
 	// Code stub for testing interaction between objects and scripts.

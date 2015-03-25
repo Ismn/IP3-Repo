@@ -25,7 +25,7 @@ public class gamePlayScript : MonoBehaviour
 	public int costOfFood;
 	public bool truckIsSelected = false;
 	public bool canHasBuyMeals = false;
-
+	public GameObject goButton;
 	public GameObject truck;
 	public bool canUnload;
 	public bool dropOff;
@@ -34,7 +34,6 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
-	public GameObject goButton;
 
 	public CharacterBehaviour character;
 
@@ -135,6 +134,7 @@ public class gamePlayScript : MonoBehaviour
 		buildButton.SetActive (false);
 		buyMealButton.SetActive (false);
 		giveMealButton.SetActive (false);
+		goButton.SetActive (false);
 	}
 
 	public void unPause ()
@@ -147,6 +147,7 @@ public class gamePlayScript : MonoBehaviour
 		buildButton.SetActive (true);
 		buyMealButton.SetActive (true);
 		giveMealButton.SetActive (true);
+		goButton.SetActive (true);
 	}
 
 	public void buyMeal ()
@@ -165,7 +166,9 @@ public class gamePlayScript : MonoBehaviour
 	public void moveTruck ()
 	{
 		Debug.Log ("gobuttonclick");
+
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
-		//truckIsSelected = false;
+		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
+		goButton.SetActive (false);
 	}
 }
