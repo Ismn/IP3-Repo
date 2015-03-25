@@ -216,7 +216,8 @@ public class gamePlayScript : MonoBehaviour
 
 	public void moveTruck()
 	{
+
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
-		truckIsSelected = false;
+		//truckIsSelected = false;
 	}
 }
