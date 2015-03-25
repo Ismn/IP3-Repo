@@ -124,20 +124,25 @@ public class CharacterBehaviour : MonoBehaviour
 	//The function "OnTriggerEnter" is called when a collision happens.
 	void OnTriggerEnter (Collider other)
 	{
+
 		// If the truck comes within range of an object with the "Node" tag...
 		if (other.CompareTag ("Node")) {
 			// ... Set the active waypoint to the next element in the array.
 			WPindexPointer++;
 		}
 		
-		if (other.CompareTag ("School")) {
-			StartCoroutine (Unloading ());			
+		if (other.tag == ("School")) {
+			StartCoroutine (Unloading ());
+			Debug.Log ("enterschool");
+			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
+			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
 			Test ();
 		}
 	}
 
-	public void OnTriggerStay (Collider other)
+	void OnTriggerStay (Collider other)
 	{
+		Debug.Log ("enter trigger");
 		if (other.tag == ("School")) {
 			Debug.Log ("Bacon");
 			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
@@ -150,8 +155,9 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 	public void OnTriggerExit (Collider other)
 	{
-		if (other.CompareTag ("kitchen")) {
+		if (other.tag == ("kitchen")) {
 			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
+			Debug.Log ("leaveKitchen");
 		}
 	}
 
