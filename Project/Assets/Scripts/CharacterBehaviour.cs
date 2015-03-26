@@ -46,7 +46,6 @@ public class CharacterBehaviour : MonoBehaviour
 	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the array.
 	public bool truckIsSelected = false;
-	public GameObject goButton;
 	// Use this for initialization
 	void Start ()
 	{
@@ -60,15 +59,15 @@ public class CharacterBehaviour : MonoBehaviour
 		hasBeenClicked = false;
 		showNode = false;
 		canMove = false;
-		goButton.SetActive (false);
 
 	}
 	
 	// Update is called once per frame
 	public void Update ()
 	{
-		Debug.Log (canMove);
+		//	Debug.Log (canMove);
 
+		//if (waypoints.Count > 0) {
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 		if (canMove == true) {
 			hasBeenClicked = false;
@@ -83,13 +82,14 @@ public class CharacterBehaviour : MonoBehaviour
 				transform.rotation = Quaternion.LookRotation (newDirection);
 			}
 		}
+		//}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	public void OnMouseDown () // When we click on the truck...
 	{
 		truckIsSelected = true;
-		goButton.SetActive (true);
+		testplzwork.GetComponent<gamePlayScript> ().goButton.SetActive (true);
 		Debug.Log ("truckclick");
 
 		// Toggle function to determine whether or not to show all the nodes in view, 
@@ -124,20 +124,25 @@ public class CharacterBehaviour : MonoBehaviour
 	//The function "OnTriggerEnter" is called when a collision happens.
 	void OnTriggerEnter (Collider other)
 	{
+		Debug.Log ("Has Entered trigger");
 		// If the truck comes within range of an object with the "Node" tag...
 		if (other.CompareTag ("Node")) {
 			// ... Set the active waypoint to the next element in the array.
 			WPindexPointer++;
 		}
 		
-		if (other.CompareTag ("School")) {
-			StartCoroutine (Unloading ());			
+		if (other.tag == ("School")) {
+			StartCoroutine (Unloading ());
+			Debug.Log ("enterschool");
+			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
+			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
 			Test ();
 		}
 	}
 
-	public void OnTriggerStay (Collider other)
+	void OnTriggerStay (Collider other)
 	{
+		//	Debug.Log ("enter trigger");
 		if (other.tag == ("School")) {
 			Debug.Log ("Bacon");
 			testplzwork.GetComponent<gamePlayScript> ().dropOff = true;
@@ -150,8 +155,9 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 	public void OnTriggerExit (Collider other)
 	{
-		if (other.CompareTag ("kitchen")) {
+		if (other.tag == ("kitchen")) {
 			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
+			Debug.Log ("leaveKitchen");
 		}
 	}
 
@@ -167,13 +173,6 @@ public class CharacterBehaviour : MonoBehaviour
 		if (timeToUnload >= 1.0f) {
 			speed = 5.0f;
 		}
-	}
-	public void moveTruck ()
-	{
-		Debug.Log ("gobuttonclick");
-		canMove = true;
-		truckIsSelected = false;
-		goButton.SetActive (false);
 	}
 
 	// Code stub for testing interaction between objects and scripts.
