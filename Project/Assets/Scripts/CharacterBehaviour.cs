@@ -138,6 +138,7 @@ public class CharacterBehaviour : MonoBehaviour
 		if (other.gameObject.CompareTag("School"))
 		{
 			Test();
+			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
 		}
 	}
 
