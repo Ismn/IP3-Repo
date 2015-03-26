@@ -34,6 +34,14 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
+	public GameObject magnus;
+	public GameObject fergus;
+	public GameObject textbox;
+	public Text messageToPlayer;
+	public Text messageToPlayer2;
+	public Component messages;
+	//public Text message1 = "TestMagnus";
+	//public Text message2 = "TestFergus";
 
 	public CharacterBehaviour character;
 
@@ -53,11 +61,14 @@ public class gamePlayScript : MonoBehaviour
 		goButton.SetActive (false);
 		truckIsSelected = false;
 		truck = GameObject.FindGameObjectWithTag ("Character");
+		BeginTutorial ();
+		messages = gameObject.AddComponent<Text>();
 	}
 	
 	// Update is called once per frame
 	public void Update ()
 	{
+
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
@@ -170,5 +181,25 @@ public class gamePlayScript : MonoBehaviour
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
 		goButton.SetActive (false);
+	}
+
+	public void BeginTutorial(){
+		Debug.Log ("Tutorial Begun");
+		magnus.SetActive (true);
+		messageToPlayer.text = "Hi there! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily I got some help from you and my brother Fergus.";
+		messageToPlayer = GetComponent<Text> ();
+		StartCoroutine(secondPartTutorialWait ());
+	}
+	IEnumerator secondPartTutorialWait(){
+		yield return new WaitForSeconds (5.0f);
+		secondPartTutorial();
+	}
+	public void secondPartTutorial(){
+		textbox.SetActive (false);
+		magnus.SetActive (false);
+		fergus.SetActive (true);
+		messageToPlayer.text = "TestFergus";
+		//messageToPlayer.enabled;
+		//textbox.SetActive (true);
 	}
 }
