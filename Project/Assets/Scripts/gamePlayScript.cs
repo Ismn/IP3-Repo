@@ -28,7 +28,6 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject goButton;
 	public GameObject truck;
 	public bool canUnload;
-	public bool dropOff;
 	public GameObject buildButton;
 	public GameObject pauseButton;
 	public GameObject unPauseButton;
@@ -54,7 +53,6 @@ public class gamePlayScript : MonoBehaviour
 		buildingBuilt = false;
 		gameIsPaused = false;
 		canUnload = false;
-		dropOff = false;
 		buildButton.SetActive (false);
 		unPauseButton.SetActive (false);
 		giveMealButton.SetActive (false);
@@ -72,40 +70,50 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (gameIsPaused == false) {
+		if (gameIsPaused == false) 
+		{
 			pauseButton.SetActive (true);
-		}
 
-		if (gameIsPaused == true) {
-			unPauseButton.SetActive (true);
-		}
-
-		if (gameIsPaused == false) {
-			if (money >= 10) {
+			if (money >= 10) 
+			{
 				buildButton.SetActive (true);
-				//		Debug.Log ("Enough Money to Build");
-			} else {
+			} 
+			else 
+			{
 				buildButton.SetActive (false);
 			}
-
-			if (money >= costOfFood && buildingBuilt == true && canHasBuyMeals == true) {
+			
+			if (money >= costOfFood && buildingBuilt == true && canHasBuyMeals == true) 
+			{
 				buyMealButton.SetActive (true);
-			} else if (money <= costOfFood || canHasBuyMeals == false || buildingBuilt == false) {
+			} 
+			else if (money <= costOfFood || canHasBuyMeals == false || buildingBuilt == false) 
+			{
 				buyMealButton.SetActive (false);
 			}
-
-			if (mealsAvailable >= 1 && canUnload == true && dropOff == true) {
+			
+			if (mealsAvailable >= 1 && canUnload == true) 
+			{
 				giveMealButton.SetActive (true);
-			} else if (mealsAvailable <= 1 || canUnload == false || dropOff == false) {
+			} 
+			else if (mealsAvailable <= 1 || canUnload == false) 
+			{
 				giveMealButton.SetActive (false);
 			}
-
-			if (truckIsSelected == true) {
+			
+			if (truckIsSelected == true) 
+			{
 				goButton.SetActive (true);
 			}
 		}
 
-		if (Input.GetKeyDown ("escape")) {
+		if (gameIsPaused == true) 
+		{
+			unPauseButton.SetActive (true);
+		}
+
+		if (Input.GetKeyDown ("escape")) 
+		{
 			Application.Quit ();
 		}
 
@@ -176,8 +184,6 @@ public class gamePlayScript : MonoBehaviour
 
 	public void moveTruck ()
 	{
-		Debug.Log ("gobuttonclick");
-
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
 		goButton.SetActive (false);
@@ -189,7 +195,7 @@ public class gamePlayScript : MonoBehaviour
 		if (Application.loadedLevelName == "test") {
 			Debug.Log ("Tutorial Begun");
 			magnus.SetActive (true);
-			messageToPlayer.text = "Hi there! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily I got some help from you and my brother Fergus.";
+			messageToPlayer.text = "Hi there! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!";
 			messageToPlayer = GetComponent<Text> ();
 			StartCoroutine (secondPartTutorialWait ());
 		}

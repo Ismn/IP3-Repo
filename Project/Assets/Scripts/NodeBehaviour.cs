@@ -22,8 +22,8 @@ public class NodeBehaviour : MonoBehaviour
 	public bool timeToChange;
 	public bool isNode;
 
-	// Use this for initialization
-	void Start () 
+	// Called when the instance of the script is being loaded.
+	void Awake () 
 	{
 		// Reference any Game Objects tagged as "Character" i.e. the trucks.
 		charBehaviour = GameObject.FindGameObjectWithTag("Character");
@@ -33,30 +33,27 @@ public class NodeBehaviour : MonoBehaviour
 
 		renderNodeSprite = false; // Node sprites are not to be rendered on startup.
 		timeToChange = false; // Nor are they to be shown in their 'selected' state.
+		isNode = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{	
-		if (isNode == true)
+		// Assuming the character has been selected...
+		if (renderNodeSprite == true)
 		{
-			// Assuming the character has been selected...
-			if (renderNodeSprite == true)
-			{
-				// ... make all node sprites visible as "unselected".
-				sRender.sprite = unselectedNode;
-			}
-			else if (renderNodeSprite == false)
-			{
-				sRender.sprite = null;
-			}
-
-			// If the 'unselected' sprites are visible...
-			if (sRender.sprite == unselectedNode && timeToChange)
-			{
-				// ... highlight the ones we have selected.
-				sRender.sprite = selectedNode;
-			}
+			// ... make all node sprites visible as "unselected".
+			sRender.sprite = unselectedNode;
+		}
+		else if (renderNodeSprite == false)
+		{
+			sRender.sprite = null;
+		}
+		// If the 'unselected' sprites are visible...
+		if (sRender.sprite == unselectedNode && timeToChange)
+		{
+			// ... highlight the ones we have selected.
+			sRender.sprite = selectedNode;
 		}
 	}
 
