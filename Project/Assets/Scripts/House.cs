@@ -12,7 +12,8 @@ public class House : Obj
 	//public bool building = false;
 	public bool built = false;
 	public int capacity;
-	public GameObject testplzwork;
+	public GameObject refToGameplayScript;
+	public GameObject refToTutScript;
 
 	public enum State
 	{
@@ -34,7 +35,8 @@ public class House : Obj
 		base.OnTouch ();
 		Debug.Log ("click");
 		if (currentState == State.unbuilt) {
-			testplzwork.GetComponent<gamePlayScript> ().money -= 10;
+			refToGameplayScript.GetComponent<gamePlayScript> ().money -= 10;
+			refToTutScript.GetComponent<TutorialScript>().tutBuildingBuilt=true;
 			Destroy (this.gameObject);
 			GameObject upgrade = (GameObject)Instantiate (upgradedSchool, this.transform.position, Quaternion.Euler (270, 270, 0));
 			currentState = State.smallSchool;

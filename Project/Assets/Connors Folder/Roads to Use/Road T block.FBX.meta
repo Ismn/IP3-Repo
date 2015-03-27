@@ -1,20 +1,13 @@
 fileFormatVersion: 2
-guid: 4ceec1b828acdc84f855a08a671ad26d
+guid: 3da3884ecb31c9546b3d53bc27d48c9e
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: 'ROAD: Plain'
-    100004: 'ROAD: T'
     400000: //RootNode
-    400002: 'ROAD: Plain'
-    400004: 'ROAD: T'
-    2300000: 'ROAD: Plain'
-    2300002: 'ROAD: T'
-    3300000: 'ROAD: Plain'
-    3300002: 'ROAD: T'
-    4300000: 'ROAD: Plain'
-    4300002: 'ROAD: T'
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: 'ROAD: T'
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -35,7 +28,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: .0500000007
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

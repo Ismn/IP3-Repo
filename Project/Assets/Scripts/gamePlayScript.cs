@@ -33,6 +33,9 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
+	public GameObject TutorialArrow;
+	public bool tutMealBought = false;
+	public bool tutMealGave = false;
 
 	public CharacterBehaviour character;
 
@@ -51,6 +54,15 @@ public class gamePlayScript : MonoBehaviour
 		goButton.SetActive (false);
 		truckIsSelected = false;
 		truck = GameObject.FindGameObjectWithTag ("Character");
+
+		if (Application.loadedLevelName == "MAINSCENEFINAL") { //TEMPORARY TUTORIAL HELP, PROBABLY SHOULD BE FIXED
+			awareness = 0;
+			money= 0;
+			mealsAvailable = 0;
+			StartCoroutine(thenGiveMealTutorial());
+
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -150,6 +162,7 @@ public class gamePlayScript : MonoBehaviour
 	{
 		mealsAvailable += 1;
 		money -= costOfFood;
+		tutMealBought = true;
 	}
 
 	public void giveMeal ()
@@ -157,6 +170,7 @@ public class gamePlayScript : MonoBehaviour
 		awareness += 1;
 		mealsAvailable -= 1;
 		moneyRate += 1;
+		tutMealGave = true;
 	}
 
 	public void moveTruck ()
@@ -164,6 +178,13 @@ public class gamePlayScript : MonoBehaviour
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
 		goButton.SetActive (false);
+	}
+
+	IEnumerator thenGiveMealTutorial(){
+		yield return new WaitForSeconds (21.0f);
+		mealsAvailable = 1;
+		TutorialArrow.SetActive (true);
+
 	}
 
 

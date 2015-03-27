@@ -19,8 +19,8 @@ public class ScoreScript : MonoBehaviour
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().awareness.ToString ();
 		} else if (this.gameObject.tag == "money") {
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().money.ToString ();
-		} else if (this.gameObject.tag == "meals") {
+		} else if (this.gameObject.tag == "meals") 
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().mealsAvailable.ToString ();
 		}
 	}
-}
+
