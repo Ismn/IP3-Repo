@@ -33,14 +33,6 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unPauseButton;
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
-	public GameObject magnus;
-	public GameObject fergus;
-	public GameObject textbox;
-	public Text messageToPlayer;
-	public Text messageToPlayer2;
-	public Component messages;
-	//public Text message1 = "TestMagnus";
-	//public Text message2 = "TestFergus";
 
 	public CharacterBehaviour character;
 
@@ -59,8 +51,6 @@ public class gamePlayScript : MonoBehaviour
 		goButton.SetActive (false);
 		truckIsSelected = false;
 		truck = GameObject.FindGameObjectWithTag ("Character");
-		BeginTutorial ();
-		messages = gameObject.AddComponent<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -70,50 +60,37 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
-		if (gameIsPaused == false) 
-		{
+		if (gameIsPaused == false) {
 			pauseButton.SetActive (true);
 
-			if (money >= 10) 
-			{
+			if (money >= 10) {
 				buildButton.SetActive (true);
-			} 
-			else 
-			{
+			} else {
 				buildButton.SetActive (false);
 			}
 			
-			if (money >= costOfFood && buildingBuilt == true && canHasBuyMeals == true) 
-			{
+			if (money >= costOfFood && buildingBuilt == true && canHasBuyMeals == true) {
 				buyMealButton.SetActive (true);
-			} 
-			else if (money <= costOfFood || canHasBuyMeals == false || buildingBuilt == false) 
-			{
+			} else if (money <= costOfFood || canHasBuyMeals == false || buildingBuilt == false) {
 				buyMealButton.SetActive (false);
 			}
 			
-			if (mealsAvailable >= 1 && canUnload == true) 
-			{
+			if (mealsAvailable >= 1 && canUnload == true) {
 				giveMealButton.SetActive (true);
-			} 
-			else if (mealsAvailable <= 1 || canUnload == false) 
-			{
+			} else if (mealsAvailable <= 1 || canUnload == false) {
 				giveMealButton.SetActive (false);
 			}
 			
-			if (truckIsSelected == true) 
-			{
+			if (truckIsSelected == true) {
 				goButton.SetActive (true);
 			}
 		}
 
-		if (gameIsPaused == true) 
-		{
+		if (gameIsPaused == true) {
 			unPauseButton.SetActive (true);
 		}
 
-		if (Input.GetKeyDown ("escape")) 
-		{
+		if (Input.GetKeyDown ("escape")) {
 			Application.Quit ();
 		}
 
@@ -190,28 +167,29 @@ public class gamePlayScript : MonoBehaviour
 	}
 
 
-	public void BeginTutorial ()
-	{
-		if (Application.loadedLevelName == "test") {
-			Debug.Log ("Tutorial Begun");
-			magnus.SetActive (true);
-			messageToPlayer.text = "Hi there! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!";
-			messageToPlayer = GetComponent<Text> ();
-			StartCoroutine (secondPartTutorialWait ());
-		}
-	}
-	IEnumerator secondPartTutorialWait ()
-	{
-		yield return new WaitForSeconds (5.0f);
-		secondPartTutorial ();
-	}
-	public void secondPartTutorial ()
-	{
-		textbox.SetActive (false);
-		magnus.SetActive (false);
-		fergus.SetActive (true);
-		messageToPlayer.text = "TestFergus";
-		//messageToPlayer.enabled;
-		//textbox.SetActive (true);
-	}
+//	public void BeginTutorial ()
+//	{
+//		if (Application.loadedLevelName == "MAINSCENEFINAL") {
+//			Debug.Log ("Tutorial Begun");
+//			magnus.SetActive (true);
+//			messageToPlayer = GetComponent<Text> ();
+//			messageToPlayer.text = "Hi there! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!".ToString ();
+//
+//			StartCoroutine (secondPartTutorialWait ());
+//		}
+//	}
+//	IEnumerator secondPartTutorialWait ()
+//	{
+//		yield return new WaitForSeconds (5.0f);
+//		secondPartTutorial ();
+//	}
+//	public void secondPartTutorial ()
+//	{
+//		textbox.SetActive (false);
+//		magnus.SetActive (false);
+//		fergus.SetActive (true);
+//		messageToPlayer.text = "TestFergus";
+//		//messageToPlayer.enabled;
+//		//textbox.SetActive (true);
+//	}
 }

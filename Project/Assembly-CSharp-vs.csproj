@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Road.cs" />
      <Compile Include="Assets\Scripts\SchoolBehaviour.cs" />
      <Compile Include="Assets\Scripts\ScoreScript.cs" />
+     <Compile Include="Assets\Scripts\TutorialScript.cs" />
      <Compile Include="Assets\Scripts\cameraMoveScript.cs" />
      <Compile Include="Assets\Scripts\gameInfoScript.cs" />
      <Compile Include="Assets\Scripts\gamePlayScript.cs" />
