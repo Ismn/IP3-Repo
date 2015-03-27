@@ -71,6 +71,6 @@ public class mainMenuScript : MonoBehaviour
 	}
 
 	public void AfricaPlayButton(){
-		Application.LoadLevel ("LevelOne");
+		Application.LoadLevel ("MAINSCENEFINAL");
 	}
 }
