@@ -22,6 +22,20 @@ public class mainMenuScript : MonoBehaviour
 	public GameObject carribeanHighlighted;
 	public GameObject carribeanLocked;
 
+	//AsiaLevels
+	public GameObject asiaBackground;
+	public GameObject asiaLevelOne;
+	public GameObject asiaLevelTwo;
+	public GameObject asiaLevelThree;
+	public GameObject asiaLevelOnePlay;
+
+	//Misc
+	public GameObject levelOneBackground;
+	public GameObject levelTwoBackground;
+	public GameObject levelThreeBackground;
+	public GameObject star1;
+	public GameObject star2;
+	public GameObject star3;
 	// Use this for initialization
 	void Start ()
 	{
@@ -65,12 +79,33 @@ public class mainMenuScript : MonoBehaviour
 
 	}
 
+	public void AsiaClick(){
+		asiaUnlocked.SetActive (false);
+		africaLocked.SetActive (false);
+		carribeanLocked.SetActive (false);
+		southAmericaLocked.SetActive (false);
+		background.SetActive (false);
+		asiaBackground.SetActive (true);
+		asiaLevelOne.SetActive (true);
+		asiaLevelTwo.SetActive (true);
+		asiaLevelThree.SetActive (true);
+	}
+	public void AsiaLevelOne(){
+		asiaBackground.SetActive (false);
+		asiaLevelOne.SetActive (false);
+		asiaLevelTwo.SetActive (false);
+		asiaLevelThree.SetActive (false);
+		levelOneBackground.SetActive (true);
+		asiaLevelOnePlay.SetActive (true);
+
+	
+	}
 	public void QuitButton ()
 	{
 		Application.Quit ();
 	}
 
-	public void AfricaPlayButton(){
+	public void AsiaPlayButton(){
 		Application.LoadLevel ("MAINSCENEFINAL");
 	}
 }

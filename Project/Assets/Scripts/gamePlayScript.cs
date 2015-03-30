@@ -43,7 +43,7 @@ public class gamePlayScript : MonoBehaviour
 	void Awake ()
 	{
 		mousePosition = Input.mousePosition;
-		timeToCycle = 5.0f;	//Start our time Cycle off.
+		timeToCycle = 30.0f;	//Start our time Cycle off.
 		StartCoroutine (cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
 		buildingBuilt = false;
 		gameIsPaused = false;
@@ -61,6 +61,14 @@ public class gamePlayScript : MonoBehaviour
 			mealsAvailable = 0;
 			StartCoroutine(thenGiveMealTutorial());
 
+		}
+		if (Application.loadedLevelName == "LevelOneAfrica!") { //TEMPORARY TUTORIAL HELP, PROBABLY SHOULD BE FIXED
+			awareness = 1;
+			money= 11;
+			mealsAvailable = 0;
+			moneyRate +=1;
+
+			
 		}
 
 	}
@@ -127,7 +135,8 @@ public class gamePlayScript : MonoBehaviour
 
 	public void build ()
 	{
-		awareness += 2;
+		awareness += 1;
+		moneyRate += 1;
 		canBuild = true;
 		buildButton.SetActive (false);
 	}

@@ -130,7 +130,25 @@ public class TutorialScript : MonoBehaviour
 			case 9:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nEscape to Exit]";
+				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nNext to Continue!]";
+				break;
+			case 10:
+				Application.LoadLevel("LevelOneAfrica!");
+				break;
+			}
+		}
+		if (Application.loadedLevelName == "LevelOneAfrica!") {
+			Debug.Log ("Tutorial Begun");
+			switch(currentConvo){
+			case 0:
+		magnus.SetActive (true);
+		fergus.SetActive(false);
+		messageToPlayer.text = "It was Ten Year Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
+				break;
+			case 1:
+				magnus.SetActive (true);
+				fergus.SetActive(false);
+				messageToPlayer.text = "We used trucks to deliver our food, but to cater the food we need a kitchen. Each kitchen costs Ten Coins! To build a kitchen, click on the build tool, and then on a construction site!";
 				break;
 			}
 		}
