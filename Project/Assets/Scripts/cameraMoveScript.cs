@@ -14,7 +14,7 @@ public class cameraMoveScript : MonoBehaviour {
 		float zAxisValue = Input.GetAxis("Vertical");
 		if(Camera.current != null)
 		{
-			Camera.current.transform.Translate(new Vector3(xAxisValue,zAxisValue, 0.0f));
+			Camera.current.transform.Translate(new Vector3(xAxisValue, 0.0f,zAxisValue),Space.World);
 		}
 	}
 }
