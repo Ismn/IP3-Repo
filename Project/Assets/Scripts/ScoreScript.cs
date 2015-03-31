@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//this script updates the player's awareness, money and meals as they are updated in the game
+
 public class ScoreScript : MonoBehaviour
 {
 
@@ -21,6 +23,6 @@ public class ScoreScript : MonoBehaviour
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().money.ToString ();
 		} else if (this.gameObject.tag == "meals") 
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().mealsAvailable.ToString ();
-		}
 	}
+}
 

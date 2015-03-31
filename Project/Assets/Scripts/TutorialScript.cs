@@ -4,18 +4,25 @@ using UnityEngine.UI;
 
 public class TutorialScript : MonoBehaviour
 {
-
+	//references to objects in inspector
 	public GameObject magnus;
 	public GameObject fergus;
 	public GameObject textbox;
 	public GameObject arrow;
+
+	//reference to gameplay script
+	public GameObject refToGameplayScript;
+
+	// the text for the tutorial textbox
 	public Text messageToPlayer;
 	public Text messageToPlayer2;
-	public Component messages;
+
+	// tracks where the player is in the tutorial
 	public tutorialStages currentStage;
 	int tutorialPart;
 	int currentConvo;
-	public GameObject refToGameplayScript;
+
+	//booleans for tutorial gameplay
 	public bool showArrow = false;
 	public bool tutBuildingBuilt;
 
@@ -43,44 +50,38 @@ public class TutorialScript : MonoBehaviour
 	{
 		switch (tutorialPart) {
 		case 0:
-			//do shit
 			BeginTutorial ();
 			currentStage = tutorialStages.WADS;
 			//tutorialPart++;
 			break;
 		case 1:
-			//do shots
-			if(refToGameplayScript.GetComponent<gamePlayScript>().truckIsSelected)
-			{
-			currentStage = tutorialStages.truckSelected;
-			tutorialPart++;
+			if (refToGameplayScript.GetComponent<gamePlayScript> ().truckIsSelected) {
+				currentStage = tutorialStages.truckSelected;
+				tutorialPart++;
 			}
 			break;
 		case 2:
-			//get fucked
-			if(refToGameplayScript.GetComponent<gamePlayScript>().tutMealGave==true)
-			{
-			currentStage = tutorialStages.giveMeal;
-			tutorialPart++;
+			if (refToGameplayScript.GetComponent<gamePlayScript> ().tutMealGave == true) {
+				currentStage = tutorialStages.giveMeal;
+				tutorialPart++;
 			}
 			break;
 		case 3:
-			//die
-			//#sweetlife
-			//#yolo
-			if(tutBuildingBuilt)
-			{
-			currentStage = tutorialStages.buildBuilding;
-			tutorialPart++;
+			if (tutBuildingBuilt) {
+				currentStage = tutorialStages.buildBuilding;
+				tutorialPart++;
 			}
 			break;
 		}
 	}
+
+	// this is the tutorial conversation function
+	// there is a button below that increments the currentConvo variable to advance the tutorial text
 	public void BeginTutorial ()
 	{
 		if (Application.loadedLevelName == "MAINSCENEFINAL") {
-			Debug.Log ("Tutorial Begun");
-			switch(currentConvo){
+			;
+			switch (currentConvo) {
 			case 0:
 				magnus.SetActive (true);
 				messageToPlayer.text = "Hi there! Welcome to Bosnia! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!".ToString ();
@@ -133,28 +134,32 @@ public class TutorialScript : MonoBehaviour
 				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nNext to Continue!]";
 				break;
 			case 10:
-				Application.LoadLevel("LevelOneAfrica!");
+				Application.LoadLevel ("LevelOneAfrica!");
 				break;
 			}
 		}
+
+		//second part of tutorial
 		if (Application.loadedLevelName == "LevelOneAfrica!") {
 			Debug.Log ("Tutorial Begun");
-			switch(currentConvo){
+			switch (currentConvo) {
 			case 0:
-		magnus.SetActive (true);
-		fergus.SetActive(false);
-		messageToPlayer.text = "It was Ten Year Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
+				magnus.SetActive (true);
+				fergus.SetActive (false);
+				messageToPlayer.text = "It was Ten Year Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
 				break;
 			case 1:
 				magnus.SetActive (true);
-				fergus.SetActive(false);
+				fergus.SetActive (false);
 				messageToPlayer.text = "We used trucks to deliver our food, but to cater the food we need a kitchen. Each kitchen costs Ten Coins! To build a kitchen, click on the build tool, and then on a construction site!";
 				break;
 			}
 		}
 	}
 
-	public void nextButton()
+
+	//button used to advance tutorial text
+	public void nextButton ()
 	{
 		currentConvo++;
 	}

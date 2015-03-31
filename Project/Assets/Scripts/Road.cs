@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//this script detects when a road has been clicked and upgrades is
+
 public class Road : Obj
 {
 
@@ -13,7 +15,8 @@ public class Road : Obj
 		unbuilt,
 		basicRoad,
 		upgradedRoad		
-	};
+	}
+	;
 
 	public State currentState;
 
@@ -22,12 +25,10 @@ public class Road : Obj
 		base.OnTouch ();
 		if (currentState == State.unbuilt) {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = pathTypes [1];
-			Debug.Log ("road built!");
 			built = true;
 			currentState = State.basicRoad;
 		} else if (currentState == State.basicRoad) {
 			currentState = State.upgradedRoad;
-			Debug.Log ("upgraded road!");
 		}
 	
 	}
