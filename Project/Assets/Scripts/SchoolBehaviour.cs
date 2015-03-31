@@ -6,10 +6,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class SchoolBehaviour : MonoBehaviour 
+public class SchoolBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
-	public GameObject testplzwork;
+	public GameObject refToGamePlayScript;
 	public GameObject truck;
 
 	// Do the same for collections.
@@ -17,36 +17,16 @@ public class SchoolBehaviour : MonoBehaviour
 	// And variables.
 
 	// Called when the instance of the script is being loaded.
-	void Awake () 
+	void Awake ()
 	{
 		// Reference any Game Objects tagged as "Character" i.e. the trucks.
-		truck = GameObject.FindGameObjectWithTag("Character");
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{	
+		truck = GameObject.FindGameObjectWithTag ("Character");
 	}
 
-	void OnCollision(Collider other)
-	{
-		/*Test ();
-
-		if(other.CompareTag("Character"))
-		{
-			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
-		}*/
-	}
-
-	void OnMouseDown()
+	void OnMouseDown ()
 	{
 		// Add this instance to the List of Nodes for the trucks to follow.
-		truck.GetComponent<CharacterBehaviour>().waypoints.Add(this.transform); 
+		truck.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform); 
 	}
 
-	// Code stub for testing interaction between objects and scripts.
-	public void Test ()
-	{
-		Debug.Log ("Hello!");
-	}
 }
