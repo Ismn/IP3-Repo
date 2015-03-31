@@ -28,7 +28,7 @@ public class CharacterBehaviour : MonoBehaviour
 {
 	// Declare objects to interact with.
 	private Transform currentWaypoint; // Stores the "active" target object (the waypoint to move to).
-	public GameObject testplzwork;
+	public GameObject refToGameplayScript;
 
 	// Do the same for collections.
 	public List <Transform> waypoints = new List<Transform> (); // Holds all the Waypoint Objects that are assigned by the player at runtime.
@@ -37,10 +37,8 @@ public class CharacterBehaviour : MonoBehaviour
 	// And variables.
 	private float speed; // How fast the players trucks can move.
 	private float rotationSpeed; // How fast it can turn towards a node.
-	//private float timeToUnload = 1.0f;
 	private Vector3 targetDirection; // Store the positional information of the target node.
 	private Vector3 newDirection; // Store information to rotate the truck towards the target node.
-	//private bool hasBeenClicked;
 	private bool showNode;
 	public bool canMove;
 	static int WPindexPointer; // Keep track of which Waypoint Object, is currently defined as 'active' in the List.
@@ -55,8 +53,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 		speed = 5.0f * Time.deltaTime;
 		rotationSpeed = 10.0f * Time.deltaTime;
-
-		//hasBeenClicked = false;
+	
 		showNode = false;
 		canMove = false;
 	}
@@ -65,12 +62,9 @@ public class CharacterBehaviour : MonoBehaviour
 	public void Update ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
-		if (canMove == true) 
-		{
-			//hasBeenClicked = false;
+		if (canMove == true) {
 
-			if (waypoints.Count > 0) 
-			{
+			if (waypoints.Count > 0) {
 				// MoveTowards function takes its paramettraers as (current position, target position, speed).
 				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
@@ -86,23 +80,18 @@ public class CharacterBehaviour : MonoBehaviour
 	public void OnMouseDown () // When we click on the truck...
 	{
 		truckIsSelected = true;
-		testplzwork.GetComponent<gamePlayScript> ().goButton.SetActive (true);
+		refToGameplayScript.GetComponent<gamePlayScript> ().goButton.SetActive (true);
 
 		// Toggle function to determine whether or not to show all the nodes in view, 
 		// since it's only necessary to see them when we tell a truck where to go.
-		if (showNode == false) 
-		{
-			foreach (GameObject nodes in nodeArray) 
-			{
+		if (showNode == false) {
+			foreach (GameObject nodes in nodeArray) {
 				// ... Tell the Node object to begin rendering the 'unselected' sprite.
 				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
 			}
 			showNode = true;
-		} 
-		else if (showNode == true) 
-		{
-			foreach (GameObject nodes in nodeArray) 
-			{
+		} else if (showNode == true) {
+			foreach (GameObject nodes in nodeArray) {
 				// ... Tell the Node object to stop rendering sprites.
 				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = false;
 			}
@@ -111,49 +100,33 @@ public class CharacterBehaviour : MonoBehaviour
 
 		// Play a short audio clip to let the player know they've selected a truck.
 		audio.Play ();
-
-		// Toggle function to ensure that the truck cannot move the second a node is selected.
-		/*if (hasBeenClicked == false) 
-		{
-			hasBeenClicked = true;
-			Time.timeScale = 0.0f;
-		} 
-		else if (hasBeenClicked == true) 
-		{
-			hasBeenClicked = false;
-			Time.timeScale = 1.0f;
-		}*/
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
 	void OnTriggerEnter (Collider other)
 	{
 		// If the truck comes within range of an object with the "Node" tag...
-		if (other.CompareTag ("Node")) 
-		{
+		if (other.CompareTag ("Node")) {
 			// ... Set the active waypoint to the next element in the array.
 			WPindexPointer++;
 		}
 
-		if (other.gameObject.CompareTag("School"))
-		{
-			Test();
-			testplzwork.GetComponent<gamePlayScript> ().canUnload = true;
+		if (other.gameObject.CompareTag ("School")) {
+			Test ();
+			refToGameplayScript.GetComponent<gamePlayScript> ().canUnload = true;
 		}
 	}
 
 	void OnTriggerStay (Collider other)
 	{
-		if (other.tag == ("kitchen")) 
-		{
-			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = true;
+		if (other.tag == ("kitchen")) {
+			refToGameplayScript.GetComponent<gamePlayScript> ().canBuyMeals = true;
 		}
 	}
 	public void OnTriggerExit (Collider other)
 	{
-		if (other.tag == ("kitchen")) 
-		{
-			testplzwork.GetComponent<gamePlayScript> ().canHasBuyMeals = false;
+		if (other.tag == ("kitchen")) {
+			refToGameplayScript.GetComponent<gamePlayScript> ().canBuyMeals = false;
 		}
 	}
 

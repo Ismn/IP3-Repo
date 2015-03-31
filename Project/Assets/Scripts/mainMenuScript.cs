@@ -50,22 +50,6 @@ public class mainMenuScript : MonoBehaviour
 		}
 	}
 
-	void OnGUI ()
-	{
-		/*GUI.skin = allUI;
-		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 100), "", GUI.skin.GetStyle ("PlayGameButton"))) {
-			Application.LoadLevel ("Wireframe - Test");
-		}
-		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 + 50, 200, 100), "", GUI.skin.GetStyle ("QuitGameButton"))) {
-			Application.Quit ();
-		}
-		if (GUI.Button (new Rect (Screen.width - 100, 0, 100, 100), "", GUI.skin.GetStyle ("GameAudioButton"))) {
-
-		}
-		if (GUI.Button (new Rect (Screen.width - 200, 0, 100, 100), "", GUI.skin.GetStyle ("GameMusicButton"))) {
-
-		}*/
-	}
 	public void PlayButton ()
 	{
 		fullBackground.SetActive (false);
@@ -79,7 +63,8 @@ public class mainMenuScript : MonoBehaviour
 
 	}
 
-	public void AsiaClick(){
+	public void AsiaClick ()
+	{
 		asiaUnlocked.SetActive (false);
 		africaLocked.SetActive (false);
 		carribeanLocked.SetActive (false);
@@ -90,7 +75,8 @@ public class mainMenuScript : MonoBehaviour
 		asiaLevelTwo.SetActive (true);
 		asiaLevelThree.SetActive (true);
 	}
-	public void AsiaLevelOne(){
+	public void AsiaLevelOne ()
+	{
 		asiaBackground.SetActive (false);
 		asiaLevelOne.SetActive (false);
 		asiaLevelTwo.SetActive (false);
@@ -105,7 +91,8 @@ public class mainMenuScript : MonoBehaviour
 		Application.Quit ();
 	}
 
-	public void AsiaPlayButton(){
+	public void AsiaPlayButton ()
+	{
 		Application.LoadLevel ("MAINSCENEFINAL");
 	}
 }

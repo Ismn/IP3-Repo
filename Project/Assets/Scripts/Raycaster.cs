@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//this script detects when the mouse has been clicked/ screen touched and if
+//able to build, allows a building to be built
+
 public class Raycaster : MonoBehaviour
 {
 	void Update ()

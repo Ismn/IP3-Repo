@@ -23,13 +23,13 @@ public class NodeBehaviour : MonoBehaviour
 	public bool isNode;
 
 	// Called when the instance of the script is being loaded.
-	void Awake () 
+	void Awake ()
 	{
 		// Reference any Game Objects tagged as "Character" i.e. the trucks.
-		charBehaviour = GameObject.FindGameObjectWithTag("Character");
+		charBehaviour = GameObject.FindGameObjectWithTag ("Character");
 
 		// Set a reference to Unity's Default Sprite Renderer.
-		sRender = GetComponent<SpriteRenderer>();
+		sRender = GetComponent<SpriteRenderer> ();
 
 		renderNodeSprite = false; // Node sprites are not to be rendered on startup.
 		timeToChange = false; // Nor are they to be shown in their 'selected' state.
@@ -37,39 +37,29 @@ public class NodeBehaviour : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{	
 		// Assuming the character has been selected...
-		if (renderNodeSprite == true)
-		{
+		if (renderNodeSprite == true) {
 			// ... make all node sprites visible as "unselected".
 			sRender.sprite = unselectedNode;
-		}
-		else if (renderNodeSprite == false)
-		{
+		} else if (renderNodeSprite == false) {
 			sRender.sprite = null;
 		}
 		// If the 'unselected' sprites are visible...
-		if (sRender.sprite == unselectedNode && timeToChange)
-		{
+		if (sRender.sprite == unselectedNode && timeToChange) {
 			// ... highlight the ones we have selected.
 			sRender.sprite = selectedNode;
 		}
 	}
 
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
-	void OnMouseDown()
+	void OnMouseDown ()
 	{
 		// Highlight whichever Node sprites have been clicked on.
 		timeToChange = true; 
 
 		// Add this instance to the List of Nodes for the trucks to follow.
-		charBehaviour.GetComponent<CharacterBehaviour>().waypoints.Add(this.transform); 
-	}
-
-	// Code stub for testing interaction between objects and scripts.
-	public void Test()
-	{
-		Debug.Log ("Hello!");
+		charBehaviour.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform); 
 	}
 }
