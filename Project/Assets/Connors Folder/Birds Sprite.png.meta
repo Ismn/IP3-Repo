@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: cf8e10531e247364d8552cded5e965cd
+guid: aa7e3341a96cf4c4baa8aaa7261d20ae
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Birds Sprite_0
+    21300002: Birds Sprite_1
+    21300004: Birds Sprite_2
+    21300006: Birds Sprite_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,7 +31,7 @@ TextureImporter:
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -42,6 +46,46 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Birds Sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 57
+        width: 1649
+        height: 1622
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Birds Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 39
+        width: 1369
+        height: 1388
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Birds Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 3336
+        y: 183
+        width: 1328
+        height: 1094
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Birds Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 4928
+        y: 0
+        width: 1222
+        height: 1228
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
