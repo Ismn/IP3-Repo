@@ -28,7 +28,7 @@ public class gamePlayScript : MonoBehaviour
 
 	//booleans for game code
 
-	public bool gameIsPaused;/
+	public bool gameIsPaused;
 	public bool truckIsSelected = false;
 	public bool canBuyMeals = false;
 	public bool canUnload;
