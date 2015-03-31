@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 3fa5cbad60da15544beaa4eb6d14d642
+guid: a879854a683b28c478d2a18f813e7e34
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: ROAD__Cross
+    100002: ROAD__T
     400000: //RootNode
-    400002: ROAD__Cross
-    2300000: ROAD__Cross
-    3300000: ROAD__Cross
-    4300000: ROAD__Cross
+    400002: ROAD__T
+    2300000: ROAD__T
+    3300000: ROAD__T
+    4300000: ROAD__T
     9500000: //RootNode
   materials:
     importMaterials: 1

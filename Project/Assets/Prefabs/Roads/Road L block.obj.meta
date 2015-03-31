@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 1382684a6e94ae74ab50b3d4ab9db8f6
+guid: 4f704f52829415643bf38cc12ece1902
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: ROAD__Plain003
+    100002: ROAD__Lblock
     400000: //RootNode
-    400002: ROAD__Plain003
-    2300000: ROAD__Plain003
-    3300000: ROAD__Plain003
-    4300000: ROAD__Plain003
+    400002: ROAD__Lblock
+    2300000: ROAD__Lblock
+    3300000: ROAD__Lblock
+    4300000: ROAD__Lblock
     9500000: //RootNode
   materials:
     importMaterials: 1
