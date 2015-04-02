@@ -3,10 +3,10 @@ using System.Collections;
 
 public class gameInfoScript : MonoBehaviour {
 
-	public int previousMeals;
-	public int previousMoney;
-	public int previousAwareness;
-	public int score;
+	public float previousMeals;
+	public float previousMoney;
+	public float previousAwareness;
+	public float score;
 	public float timeTaken;
 
 	public GameObject referenceToOurGameScores;
@@ -18,6 +18,7 @@ public class gameInfoScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		score = (previousAwareness * 2) + (previousMeals * 1.25) + previousMoney / timeTaken;
+		score = (previousAwareness * 2) + (previousMeals * 1.25f) + previousMoney / timeTaken;
+
 	}
 }

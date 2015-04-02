@@ -9,7 +9,15 @@ public class TutorialScript : MonoBehaviour
 	public GameObject fergus;
 	public GameObject textbox;
 	public GameObject arrow;
-
+	public GameObject levelCompleted;
+	public GameObject showMeal;
+	public GameObject showAwareness;
+	public GameObject showMoney;
+	public GameObject showTime;
+	public GameObject showScore;
+	public GameObject continueButton;
+	//Misc
+	public GameObject birds;
 	//reference to gameplay script
 	public GameObject refToGameplayScript;
 
@@ -42,12 +50,18 @@ public class TutorialScript : MonoBehaviour
 		messageToPlayer = GetComponent<Text> ();
 		tutorialPart = 0;
 		currentConvo = 0;
-	 
+		showScore.SetActive(false);
+		showMoney.SetActive(false);
+		showMeal.SetActive(false);
+		showTime.SetActive(false);
+		showAwareness.SetActive(false);
+		continueButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+
 		switch (tutorialPart) {
 		case 0:
 			BeginTutorial ();
@@ -134,7 +148,19 @@ public class TutorialScript : MonoBehaviour
 				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nNext to Continue!]";
 				break;
 			case 10:
-				Application.LoadLevel ("LevelOneAfrica!");
+				levelCompleted.SetActive(true);
+				showScore.SetActive(true);
+				showMoney.SetActive(true);
+				showMeal.SetActive(true);
+				showTime.SetActive(true);
+				showAwareness.SetActive(true);
+				continueButton.SetActive(true);
+				//birds.SetActive(true);
+				Time.timeScale = 0;
+				break;
+			case 11:
+				Time.timeScale = 1;
+				Application.LoadLevel("LevelOneAfrica!");
 				break;
 			}
 		}

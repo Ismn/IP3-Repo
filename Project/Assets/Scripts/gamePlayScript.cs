@@ -1,4 +1,4 @@
-/*Connors Script. V0.01. Last Updated 26/02/15
+/*Connors Script. V0.6
  Used for the Primary Gameplay Mechanic Loop and also UI elements*/
 using UnityEngine;
 using System.Collections;
@@ -18,8 +18,9 @@ public class gamePlayScript : MonoBehaviour
 	public int mealsToProvide;
 	public float mealsToProvidePercentage;
 	public float timeToCycle;
-	public int score;
+	public float score;
 	public int costOfFood;
+	public float time;
 
 	//mouse position variables
 	public Vector3 mousePosition;
@@ -46,6 +47,25 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
 	public GameObject TutorialArrow;
+	//Pause Menu
+	public GameObject pauseMenuPopUp;
+	public GameObject unPausePauseMenu;
+	public GameObject replayButton;
+	public GameObject settingsButton;
+	public GameObject quitButton;
+	public GameObject helpButton;
+	//Settings Menu
+	public GameObject settingsPopUpButton;
+	public GameObject muteMusicButton;
+	public GameObject unmuteMusicButton;
+	public GameObject muteSoundEffectsButton;
+	public GameObject unmuteSoundEffectsButton;
+	public GameObject backToPauseButton;
+
+
+
+	//Misc
+
 
 
 	//reference to character behaviour script
@@ -67,14 +87,22 @@ public class gamePlayScript : MonoBehaviour
 		giveMealButton.SetActive (false);
 		goButton.SetActive (false);
 		truckIsSelected = false;
+		pauseMenuPopUp.SetActive (false);
+		unPausePauseMenu.SetActive (false);
+		replayButton.SetActive (false);
+		settingsButton.SetActive (false);
+		quitButton.SetActive (false);
+
+
 		truck = GameObject.FindGameObjectWithTag ("Character");
+
 
 
 		//tutorial starting values
 		if (Application.loadedLevelName == "MAINSCENEFINAL") { //TEMPORARY TUTORIAL HELP, PROBABLY SHOULD BE FIXED
 			awareness = 0;
 			money = 0;
-			mealsAvailable = 0;
+			mealsAvailable = 1;
 			StartCoroutine (thenGiveMealTutorial ());
 
 		}
@@ -100,10 +128,19 @@ public class gamePlayScript : MonoBehaviour
 		xMousePosition = Input.mousePosition.x;
 		yMousePosition = Input.mousePosition.y;
 
+		//UpdatesScoreToBeDisplayedAtEnd
+		time += Time.deltaTime;
+		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / time;
 
 		//buttons only appear if game isn't paused
 		if (gameIsPaused == false) {
 			pauseButton.SetActive (true);
+			pauseMenuPopUp.SetActive (false);
+			unPausePauseMenu.SetActive (false);
+			replayButton.SetActive (false);
+			settingsButton.SetActive (false);
+			quitButton.SetActive (false);
+
 
 			if (money >= 10) {
 				buildButton.SetActive (true);
@@ -139,6 +176,12 @@ public class gamePlayScript : MonoBehaviour
 
 		if (gameIsPaused == true) {
 			unPauseButton.SetActive (true);
+			pauseMenuPopUp.SetActive (true);
+			unPausePauseMenu.SetActive (true);
+			replayButton.SetActive (true);
+			settingsButton.SetActive (true);
+			quitButton.SetActive (true);
+
 		}
 		
 	}
@@ -175,6 +218,13 @@ public class gamePlayScript : MonoBehaviour
 		buyMealButton.SetActive (false);
 		giveMealButton.SetActive (false);
 		goButton.SetActive (false);
+		settingsPopUpButton.SetActive (false);
+		muteMusicButton.SetActive (false);
+		muteSoundEffectsButton.SetActive (false);
+		unmuteMusicButton.SetActive (false);
+		unmuteSoundEffectsButton.SetActive (false);
+		backToPauseButton.SetActive (false);
+		helpButton.SetActive (true);
 	}
 
 	//un-pause button, turns other buttons back on
@@ -183,13 +233,20 @@ public class gamePlayScript : MonoBehaviour
 	{
 		gameIsPaused = false;
 		Time.timeScale = 1;
-		;
 		pauseButton.SetActive (true);
 		unPauseButton.SetActive (false);
 		buildButton.SetActive (true);
 		buyMealButton.SetActive (true);
 		giveMealButton.SetActive (true);
 		goButton.SetActive (true);
+		settingsPopUpButton.SetActive (false);
+		muteMusicButton.SetActive (false);
+		muteSoundEffectsButton.SetActive (false);
+		unmuteMusicButton.SetActive (false);
+		unmuteSoundEffectsButton.SetActive (false);
+		backToPauseButton.SetActive (false);
+		helpButton.SetActive (false);
+		
 	}
 
 	//buy meals button
@@ -211,6 +268,72 @@ public class gamePlayScript : MonoBehaviour
 		tutMealGave = true;
 	}
 
+	public void settingsPopUp(){
+		settingsPopUpButton.SetActive (true);
+		muteMusicButton.SetActive (true);
+		muteSoundEffectsButton.SetActive (true);
+		backToPauseButton.SetActive (true);
+		if (audio.volume == 0.0f) {
+			unmuteMusicButton.SetActive (true);
+			unmuteSoundEffectsButton.SetActive (true);
+		} else {
+			unmuteMusicButton.SetActive (false);
+			unmuteSoundEffectsButton.SetActive (false);
+		}
+		unPauseButton.SetActive (false);
+		pauseMenuPopUp.SetActive (false);
+		unPausePauseMenu.SetActive (false);
+		replayButton.SetActive (false);
+		settingsButton.SetActive (false);
+		quitButton.SetActive (false);
+	}
+	
+	public void replayLevel(){
+		if(Application.loadedLevelName==("MAINSCENEFINAL")){
+			Application.LoadLevel("MAINSCENEFINAL");
+		}
+	}
+
+	public void quitGame(){
+		Debug.Log ("Quit Game");
+		Application.Quit ();
+	}
+
+	public void muteMusic(){
+		unmuteMusicButton.SetActive (true);
+		AudioListener.volume = 0.0f;
+	}
+
+	public void unmuteMusic(){
+		unmuteMusicButton.SetActive (false);
+		AudioListener.volume = 1.0f;
+	}
+
+	public void muteSoundEffects(){
+		unmuteSoundEffectsButton.SetActive (true);
+		AudioListener.volume = 0.0f;
+	}
+
+	public void unmuteSoundEffects(){
+		unmuteSoundEffectsButton.SetActive (false);
+		AudioListener.volume = 1.0f;
+	}
+
+	public void goBackToSettings(){
+		settingsPopUpButton.SetActive (false);
+		muteMusicButton.SetActive (false);
+		muteSoundEffectsButton.SetActive (false);
+		unmuteMusicButton.SetActive (false);
+		unmuteSoundEffectsButton.SetActive (false);
+		backToPauseButton.SetActive (false);
+	}
+
+	public void openHelp(){
+		animation.Play ("openHelp");
+	}
+	public void closePreviousPause(){
+		Time.timeScale = 0;
+	}
 	//move truck button
 
 	public void moveTruck ()
@@ -225,8 +348,7 @@ public class gamePlayScript : MonoBehaviour
 	IEnumerator thenGiveMealTutorial ()
 	{
 		yield return new WaitForSeconds (21.0f);
-		mealsAvailable = 1;
-		TutorialArrow.SetActive (true);
+
 
 	}
 }
