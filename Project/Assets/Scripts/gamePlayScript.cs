@@ -292,6 +292,9 @@ public class gamePlayScript : MonoBehaviour
 		if(Application.loadedLevelName==("MAINSCENEFINAL")){
 			Application.LoadLevel("MAINSCENEFINAL");
 		}
+		if(Application.loadedLevelName==("LevelOneAfrica!")){
+			Application.LoadLevel("LevelOneAfrica!");
+		}
 	}
 
 	public void quitGame(){
@@ -341,6 +344,12 @@ public class gamePlayScript : MonoBehaviour
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
 		goButton.SetActive (false);
+	}
+
+	public void justStopTime(){//used to fix a small bug with the help menu
+		Debug.Log ("Time stopped for help");
+		Time.timeScale = 0;
+		unPauseButton.SetActive (true);
 	}
 
 	//ienumerator for the arrow in the tutorial

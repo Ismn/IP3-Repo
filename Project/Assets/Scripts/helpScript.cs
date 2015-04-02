@@ -83,8 +83,8 @@ public class helpScript : MonoBehaviour {
 			break;
 		case 2:
 			helpMessage.text = "This is the CURRENCY symbol, this represents how much money you have at your disposal. You can use this money to" +
-				"construct new buildings, buy and maintain vehicles, acquire new meals and also for upgrades! You will be awarded more money every" +
-				"couple of seconds based on your awareness level. i.e. The higher your awareness is, the more money is donated to the charity.";
+				"construct new buildings, buy and maintain vehicles, acquire new meals and also for upgrades! The higher your awareness is," +
+				"the more money is donated to the charity every couple of seconds!";
 			awareness.SetActive(false);
 			currency.SetActive(true);
 			meals.SetActive(false);
@@ -144,7 +144,7 @@ public class helpScript : MonoBehaviour {
 		case 5:
 			helpMessage.text = "This is the BUY symbol, clicking this will purchase a new meal that will be prepared and made available" +
 				"at one of your kitchens. You will always need to continually purchase meals in order to feed the various school" +
-				"children";
+				"children around the level!";
 			awareness.SetActive(false);
 			currency.SetActive(false);
 			meals.SetActive(false);
