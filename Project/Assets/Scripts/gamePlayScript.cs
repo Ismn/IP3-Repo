@@ -62,6 +62,7 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject unmuteSoundEffectsButton;
 	public GameObject backToPauseButton;
 
+	public Vector3 truckPos = new Vector3 (8f, 0.85f, 0f);
 
 
 	//Misc
@@ -266,9 +267,12 @@ public class gamePlayScript : MonoBehaviour
 		mealsAvailable -= 1;
 		moneyRate += 1;
 		tutMealGave = true;
+		truck.transform.position = new Vector3 (8f, 0.85f, 0f);
+		truck.GetComponent<CharacterBehaviour> ().canMove = false;
 	}
 
-	public void settingsPopUp(){
+	public void settingsPopUp ()
+	{
 		settingsPopUpButton.SetActive (true);
 		muteMusicButton.SetActive (true);
 		muteSoundEffectsButton.SetActive (true);
@@ -288,41 +292,48 @@ public class gamePlayScript : MonoBehaviour
 		quitButton.SetActive (false);
 	}
 	
-	public void replayLevel(){
-		if(Application.loadedLevelName==("MAINSCENEFINAL")){
-			Application.LoadLevel("MAINSCENEFINAL");
+	public void replayLevel ()
+	{
+		if (Application.loadedLevelName == ("MAINSCENEFINAL")) {
+			Application.LoadLevel ("MAINSCENEFINAL");
 		}
-		if(Application.loadedLevelName==("LevelOneAfrica!")){
-			Application.LoadLevel("LevelOneAfrica!");
+		if (Application.loadedLevelName == ("LevelOneAfrica!")) {
+			Application.LoadLevel ("LevelOneAfrica!");
 		}
 	}
 
-	public void quitGame(){
+	public void quitGame ()
+	{
 		Debug.Log ("Quit Game");
 		Application.Quit ();
 	}
 
-	public void muteMusic(){
+	public void muteMusic ()
+	{
 		unmuteMusicButton.SetActive (true);
 		AudioListener.volume = 0.0f;
 	}
 
-	public void unmuteMusic(){
+	public void unmuteMusic ()
+	{
 		unmuteMusicButton.SetActive (false);
 		AudioListener.volume = 1.0f;
 	}
 
-	public void muteSoundEffects(){
+	public void muteSoundEffects ()
+	{
 		unmuteSoundEffectsButton.SetActive (true);
 		AudioListener.volume = 0.0f;
 	}
 
-	public void unmuteSoundEffects(){
+	public void unmuteSoundEffects ()
+	{
 		unmuteSoundEffectsButton.SetActive (false);
 		AudioListener.volume = 1.0f;
 	}
 
-	public void goBackToSettings(){
+	public void goBackToSettings ()
+	{
 		settingsPopUpButton.SetActive (false);
 		muteMusicButton.SetActive (false);
 		muteSoundEffectsButton.SetActive (false);
@@ -331,10 +342,12 @@ public class gamePlayScript : MonoBehaviour
 		backToPauseButton.SetActive (false);
 	}
 
-	public void openHelp(){
+	public void openHelp ()
+	{
 		animation.Play ("openHelp");
 	}
-	public void closePreviousPause(){
+	public void closePreviousPause ()
+	{
 		Time.timeScale = 0;
 	}
 	//move truck button
@@ -346,7 +359,8 @@ public class gamePlayScript : MonoBehaviour
 		goButton.SetActive (false);
 	}
 
-	public void justStopTime(){//used to fix a small bug with the help menu
+	public void justStopTime ()
+	{//used to fix a small bug with the help menu
 		Debug.Log ("Time stopped for help");
 		Time.timeScale = 0;
 		unPauseButton.SetActive (true);
