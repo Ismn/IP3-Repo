@@ -16,6 +16,7 @@ public class TutorialScript : MonoBehaviour
 	public GameObject showTime;
 	public GameObject showScore;
 	public GameObject continueButton;
+	public GameObject next;
 	//Misc
 	public GameObject birds;
 	//reference to gameplay script
@@ -50,17 +51,29 @@ public class TutorialScript : MonoBehaviour
 		messageToPlayer = GetComponent<Text> ();
 		tutorialPart = 0;
 		currentConvo = 0;
-		showScore.SetActive(false);
-		showMoney.SetActive(false);
-		showMeal.SetActive(false);
-		showTime.SetActive(false);
-		showAwareness.SetActive(false);
+		showScore.SetActive (false);
+		showMoney.SetActive (false);
+		showMeal.SetActive (false);
+		showTime.SetActive (false);
+		showAwareness.SetActive (false);
 		continueButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+
+		if (Application.loadedLevelName == "LevelOneAfrica!") {
+
+			if (currentConvo >= 4) {
+				magnus.SetActive (false);
+				fergus.SetActive (false);
+				textbox.SetActive (false);
+				messageToPlayer.text = "";
+				next.SetActive (false);
+
+			}
+		}
 
 		switch (tutorialPart) {
 		case 0:
@@ -148,19 +161,19 @@ public class TutorialScript : MonoBehaviour
 				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nNext to Continue!]";
 				break;
 			case 10:
-				levelCompleted.SetActive(true);
-				showScore.SetActive(true);
-				showMoney.SetActive(true);
-				showMeal.SetActive(true);
-				showTime.SetActive(true);
-				showAwareness.SetActive(true);
-				continueButton.SetActive(true);
+				levelCompleted.SetActive (true);
+				showScore.SetActive (true);
+				showMoney.SetActive (true);
+				showMeal.SetActive (true);
+				showTime.SetActive (true);
+				showAwareness.SetActive (true);
+				continueButton.SetActive (true);
 				//birds.SetActive(true);
 				Time.timeScale = 0;
 				break;
 			case 11:
 				Time.timeScale = 1;
-				Application.LoadLevel("LevelOneAfrica!");
+				Application.LoadLevel ("LevelOneAfrica!");
 				break;
 			}
 		}
@@ -178,6 +191,16 @@ public class TutorialScript : MonoBehaviour
 				magnus.SetActive (true);
 				fergus.SetActive (false);
 				messageToPlayer.text = "We used trucks to deliver our food, but to cater the food we need a kitchen. Each kitchen costs Ten Coins! To build a kitchen, click on the build tool, and then on a construction site!";
+				break;
+			case 2: 
+				magnus.SetActive (true);
+				fergus.SetActive (false);
+				messageToPlayer.text = "Well done! Meals can now be bought at the kitchen when you have enough money. Each meal costs Three Coins.";
+				break;
+			case 3:
+				magnus.SetActive (true);
+				fergus.SetActive (false);
+				messageToPlayer.text = "Now you can go ahead and start giving meals to the children!";
 				break;
 			}
 		}
