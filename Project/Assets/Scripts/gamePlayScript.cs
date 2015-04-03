@@ -21,6 +21,8 @@ public class gamePlayScript : MonoBehaviour
 	public float score;
 	public int costOfFood;
 	public float time;
+	int childrenFed;
+	public int goalChildrenFed;
 
 	//mouse position variables
 	public Vector3 mousePosition;
@@ -47,6 +49,14 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject buyMealButton;
 	public GameObject giveMealButton;
 	public GameObject TutorialArrow;
+	public GameObject levelCompleted;
+	public GameObject showMeal;
+	public GameObject showAwareness;
+	public GameObject showMoney;
+	public GameObject showTime;
+	public GameObject showScore;
+	public GameObject continueButton;
+	public GameObject next;
 	//Pause Menu
 	public GameObject pauseMenuPopUp;
 	public GameObject unPausePauseMenu;
@@ -78,7 +88,7 @@ public class gamePlayScript : MonoBehaviour
 		//start values
 
 		mousePosition = Input.mousePosition;
-		timeToCycle = 30.0f;	//Start our time Cycle off.
+		timeToCycle = 3.0f;	//Start our time Cycle off.
 		StartCoroutine (cycleResources ());	// The cycle of resources repeats itself so it just needs this initial start.
 		buildingBuilt = false;
 		gameIsPaused = false;
@@ -93,6 +103,7 @@ public class gamePlayScript : MonoBehaviour
 		replayButton.SetActive (false);
 		settingsButton.SetActive (false);
 		quitButton.SetActive (false);
+		childrenFed = 0;
 
 
 		truck = GameObject.FindGameObjectWithTag ("Character");
@@ -132,6 +143,20 @@ public class gamePlayScript : MonoBehaviour
 		//UpdatesScoreToBeDisplayedAtEnd
 		time += Time.deltaTime;
 		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / time;
+
+		// level complete area
+
+		if (childrenFed >= goalChildrenFed) {
+			levelCompleted.SetActive (true);
+			showScore.SetActive (true);
+			showMoney.SetActive (true);
+			showMeal.SetActive (true);
+			showTime.SetActive (true);
+			showAwareness.SetActive (true);
+			continueButton.SetActive (true);
+			Time.timeScale = 0;
+		}
+
 
 		//buttons only appear if game isn't paused
 		if (gameIsPaused == false) {
@@ -269,6 +294,8 @@ public class gamePlayScript : MonoBehaviour
 		tutMealGave = true;
 		truck.transform.position = new Vector3 (8f, 0.85f, 0f);
 		truck.GetComponent<CharacterBehaviour> ().canMove = false;
+		canUnload = false;
+		childrenFed ++;
 	}
 
 	public void settingsPopUp ()
@@ -373,5 +400,9 @@ public class gamePlayScript : MonoBehaviour
 		yield return new WaitForSeconds (21.0f);
 
 
+	}
+	public void Continue ()
+	{
+		Debug.Log ("you win");
 	}
 }

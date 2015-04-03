@@ -79,27 +79,29 @@ public class CharacterBehaviour : MonoBehaviour
 	// OnMouseDown checks for clicks on Colliders and GUI elements.
 	public void OnMouseDown () // When we click on the truck...
 	{
-		truckIsSelected = true;
-		refToGameplayScript.GetComponent<gamePlayScript> ().goButton.SetActive (true);
+		if (refToGameplayScript.GetComponent<gamePlayScript> ().mealsAvailable >= 1) {
+			truckIsSelected = true;
+			refToGameplayScript.GetComponent<gamePlayScript> ().goButton.SetActive (true);
 
-		// Toggle function to determine whether or not to show all the nodes in view, 
-		// since it's only necessary to see them when we tell a truck where to go.
-		if (showNode == false) {
-			foreach (GameObject nodes in nodeArray) {
-				// ... Tell the Node object to begin rendering the 'unselected' sprite.
-				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
+			// Toggle function to determine whether or not to show all the nodes in view, 
+			// since it's only necessary to see them when we tell a truck where to go.
+			if (showNode == false) {
+				foreach (GameObject nodes in nodeArray) {
+					// ... Tell the Node object to begin rendering the 'unselected' sprite.
+					nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = true;
+				}
+				showNode = true;
+			} else if (showNode == true) {
+				foreach (GameObject nodes in nodeArray) {
+					// ... Tell the Node object to stop rendering sprites.
+					nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = false;
+				}
+				showNode = false;
 			}
-			showNode = true;
-		} else if (showNode == true) {
-			foreach (GameObject nodes in nodeArray) {
-				// ... Tell the Node object to stop rendering sprites.
-				nodes.GetComponent<NodeBehaviour> ().renderNodeSprite = false;
-			}
-			showNode = false;
+
+			// Play a short audio clip to let the player know they've selected a truck.
+			audio.Play ();
 		}
-
-		// Play a short audio clip to let the player know they've selected a truck.
-		audio.Play ();
 	}
 
 	//The function "OnTriggerEnter" is called when a collision happens.
