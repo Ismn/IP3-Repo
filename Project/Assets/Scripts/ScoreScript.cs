@@ -28,5 +28,11 @@ public class ScoreScript : MonoBehaviour
 	} else if (this.gameObject.tag == "time") 
 		score.text = "Time Taken: " + GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().time.ToString ("F0");
 	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }
 

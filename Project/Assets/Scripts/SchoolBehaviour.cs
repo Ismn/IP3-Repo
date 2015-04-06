@@ -29,4 +29,9 @@ public class SchoolBehaviour : MonoBehaviour
 		truck.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform); 
 	}
 
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }

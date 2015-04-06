@@ -21,4 +21,10 @@ public class gameInfoScript : MonoBehaviour {
 		score = (previousAwareness * 2) + (previousMeals * 1.25f) + previousMoney / timeTaken;
 
 	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }
