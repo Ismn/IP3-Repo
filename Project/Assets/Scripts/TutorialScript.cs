@@ -174,6 +174,7 @@ public class TutorialScript : MonoBehaviour
 			case 11:
 				Time.timeScale = 1;
 				Application.LoadLevel ("LevelOneAfrica!");
+				Debug.Log ("loadAfrica");
 				break;
 			}
 		}

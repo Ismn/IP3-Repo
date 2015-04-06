@@ -142,7 +142,7 @@ public class gamePlayScript : MonoBehaviour
 
 		//UpdatesScoreToBeDisplayedAtEnd
 		time += Time.deltaTime;
-		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / (time/100);
+		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / (time / 100);
 
 		// level complete area
 
@@ -404,6 +404,7 @@ public class gamePlayScript : MonoBehaviour
 	public void Continue ()
 	{
 		Debug.Log ("you win");
+		Application.LoadLevel ("MainMenu");
 	}
 
 	// Code stub for testing interaction between objects and scripts.
