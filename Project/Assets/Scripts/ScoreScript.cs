@@ -15,7 +15,7 @@ public class ScoreScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (this.gameObject.tag == "awareness") {
 			score.text = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<gamePlayScript> ().awareness.ToString ();

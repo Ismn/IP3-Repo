@@ -1,23 +1,23 @@
-﻿/* ***************
+﻿/* ******************
  * Ross McIntyre, 
  * IP3 Team 4,
  * 2015
- * ***************
+ * ******************
  * Waypoint code stripped down and adapted from forum post here:
  * http://forum.unity3d.com/threads/a-waypoint-script-explained-in-super-detail.54678/
- * ***************
+ * ******************
  * Credit to user "Cherub" for the original post;
  * and to Michael Adaixo, user "Mikea15", for translating it from JavaScript to C#
- * ***************
+ * ******************
  * Changes to Waypoint Script over original include:
  * Using a List instead of an array - Allows waypoints to be assigned in any order at runtime.
  * Removal of factors such as acceleration, inertia, variable speed limits and rotation (may be re-implemented later).
  * Removal of state machine to control movement. (Again, may be re-implemented later).
  * Integration with overall behaviour of the trucks.
- * ***************
+ * ******************
  * Rotation code taken from Unity Scripting API:
  * http://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
- * ***************
+ * ******************
  */
 
 using UnityEngine;

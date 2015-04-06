@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BirdBehaviour.cs" />
      <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
+     <Compile Include="Assets\Scripts\FramerateDebugger.cs" />
      <Compile Include="Assets\Scripts\House.cs" />
      <Compile Include="Assets\Scripts\NodeBehaviour.cs" />
      <Compile Include="Assets\Scripts\Obj.cs" />

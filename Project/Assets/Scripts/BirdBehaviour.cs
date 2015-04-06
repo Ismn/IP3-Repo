@@ -1,6 +1,8 @@
-﻿/* Ross McIntyre, 
+﻿/* ******************
+ * Ross McIntyre, 
  * IP3 Team 4,
  * 2015
+ * ******************
  */
 
 using UnityEngine;
