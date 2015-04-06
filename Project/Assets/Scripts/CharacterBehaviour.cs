@@ -65,7 +65,7 @@ public class CharacterBehaviour : MonoBehaviour
 		if (canMove == true) {
 
 			if (waypoints.Count > 0) {
-				// MoveTowards function takes its paramettraers as (current position, target position, speed).
+				// MoveTowards function takes its parameters as (current position, target position, speed).
 				transform.position = Vector3.MoveTowards (transform.position, currentWaypoint.position, speed);			
 
 				// Some stuff for rotation.

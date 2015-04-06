@@ -21,4 +21,10 @@ public class Raycaster : MonoBehaviour
 			}
 		}
 	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }

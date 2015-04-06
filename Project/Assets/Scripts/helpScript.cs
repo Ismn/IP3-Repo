@@ -475,4 +475,10 @@ public class helpScript : MonoBehaviour {
 		helpMenuBackground.SetActive (true);
 		exitHelpButton.SetActive (true);
 	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }

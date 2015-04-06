@@ -1,16 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\gamePlayScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BirdBehaviour.cs">
     <Files>
-      <File FileName="Assets\Scripts\gamePlayScript.cs" Line="156" Column="5" />
-      <File FileName="Assets\Scripts\TutorialScript.cs" Line="20" Column="8" />
-      <File FileName="Assets\Scripts\gameInfoScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScoreScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\helpScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\House.cs" Line="35" Column="123" />
-      <File FileName="Assets\Scripts\SchoolBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="82" Column="80" />
-      <File FileName="Assets\Scripts\Raycaster.cs" Line="17" Column="1" />
+      <File FileName="Assets\Scripts\BirdBehaviour.cs" Line="62" Column="5" />
+      <File FileName="Assets\Scripts\gamePlayScript.cs" Line="413" Column="3" />
+      <File FileName="Assets\Scripts\TutorialScript.cs" Line="220" Column="3" />
+      <File FileName="Assets\Scripts\gameInfoScript.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\ScoreScript.cs" Line="36" Column="3" />
+      <File FileName="Assets\Scripts\helpScript.cs" Line="483" Column="3" />
+      <File FileName="Assets\Scripts\House.cs" Line="15" Column="40" />
+      <File FileName="Assets\Scripts\SchoolBehaviour.cs" Line="36" Column="3" />
+      <File FileName="Assets\Scripts\Raycaster.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\CharacterBehaviour.cs" Line="68" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

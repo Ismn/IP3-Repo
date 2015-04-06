@@ -405,4 +405,10 @@ public class gamePlayScript : MonoBehaviour
 	{
 		Debug.Log ("you win");
 	}
+
+	// Code stub for testing interaction between objects and scripts.
+	public void Test ()
+	{
+		Debug.Log ("Hello!");
+	}
 }
