@@ -142,7 +142,7 @@ public class gamePlayScript : MonoBehaviour
 
 		//UpdatesScoreToBeDisplayedAtEnd
 		time += Time.deltaTime;
-		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / time;
+		score = ((awareness * 3) + (money * 2) + (mealsAvailable)) / (time/100);
 
 		// level complete area
 
