@@ -211,6 +211,7 @@ public class TutorialScript : MonoBehaviour
 	//button used to advance tutorial text
 	public void nextButton ()
 	{
+		Test ();
 		currentConvo++;
 	}
 
