@@ -132,7 +132,7 @@ public class gamePlayScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	public void Update ()
+	public void FixedUpdate ()
 	{
 
 		//updates mouse/touch pos
@@ -159,7 +159,8 @@ public class gamePlayScript : MonoBehaviour
 
 
 		//buttons only appear if game isn't paused
-		if (gameIsPaused == false) {
+		if (gameIsPaused == false) 
+		{
 			pauseButton.SetActive (true);
 			pauseMenuPopUp.SetActive (false);
 			unPausePauseMenu.SetActive (false);
@@ -168,12 +169,10 @@ public class gamePlayScript : MonoBehaviour
 			quitButton.SetActive (false);
 
 
-			if (money >= 10) {
-				buildButton.SetActive (true);
-			} else {
-				buildButton.SetActive (false);
+			if (canBuild == false && money >= 10)
+			{
+				buildButton.SetActive(true);
 			}
-
 
 			// buy meals button conditions
 
@@ -229,7 +228,10 @@ public class gamePlayScript : MonoBehaviour
 		awareness += 1;
 		moneyRate += 1;
 		canBuild = true;
-		buildButton.SetActive (false);
+		if (money >= 10 && canBuild == true) 
+		{
+			buildButton.SetActive (false);
+		}
 	}
 
 	// pause button, turns off all other buttons
