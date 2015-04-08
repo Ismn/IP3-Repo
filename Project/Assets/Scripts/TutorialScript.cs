@@ -116,12 +116,12 @@ public class TutorialScript : MonoBehaviour
 			case 1:
 				magnus.SetActive (false);
 				fergus.SetActive (true);
-				messageToPlayer.text = "Hi I'm Fergus! For some reason I'm grumpier than the other version of me! We're really glad to have you working with us!";
+				messageToPlayer.text = "Hi I'm Fergus! We're really glad to have you working with us! It's certanly a huge task ahead of us!";
 				break;
 			case 2:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Too right! Okay first of all, let's go over the basics! Use WASD to move your camera all over the scene! Go Up, Down, Left, Right!";
+				messageToPlayer.text = "Too right! Okay, first of all, let's go over the basics! Use WASD to move your camera all over the scene! Go Up, Down, Left, Right!";
 				break;
 			case 3:
 				magnus.SetActive (false);
@@ -138,12 +138,12 @@ public class TutorialScript : MonoBehaviour
 				magnus.SetActive (false);
 				fergus.SetActive (true);
 				arrow.SetActive (false);
-				messageToPlayer.text = "Just click on the truck, and then click on the nodes hightlighted throughout the roads to move and then finally click on the school. When you're ready, click go!";
+				messageToPlayer.text = "Just click on the truck, and then click on the unfilled cups hightlighted throughout the roads to move and then finally click on the school you wish to deliver to. When you're ready, click go!";
 				break;
 			case 6:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Amazing! We made it to the school! All we have to do now, is give those meals to the kids! Just click on the Give meals button of the left!";
+				messageToPlayer.text = "Amazing! We made it to the school! All we have to do now, is give those meals to the kids! Just click on the Give meals button on the left!";
 				break;
 			case 7:
 				magnus.SetActive (false);
@@ -158,7 +158,7 @@ public class TutorialScript : MonoBehaviour
 			case 9:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Looks like we're all done here! Let's move on to the next level! [END OF TUTORIAL LEVEL\nNext to Continue!]";
+				messageToPlayer.text = "And don't forget you can donate anytime too! Just pause the game (top right) and click on the donate button! (Green Pound sign) [END OF TUTORIAL LEVEL\nNext to Continue!]";
 				break;
 			case 10:
 				levelCompleted.SetActive (true);
@@ -186,7 +186,7 @@ public class TutorialScript : MonoBehaviour
 			case 0:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "It was Ten Year Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
+				messageToPlayer.text = "It was Ten Years Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
 				break;
 			case 1:
 				magnus.SetActive (true);
@@ -201,7 +201,7 @@ public class TutorialScript : MonoBehaviour
 			case 3:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Now you can go ahead and start giving meals to the children!";
+				messageToPlayer.text = "Now we have to deliver three sets of meals to the schools in the level! We think you've got it, but if you get stuck at any point, click the pause button and the question mark for help!";
 				break;
 			}
 		}

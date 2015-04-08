@@ -64,6 +64,7 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject settingsButton;
 	public GameObject quitButton;
 	public GameObject helpButton;
+	public GameObject donateButton;
 	//Settings Menu
 	public GameObject settingsPopUpButton;
 	public GameObject muteMusicButton;
@@ -104,6 +105,7 @@ public class gamePlayScript : MonoBehaviour
 		settingsButton.SetActive (false);
 		quitButton.SetActive (false);
 		childrenFed = 0;
+		donateButton.SetActive (false);
 
 
 		truck = GameObject.FindGameObjectWithTag ("Character");
@@ -132,7 +134,7 @@ public class gamePlayScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	public void FixedUpdate ()
+	public void Update ()
 	{
 
 		//updates mouse/touch pos
@@ -167,6 +169,7 @@ public class gamePlayScript : MonoBehaviour
 			replayButton.SetActive (false);
 			settingsButton.SetActive (false);
 			quitButton.SetActive (false);
+			donateButton.SetActive(false);
 
 
 			if (canBuild == false && money >= 10)
@@ -206,6 +209,7 @@ public class gamePlayScript : MonoBehaviour
 			replayButton.SetActive (true);
 			settingsButton.SetActive (true);
 			quitButton.SetActive (true);
+			donateButton.SetActive(true);
 
 		}
 		
@@ -413,5 +417,9 @@ public class gamePlayScript : MonoBehaviour
 	public void Test ()
 	{
 		Debug.Log ("Hello!");
+	}
+
+	public void Donate(){
+		Application.OpenURL ("https://www.marysmeals.org.uk/donate");
 	}
 }
