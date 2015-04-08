@@ -14,6 +14,7 @@ public class House : Obj
 	public int capacity;
 	public GameObject refToGameplayScript;
 	public GameObject refToTutScript;
+	public AudioClip buildSound;
 
 	public enum State
 	{
@@ -28,6 +29,8 @@ public class House : Obj
 	public override void OnTouch ()
 	{
 		base.OnTouch ();
+		;
+		Debug.Log ("Working");
 		if (currentState == State.unbuilt) {
 			refToGameplayScript.GetComponent<gamePlayScript> ().money -= 10;
 			refToTutScript.GetComponent<TutorialScript> ().tutBuildingBuilt = true;

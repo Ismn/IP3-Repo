@@ -22,6 +22,8 @@ public class NodeBehaviour : MonoBehaviour
 	public bool timeToChange;
 	public bool isNode;
 	public bool isClicked;
+	public AudioClip nodeClick;
+	public AudioClip schoolClick;
 
 	// Called when the instance of the script is being loaded.
 	void Awake ()
@@ -42,18 +44,14 @@ public class NodeBehaviour : MonoBehaviour
 	void Update ()
 	{	
 		// Assuming the character has been selected...
-		if (renderNodeSprite == true) 
-		{
+		if (renderNodeSprite == true) {
 			// ... make all node sprites visible as "unselected".
 			sRender.sprite = unselectedNode;
-		} 
-		else if (renderNodeSprite == false) 
-		{
+		} else if (renderNodeSprite == false) {
 			sRender.sprite = null;
 		}
 		// If the 'unselected' sprites are visible...
-		if (sRender.sprite == unselectedNode && timeToChange) 
-		{
+		if (sRender.sprite == unselectedNode && timeToChange) {
 			// ... highlight the ones we have selected.
 			sRender.sprite = selectedNode;
 		}
@@ -64,16 +62,14 @@ public class NodeBehaviour : MonoBehaviour
 	{
 		// Highlight whichever Node sprites have been clicked on.
 		timeToChange = true; 
-
-		if (isClicked == false)
-		{
+		audio.PlayOneShot (nodeClick);
+		if (isClicked == false) {
 			// Add this instance to the List of Nodes for the trucks to follow.
 			charBehaviour.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform);
 			isClicked = true;
-		} 
-		else if (isClicked == true) 
-		{
-			charBehaviour.GetComponent<CharacterBehaviour> ().waypoints.Remove(this.transform);
+		} else if (isClicked == true) {
+
+			charBehaviour.GetComponent<CharacterBehaviour> ().waypoints.Remove (this.transform);
 			isClicked = false;
 			timeToChange = false;
 		}

@@ -81,6 +81,7 @@ public class CharacterBehaviour : MonoBehaviour
 	{
 		if (refToGameplayScript.GetComponent<gamePlayScript> ().mealsAvailable >= 1) {
 			truckIsSelected = true;
+
 			refToGameplayScript.GetComponent<gamePlayScript> ().goButton.SetActive (true);
 
 			// Toggle function to determine whether or not to show all the nodes in view, 
@@ -101,6 +102,7 @@ public class CharacterBehaviour : MonoBehaviour
 
 			// Play a short audio clip to let the player know they've selected a truck.
 			audio.Play ();
+
 		}
 	}
 

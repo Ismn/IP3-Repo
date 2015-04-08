@@ -13,6 +13,8 @@ public class SchoolBehaviour : MonoBehaviour
 	// Declare objects to interact with.
 	public GameObject refToGamePlayScript;
 	public GameObject truck;
+	public AudioClip schoolSound;
+	public GameObject refToCharBehaviourScript;
 
 	// Do the same for collections.
 
@@ -28,7 +30,10 @@ public class SchoolBehaviour : MonoBehaviour
 	void OnMouseDown ()
 	{
 		// Add this instance to the List of Nodes for the trucks to follow.
-		truck.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform); 
+		truck.GetComponent<CharacterBehaviour> ().waypoints.Add (this.transform);
+		if (refToCharBehaviourScript.GetComponent<CharacterBehaviour> ().truckIsSelected == true) {
+			audio.PlayOneShot (schoolSound);
+		}
 	}
 
 	// Code stub for testing interaction between objects and scripts.

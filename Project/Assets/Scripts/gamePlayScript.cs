@@ -23,6 +23,7 @@ public class gamePlayScript : MonoBehaviour
 	public float time;
 	int childrenFed;
 	public int goalChildrenFed;
+	public bool schoolSoundBool = false;
 
 	//mouse position variables
 	public Vector3 mousePosition;
@@ -72,6 +73,11 @@ public class gamePlayScript : MonoBehaviour
 	public GameObject muteSoundEffectsButton;
 	public GameObject unmuteSoundEffectsButton;
 	public GameObject backToPauseButton;
+
+	//sounds
+	
+	public AudioClip buyMealSound;
+	public AudioClip giveMealSound;
 
 	public Vector3 truckPos = new Vector3 (8f, 0.85f, 0f);
 
@@ -194,7 +200,11 @@ public class gamePlayScript : MonoBehaviour
 			// truck go button conditions
 
 			if (truckIsSelected == true) {
+				Debug.Log ("school");
+				schoolSoundBool = true;
 				goButton.SetActive (true);
+
+
 			}
 		}
 
@@ -285,6 +295,7 @@ public class gamePlayScript : MonoBehaviour
 		mealsAvailable += 1;
 		money -= costOfFood;
 		tutMealBought = true;
+		audio.PlayOneShot (buyMealSound);
 	}
 
 	//give meals button
@@ -295,6 +306,7 @@ public class gamePlayScript : MonoBehaviour
 		mealsAvailable -= 1;
 		moneyRate += 1;
 		tutMealGave = true;
+		audio.PlayOneShot (giveMealSound);
 		truck.transform.position = new Vector3 (8f, 0.85f, 0f);
 		truck.GetComponent<CharacterBehaviour> ().canMove = false;
 		canUnload = false;
@@ -386,7 +398,7 @@ public class gamePlayScript : MonoBehaviour
 	{
 		truck.GetComponent<CharacterBehaviour> ().canMove = true;
 		truck.GetComponent<CharacterBehaviour> ().truckIsSelected = false;
-		goButton.SetActive (false);
+		//schoolSoundBool = false;
 	}
 
 	public void justStopTime ()
