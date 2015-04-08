@@ -107,21 +107,21 @@ public class TutorialScript : MonoBehaviour
 	public void BeginTutorial ()
 	{
 		if (Application.loadedLevelName == "MAINSCENEFINAL") {
-			;
+
 			switch (currentConvo) {
 			case 0:
 				magnus.SetActive (true);
-				messageToPlayer.text = "Hi there! Welcome to Bosnia! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!".ToString ();
+				messageToPlayer.text = "Hello there! Welcome to Bosnia! My name is Magnus MacFarlane-Barrow, and I'm ready to deliver some of these amazing food supplies to the kids in Bosnia! Luckily, I've got some help from you and my brother Fergus!".ToString ();
 				break;
 			case 1:
 				magnus.SetActive (false);
 				fergus.SetActive (true);
-				messageToPlayer.text = "Hi I'm Fergus! We're really glad to have you working with us! It's certanly a huge task ahead of us!";
+				messageToPlayer.text = "Hi I'm Fergus! We're really glad to have you working with us! It's certainly a huge task ahead of us!";
 				break;
 			case 2:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Too right! Okay, first of all, let's go over the basics! Use WASD to move your camera all over the scene! Go Up, Down, Left, Right!";
+				messageToPlayer.text = "Okay, first of all, let's go over the basics! Use WASD to move your camera across the scene! Up, Down, Left, Right!";
 				break;
 			case 3:
 				magnus.SetActive (false);
@@ -138,12 +138,12 @@ public class TutorialScript : MonoBehaviour
 				magnus.SetActive (false);
 				fergus.SetActive (true);
 				arrow.SetActive (false);
-				messageToPlayer.text = "Just click on the truck, and then click on the unfilled cups hightlighted throughout the roads to move and then finally click on the school you wish to deliver to. When you're ready, click go!";
+				messageToPlayer.text = "Just click on the truck, and then click on the unfilled cups highlighted throughout the roads to move and then finally click on the school you wish to deliver to. When you're ready, click go!";
 				break;
 			case 6:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Amazing! We made it to the school! All we have to do now, is give those meals to the kids! Just click on the Give meals button on the left!";
+				messageToPlayer.text = "Amazing! We made it to the school! All we have to do now is give those meals to the kids! Just click on the Give meals button on the left!";
 				break;
 			case 7:
 				magnus.SetActive (false);
@@ -153,12 +153,12 @@ public class TutorialScript : MonoBehaviour
 			case 8:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Look! Already people have heard about our good deeds! We've raised our awareness to ONE! Now people are donating to us monthly!";
+				messageToPlayer.text = "Look! Already people have heard about our good deeds! We've raised our awareness to ONE! Now more people are donating to us!";
 				break;
 			case 9:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "And don't forget you can donate anytime too! Just pause the game (top right) and click on the donate button! (Green Pound sign) [END OF TUTORIAL LEVEL\nNext to Continue!]";
+				messageToPlayer.text = "And don't forget you can donate anytime too! Just pause the game (top right) and click on the donate button! (Green Pound sign)";
 				break;
 			case 10:
 				levelCompleted.SetActive (true);
@@ -186,17 +186,17 @@ public class TutorialScript : MonoBehaviour
 			case 0:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "It was Ten Years Later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to MARY'S MEALS! There we had to learn how to create a regular food supply for hungry school children!";
+				messageToPlayer.text = "It was ten years later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to Mary's Meals! There we had to learn how to create a regular food supply for hungry school children!";
 				break;
 			case 1:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "We used trucks to deliver our food, but to cater the food we need a kitchen. Each kitchen costs Ten Coins! To build a kitchen, click on the build tool, and then on a construction site!";
+				messageToPlayer.text = "We used trucks to deliver our food, but to cater the food we need a kitchen. Each kitchen costs ten coins! To build a kitchen, click on the build tool, and then on a construction site!";
 				break;
 			case 2: 
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Well done! Meals can now be bought at the kitchen when you have enough money. Each meal costs Three Coins.";
+				messageToPlayer.text = "Well done! Meals can now be bought at the kitchen when you have enough money. Each meal costs three coins.";
 				break;
 			case 3:
 				magnus.SetActive (true);
