@@ -154,15 +154,18 @@ public class gamePlayScript : MonoBehaviour
 
 		// level complete area
 
-		if (childrenFed >= goalChildrenFed) {
-			levelCompleted.SetActive (true);
-			showScore.SetActive (true);
-			showMoney.SetActive (true);
-			showMeal.SetActive (true);
-			showTime.SetActive (true);
-			showAwareness.SetActive (true);
-			continueButton.SetActive (true);
-			Time.timeScale = 0;
+		if (Application.loadedLevelName != "MAINSCENEFINAL") {
+
+			if (childrenFed >= goalChildrenFed) {
+				levelCompleted.SetActive (true);
+				showScore.SetActive (true);
+				showMoney.SetActive (true);
+				showMeal.SetActive (true);
+				showTime.SetActive (true);
+				showAwareness.SetActive (true);
+				continueButton.SetActive (true);
+				Time.timeScale = 0;
+			}
 		}
 
 
