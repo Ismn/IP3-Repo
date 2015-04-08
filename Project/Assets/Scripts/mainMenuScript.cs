@@ -28,6 +28,8 @@ public class mainMenuScript : MonoBehaviour
 	public GameObject asiaLevelTwo;
 	public GameObject asiaLevelThree;
 	public GameObject asiaLevelOnePlay;
+	public GameObject asiaLevelLocked;
+	public GameObject asiaLevelTwoUnlocked;
 
 	//AfricaLevels
 	public GameObject africaBackground;
@@ -46,12 +48,24 @@ public class mainMenuScript : MonoBehaviour
 	public GameObject star1;
 	public GameObject star2;
 	public GameObject star3;
+	public gameInfoScript _GameInfoScript;
+
 	// Use this for initialization
 	void Start ()
 	{
-		if (gameInfoScript.levelOneAfricaPlayedBefore == true) {
-			africaUnlocked.SetActive (true);
+		Assign ();
+		if (_GameInfoScript._levelOneAfricaPlayedBefore == true) {
+			//africaUnlocked.SetActive (true);
+			Debug.Log ("here");
+			asiaLevelTwo.SetActive (false);
+			asiaLevelTwoUnlocked.SetActive (true);
+
 		}
+	}
+
+	void Assign ()
+	{
+		_GameInfoScript = GameObject.FindGameObjectWithTag ("levelCheck").GetComponent<gameInfoScript> ();
 	}
 	
 	// Update is called once per frame
@@ -60,6 +74,8 @@ public class mainMenuScript : MonoBehaviour
 		if (Input.GetKeyDown ("escape")) {
 			Application.Quit ();
 		}
+
+
 	}
 
 	public void PlayButton ()
@@ -85,10 +101,13 @@ public class mainMenuScript : MonoBehaviour
 		background.SetActive (false);
 		asiaBackground.SetActive (true);
 		asiaLevelOne.SetActive (true);
-		asiaLevelTwo.SetActive (true);
+		if (_GameInfoScript._levelOneAfricaPlayedBefore == false) {
+			asiaLevelTwo.SetActive (true);
+		}
 		asiaLevelThree.SetActive (true);
 	}
-	public void AfricaClick(){
+	public void AfricaClick ()
+	{
 		asiaUnlocked.SetActive (false);
 		africaLocked.SetActive (false);
 		africaUnlocked.SetActive (false);
@@ -97,10 +116,10 @@ public class mainMenuScript : MonoBehaviour
 		background.SetActive (false);
 		africaBackground.SetActive (true);
 		africaLevelOne.SetActive (true);
-		if(gameInfoScript.levelOneAfricaPlayedBefore == true){
-			africaLevelTwoUnlocked.SetActive(true);}
-		else if(gameInfoScript.levelOneAfricaPlayedBefore == false){
-		africaLevelTwo.SetActive (true);
+		if (gameInfoScript.levelOneAfricaPlayedBefore == true) {
+			africaLevelTwoUnlocked.SetActive (true);
+		} else if (gameInfoScript.levelOneAfricaPlayedBefore == false) {
+			africaLevelTwo.SetActive (true);
 		}
 		africaLevelThree.SetActive (true);
 	}
@@ -108,6 +127,7 @@ public class mainMenuScript : MonoBehaviour
 	{
 		asiaBackground.SetActive (false);
 		asiaLevelOne.SetActive (false);
+
 		asiaLevelTwo.SetActive (false);
 		asiaLevelThree.SetActive (false);
 		levelOneBackground.SetActive (true);
@@ -138,7 +158,8 @@ public class mainMenuScript : MonoBehaviour
 		Application.LoadLevel ("MAINSCENEFINAL");
 	}
 
-	public void AfricaPlayLevel1Button(){
+	public void AfricaPlayLevel1Button ()
+	{
 		Application.LoadLevel ("LevelOneAfrica!");
 	}
 }

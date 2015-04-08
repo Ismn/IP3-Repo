@@ -161,20 +161,18 @@ public class gamePlayScript : MonoBehaviour
 
 
 		//buttons only appear if game isn't paused
-		if (gameIsPaused == false) 
-		{
+		if (gameIsPaused == false) {
 			pauseButton.SetActive (true);
 			pauseMenuPopUp.SetActive (false);
 			unPausePauseMenu.SetActive (false);
 			replayButton.SetActive (false);
 			settingsButton.SetActive (false);
 			quitButton.SetActive (false);
-			donateButton.SetActive(false);
+			donateButton.SetActive (false);
 
 
-			if (canBuild == false && money >= 10)
-			{
-				buildButton.SetActive(true);
+			if (canBuild == false && money >= 10) {
+				buildButton.SetActive (true);
 			}
 
 			// buy meals button conditions
@@ -209,7 +207,7 @@ public class gamePlayScript : MonoBehaviour
 			replayButton.SetActive (true);
 			settingsButton.SetActive (true);
 			quitButton.SetActive (true);
-			donateButton.SetActive(true);
+			donateButton.SetActive (true);
 
 		}
 		
@@ -232,8 +230,7 @@ public class gamePlayScript : MonoBehaviour
 		awareness += 1;
 		moneyRate += 1;
 		canBuild = true;
-		if (money >= 10 && canBuild == true) 
-		{
+		if (money >= 10 && canBuild == true) {
 			buildButton.SetActive (false);
 		}
 	}
@@ -267,10 +264,10 @@ public class gamePlayScript : MonoBehaviour
 		Time.timeScale = 1;
 		pauseButton.SetActive (true);
 		unPauseButton.SetActive (false);
-		buildButton.SetActive (true);
+		//buildButton.SetActive (true);
 		buyMealButton.SetActive (true);
 		giveMealButton.SetActive (true);
-		goButton.SetActive (true);
+		//goButton.SetActive (true);
 		settingsPopUpButton.SetActive (false);
 		muteMusicButton.SetActive (false);
 		muteSoundEffectsButton.SetActive (false);
@@ -419,7 +416,8 @@ public class gamePlayScript : MonoBehaviour
 		Debug.Log ("Hello!");
 	}
 
-	public void Donate(){
+	public void Donate ()
+	{
 		Application.OpenURL ("https://www.marysmeals.org.uk/donate");
 	}
 }

@@ -1,24 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class gameInfoScript : MonoBehaviour {
+public class gameInfoScript : MonoBehaviour
+{
+
 
 	public static bool levelOneAfricaPlayedBefore;
+	public bool _levelOneAfricaPlayedBefore;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		//if(gameObject.Find("toCheckForLevelsPlayed") != null){
-		//	GameObject.Destroy(gameObject);
-		//}
+		//	levelOneAfricaPlayedBefore = false;
+		//
+
 		levelOneAfricaPlayedBefore = false;
+	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+		//_levelOneAfricaPlayedBefore = levelOneAfricaPlayedBefore;
 		if (Application.loadedLevelName == ("LevelOneAfrica")) {
-			levelOneAfricaPlayedBefore = true;
+			//levelOneAfricaPlayedBefore = true;
 		}
-		GameObject.DontDestroyOnLoad (gameObject);
 	}
 
 	// Code stub for testing interaction between objects and scripts.

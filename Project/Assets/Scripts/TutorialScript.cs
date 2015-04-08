@@ -35,6 +35,9 @@ public class TutorialScript : MonoBehaviour
 	public bool showArrow = false;
 	public bool tutBuildingBuilt;
 
+	// Game Info
+	public gameInfoScript _GameInfoScript;
+
 	public enum tutorialStages
 	{
 		WADS,
@@ -46,6 +49,7 @@ public class TutorialScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		Assign ();
 		currentStage = tutorialStages.WADS;
 		arrow.SetActive (false);
 		messageToPlayer = GetComponent<Text> ();
@@ -173,8 +177,12 @@ public class TutorialScript : MonoBehaviour
 				break;
 			case 11:
 				Time.timeScale = 1;
-				Application.LoadLevel ("LevelOneAfrica!");
-				Debug.Log ("loadAfrica");
+				//Application.LoadLevel ("LevelOneAfrica!");
+				//levelOneAfricaPlayedBefore = true;
+				//gameInfoScript.levelOneAfricaPlayedBefore = true;
+				_GameInfoScript._levelOneAfricaPlayedBefore = true;
+				Application.LoadLevel ("MainMenu");
+				Debug.Log ("load menu");
 				break;
 			}
 		}
@@ -207,6 +215,10 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
+	void Assign ()
+	{
+		_GameInfoScript = GameObject.FindGameObjectWithTag ("levelCheck").GetComponent<gameInfoScript> ();
+	}
 
 	//button used to advance tutorial text
 	public void nextButton ()
