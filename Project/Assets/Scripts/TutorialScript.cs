@@ -34,6 +34,7 @@ public class TutorialScript : MonoBehaviour
 	//booleans for tutorial gameplay
 	public bool showArrow = false;
 	public bool tutBuildingBuilt;
+	public bool android = false;
 
 	// Game Info
 	public gameInfoScript _GameInfoScript;
@@ -61,6 +62,9 @@ public class TutorialScript : MonoBehaviour
 		showTime.SetActive (false);
 		showAwareness.SetActive (false);
 		continueButton.SetActive (false);
+		#if UNITY_ANDROID
+		android = true;
+		#endif
 	}
 	
 	// Update is called once per frame
@@ -125,7 +129,11 @@ public class TutorialScript : MonoBehaviour
 			case 2:
 				magnus.SetActive (true);
 				fergus.SetActive (false);
-				messageToPlayer.text = "Okay, first of all, let's go over the basics! Use WASD to move your camera across the scene! Up, Down, Left, Right!";
+				if (android == false) {
+					messageToPlayer.text = "Okay, first of all, let's go over the basics! Use WASD to move your camera across the scene! Up, Down, Left, Right!";
+				} else {
+					messageToPlayer.text = "Okay, first of all, let's go over the basics! Swipe across the screen to move your camera across the scene! Up, Down, Left, Right!";
+				}
 				break;
 			case 3:
 				magnus.SetActive (false);
@@ -222,8 +230,8 @@ public class TutorialScript : MonoBehaviour
 			case 0:
 				magnus.SetActive (false);
 				fergus.SetActive (false);
-				textbox.SetActive(false);
-				next.SetActive(false);
+				textbox.SetActive (false);
+				next.SetActive (false);
 				_GameInfoScript._levelTwoAfricaPlayedBefore = true;
 				break;
 			}

@@ -59,7 +59,7 @@ public class CharacterBehaviour : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	public void Update ()
+	public void FixedUpdate ()
 	{
 		currentWaypoint = waypoints [WPindexPointer]; //Keep the object pointed toward the current Waypoint object.
 		if (canMove == true) {
