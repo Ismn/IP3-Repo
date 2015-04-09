@@ -49,16 +49,26 @@ public class mainMenuScript : MonoBehaviour
 	public GameObject star2;
 	public GameObject star3;
 	public gameInfoScript _GameInfoScript;
+	public GameObject backButton;
 
 	// Use this for initialization
 	void Start ()
 	{
 		Assign ();
 		if (_GameInfoScript._levelOneAfricaPlayedBefore == true) {
+			fullBackground.SetActive(false);
+			background.SetActive(true);
+			asiaUnlocked.SetActive (true);
+			africaUnlocked.SetActive (true);
+			carribeanLocked.SetActive (true);
+			southAmericaLocked.SetActive (true);
 			//africaUnlocked.SetActive (true);
 			Debug.Log ("here");
 			asiaLevelTwo.SetActive (false);
 			asiaLevelTwoUnlocked.SetActive (true);
+			star1.SetActive (true);
+			star2.SetActive(true);
+			star3.SetActive(true);
 
 		}
 	}
@@ -125,13 +135,14 @@ public class mainMenuScript : MonoBehaviour
 	}
 	public void AsiaLevelOne ()
 	{
-		asiaBackground.SetActive (false);
+		asiaBackground.SetActive (true);
 		asiaLevelOne.SetActive (false);
 
 		asiaLevelTwo.SetActive (false);
 		asiaLevelThree.SetActive (false);
 		levelOneBackground.SetActive (true);
 		asiaLevelOnePlay.SetActive (true);
+		backButton.SetActive (true);
 
 	
 	}
@@ -144,6 +155,8 @@ public class mainMenuScript : MonoBehaviour
 		africaLevelThree.SetActive (false);
 		africaLevelOneBackground.SetActive (true);
 		africaLevelOnePlay.SetActive (true);
+		backButton.SetActive (true);
+		africaBackground.SetActive (true);
 		
 		
 	}
@@ -161,5 +174,9 @@ public class mainMenuScript : MonoBehaviour
 	public void AfricaPlayLevel1Button ()
 	{
 		Application.LoadLevel ("LevelOneAfrica!");
+	}
+
+	public void BackButton(){
+		Application.LoadLevel ("MainMenu");
 	}
 }

@@ -213,6 +213,18 @@ public class TutorialScript : MonoBehaviour
 				break;
 			}
 		}
+
+		if (Application.loadedLevelName == "LevelTwoAfrica!") {
+
+			switch (currentConvo) {
+			case 0:
+				magnus.SetActive (false);
+				fergus.SetActive (false);
+				textbox.SetActive(false);
+				next.SetActive(false);
+				break;
+			}
+		}
 	}
 
 	void Assign ()
