@@ -6,7 +6,9 @@ public class gameInfoScript : MonoBehaviour
 
 
 	public static bool levelOneAfricaPlayedBefore;
+	public bool _levelOneAsiaPlayedBefore;
 	public bool _levelOneAfricaPlayedBefore;
+	public bool _levelTwoAfricaPlayedBefore;
 
 	// Use this for initialization
 	void Start ()
@@ -14,8 +16,9 @@ public class gameInfoScript : MonoBehaviour
 		//if(gameObject.Find("toCheckForLevelsPlayed") != null){
 		//	levelOneAfricaPlayedBefore = false;
 		//
-
-		levelOneAfricaPlayedBefore = false;
+		_levelOneAsiaPlayedBefore = false;
+		_levelOneAfricaPlayedBefore = false;
+		_levelTwoAfricaPlayedBefore = false;
 	
 	}
 	
@@ -26,6 +29,7 @@ public class gameInfoScript : MonoBehaviour
 		if (Application.loadedLevelName == ("LevelOneAfrica")) {
 			//levelOneAfricaPlayedBefore = true;
 		}
+
 	}
 
 	// Code stub for testing interaction between objects and scripts.

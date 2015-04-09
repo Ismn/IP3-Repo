@@ -55,7 +55,7 @@ public class mainMenuScript : MonoBehaviour
 	void Start ()
 	{
 		Assign ();
-		if (_GameInfoScript._levelOneAfricaPlayedBefore == true) {
+		if (_GameInfoScript._levelOneAsiaPlayedBefore == true) {
 			fullBackground.SetActive(false);
 			background.SetActive(true);
 			asiaUnlocked.SetActive (true);
@@ -64,11 +64,17 @@ public class mainMenuScript : MonoBehaviour
 			southAmericaLocked.SetActive (true);
 			//africaUnlocked.SetActive (true);
 			Debug.Log ("here");
-			asiaLevelTwo.SetActive (false);
-			asiaLevelTwoUnlocked.SetActive (true);
+			asiaLevelTwo.SetActive (true);
 			star1.SetActive (true);
 			star2.SetActive(true);
 			star3.SetActive(true);
+			if(_GameInfoScript._levelOneAfricaPlayedBefore == true){
+				africaLevelTwo.SetActive (false);
+				africaLevelTwoUnlocked.SetActive(true);
+				star1.SetActive (true);
+				star2.SetActive(true);
+				star3.SetActive(true);
+			}
 
 		}
 	}
@@ -111,7 +117,7 @@ public class mainMenuScript : MonoBehaviour
 		background.SetActive (false);
 		asiaBackground.SetActive (true);
 		asiaLevelOne.SetActive (true);
-		if (_GameInfoScript._levelOneAfricaPlayedBefore == false) {
+		if (_GameInfoScript._levelOneAsiaPlayedBefore == false) {
 			asiaLevelTwo.SetActive (true);
 		}
 		asiaLevelThree.SetActive (true);
@@ -126,10 +132,11 @@ public class mainMenuScript : MonoBehaviour
 		background.SetActive (false);
 		africaBackground.SetActive (true);
 		africaLevelOne.SetActive (true);
-		if (gameInfoScript.levelOneAfricaPlayedBefore == true) {
+		if ((_GameInfoScript._levelOneAsiaPlayedBefore == true)&&(_GameInfoScript._levelOneAfricaPlayedBefore == false)) {
+			africaLevelTwo.SetActive(true);
+		} else if (_GameInfoScript._levelOneAfricaPlayedBefore == false) {
 			africaLevelTwoUnlocked.SetActive (true);
-		} else if (gameInfoScript.levelOneAfricaPlayedBefore == false) {
-			africaLevelTwo.SetActive (true);
+			africaLevelTwo.SetActive(false);
 		}
 		africaLevelThree.SetActive (true);
 	}
@@ -174,6 +181,10 @@ public class mainMenuScript : MonoBehaviour
 	public void AfricaPlayLevel1Button ()
 	{
 		Application.LoadLevel ("LevelOneAfrica!");
+	}
+	public void AfricaPlayLevel2Button ()
+	{
+		Application.LoadLevel ("LevelTwoAfrica!");
 	}
 
 	public void BackButton(){

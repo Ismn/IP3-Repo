@@ -180,7 +180,7 @@ public class TutorialScript : MonoBehaviour
 				//Application.LoadLevel ("LevelOneAfrica!");
 				//levelOneAfricaPlayedBefore = true;
 				//gameInfoScript.levelOneAfricaPlayedBefore = true;
-				_GameInfoScript._levelOneAfricaPlayedBefore = true;
+				_GameInfoScript._levelOneAsiaPlayedBefore = true;
 				Application.LoadLevel ("MainMenu");
 				Debug.Log ("load menu");
 				break;
@@ -195,6 +195,7 @@ public class TutorialScript : MonoBehaviour
 				magnus.SetActive (true);
 				fergus.SetActive (false);
 				messageToPlayer.text = "It was ten years later in 2002 before we fully established our Scottish International Relief venture and lovingly renamed it to Mary's Meals! There we had to learn how to create a regular food supply for hungry school children!";
+				_GameInfoScript._levelOneAfricaPlayedBefore = true;
 				break;
 			case 1:
 				magnus.SetActive (true);
@@ -210,6 +211,7 @@ public class TutorialScript : MonoBehaviour
 				magnus.SetActive (true);
 				fergus.SetActive (false);
 				messageToPlayer.text = "Now we have to deliver three sets of meals to the schools in the level! We think you've got it, but if you get stuck at any point, click the pause button and the question mark for help!";
+
 				break;
 			}
 		}
@@ -222,6 +224,7 @@ public class TutorialScript : MonoBehaviour
 				fergus.SetActive (false);
 				textbox.SetActive(false);
 				next.SetActive(false);
+				_GameInfoScript._levelTwoAfricaPlayedBefore = true;
 				break;
 			}
 		}
